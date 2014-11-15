@@ -1,5 +1,7 @@
 package agent;
 
+import java.util.ArrayList;
+
 import slope.SlopeCell;
 
 public class Agent {
@@ -7,7 +9,7 @@ public class Agent {
 	 public static enum Direction {N,NE,E,SE,S,SW,W,NW};
 	 private int speed;
 	 private int skill;
-	 private SlopeCell[][] path;
+	 private ArrayList<SlopeCell> path;
 	 private SlopeCell location;
 	 
 	 public boolean move(Direction dir){
@@ -32,10 +34,10 @@ public class Agent {
 	public void setSkill(int skill) {
 		this.skill = skill;
 	}
-	public SlopeCell[][] getPath() {
+	public ArrayList<SlopeCell> getPath() {
 		return path;
 	}
-	public void setPath(SlopeCell[][] path) {
+	public void setPath(ArrayList<SlopeCell> path) {
 		this.path = path;
 	};
 	 
