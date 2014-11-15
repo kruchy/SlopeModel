@@ -38,29 +38,37 @@ public class Algorithm {
 	    if (a.getLocation().getPosx() - a.getPath().get(0).getPosx() != 0 &&  a.getLocation().getPosy() - a.getPath().get(0).getPosy() != 0 ) alfax = 0.5 ; alfay =0.5;
 	    if (a.getLocation().getPosx() - a.getPath().get(0).getPosx() != 0 &&  a.getLocation().getPosy() - a.getPath().get(0).getPosy() == 0 ) alfax = 1;alfay = 0;
 	    if (a.getLocation().getPosx() - a.getPath().get(0).getPosx() == 0 &&  a.getLocation().getPosy() - a.getPath().get(0).getPosy() != 0 ) alfax = 0;alfay = 1;
-	    a.setLocation(Slope
-	     a.getLocation().getPosx() + dt * (alfax*a.getSpeed() + accela*Math.cos(theta)*dt/2),
-	     a.getLocation().getPosy() + dt * (alfay*a.getSpeed() + accela*Math.sin(theta)*dt/2) 
-	    );
-	    b.setPosition(
-	     b.getX() + dt * (b.getVX() + accelb*cos(theta)*dt/2),
-	     b.getY() + dt * (b.getVY() + accelb*sin(theta)*dt/2)
-	    );
+
+
+	    			//			a.getX() 				  + dt * (a.getVX() 		 + accela*	   cos(theta)*dt/2),
+	    			//			a.getY()				  + dt * (a.getVY() 		 + accela*     sin(theta)*dt/2) 
+	    a.getLocation().setCell(
+	    		a.getLocation().getPosx() + dt * (alfax*a.getSpeed() + accela*Math.cos(theta)*dt/2),
+	    		a.getLocation().getPosy() + dt * (alfay*a.getSpeed() + accela*Math.sin(theta)*dt/2)); 
+
+	    if (b.getLocation().getPosx() - b.getPath().get(0).getPosx() != 0 &&  b.getLocation().getPosy() - b.getPath().get(0).getPosy() != 0 ) alfax = 0.5 ; alfay =0.5;
+	    if (b.getLocation().getPosx() - b.getPath().get(0).getPosx() != 0 &&  b.getLocation().getPosy() - b.getPath().get(0).getPosy() == 0 ) alfax = 1;alfay = 0;
+	    if (b.getLocation().getPosx() - b.getPath().get(0).getPosx() == 0 &&  b.getLocation().getPosy() - b.getPath().get(0).getPosy() != 0 ) alfax = 0;alfay = 1;
+
+	    b.getLocation().setCell(
+	    		b.getLocation().getPosx() + dt * (alfax*b.getSpeed() + accela*Math.cos(theta)*dt/2),
+				b.getLocation().getPosy() + dt * (alfay*b.getSpeed() + accela*Math.sin(theta)*dt/2));
+	  
 	    // get new acceleration a'
 	    F = force(a,b);
-	    float thetap = angle(a,b);
-	    float accelap = F/a.getMass();
-	    float accelbp = -F/b.getMass();
+	    //float thetap = angle(a,b);
+	    double accelap = F/1;
+	    double accelbp = -F/1;
 	    // and update velocities
 	    // v = v + (a + a')*dt/2
-	    a.setVelocity(
+	    /*a.setVelocity(
 	     a.getVX() + (accela*cos(theta) + accelap*cos(thetap))*dt/2,
 	     a.getVY() + (accela*sin(theta) + accelap*sin(thetap))*dt/2
 	    );
 	    b.setVelocity(
 	     b.getVX() + (accelb*cos(theta) + accelbp*cos(thetap))*dt/2,
 	     b.getVY() + (accelb*sin(theta) + accelbp*sin(thetap))*dt/2
-	    );
+	    );*/
 	}
 }
 
