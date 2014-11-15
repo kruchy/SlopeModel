@@ -12,7 +12,19 @@ public class SlopeCell {
 		posy = y;
 	}*/
 	public void setCell(int x, int y){
-		posx = x; 
-		posy = y;
+		setPosx(x); 
+		setPosy(y);
+	}
+	public int getPosx() {
+		return posx;
+	}
+	public void setPosx(int posx) {
+		this.posx = posx;
+	}
+	private int getPosy() {
+		return posy;
+	}
+	private void setPosy(int posy) {
+		this.posy = posy;
 	}
 }

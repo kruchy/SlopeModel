@@ -7,6 +7,7 @@ public class Slope {
 	static private SlopeCell[][] slope;
 	private int[][] heightmap;
 	private int width, height, maxHeight;
+	private int minHeight;
 	public Slope(int width, int height, int maxHeight, int minHeight){
 		this.height = height;
 		this.width = width;

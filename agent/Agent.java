@@ -4,15 +4,15 @@ import slope.SlopeCell;
 
 public class Agent {
 
-	 public static int[] Direction = {1,2,3,4,5,6,7,8,9};
+	 public static enum Direction {N,NE,E,SE,S,SW,W,NW};
 	 private int speed;
 	 private int skill;
 	 private SlopeCell[][] path;
 	 private SlopeCell location;
 	 
-	 public boolean move(int dir){
+	 public boolean move(Direction dir){
 		return false;};
-	 public boolean turn(int dir){
+	 public boolean turn(Direction dir){
 		return false;}
 	public SlopeCell getLocation() {
 		return location;
