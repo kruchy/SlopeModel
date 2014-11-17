@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import agent.Agent;
 import agent.Agent.Direction;
+import agent.Algorithm;
 import agent.Skier;
 import slope.Elevator;
 import slope.Slope;
@@ -21,6 +22,10 @@ public class Manager {
  public boolean updateModel()
  {
 	 ArrayList<Agent> moved = moveSkiers();
+	 for (int i = 0; i < agents.size(); i++)
+		 for (int j = i; j < agents.size(); j++)
+				 Algorithm.updatePosition(agents.get(i),agents.get(j));
+	 foundCollisions();
 	 addToElevator(moved);
 	 moveElevator();
 	 try {
@@ -33,7 +38,17 @@ public class Manager {
 	 
  }
  
- public void moveElevator() {
+ private boolean foundCollisions() {
+	 // TODO Finding collisions
+	for (Agent iter: agents)
+	{
+		int x = iter.getLocation().getPosx();
+		int y = iter.getLocation().getPosy();
+	}
+	return false;
+}
+
+public void moveElevator() {
 	// TODO Auto-generated method stub
 	
 }
@@ -63,6 +78,8 @@ public ArrayList<Agent> moveSkiers(){
 	return outOfBounds;
  }
  
+
+
  public boolean onSkierCollision() {
 	return false;
 }

@@ -2,7 +2,7 @@ package agent;
 
 public class Algorithm {
 	public  double G = 6.67300E-11;  // N*(m/kg)^2
-	private double dt = 0.1;      // s
+	private static double dt = 0.1;      // s
 	// returns square of distance between objects
 	public double distance_sq(Agent a, Agent b)
 	{
@@ -11,18 +11,17 @@ public class Algorithm {
 	}
 
 	// returns magnitude of the force between the objects
-	public double force(Agent a, Agent b)
+	public static double force(Agent a, Agent b)
 	{
-	    //  F=(G * m1 * m1)/(r^2) in the direction a->b and b->a
-	    return G*1*1/distance_sq(a, b);
+	    return a.getSpeed()/a.getSkill() + b.getSpeed()/b.getSkill();
 	}
 
 	// returns the angle from a to b
-	public double angle(Agent a, Agent b)
+	public static double angle(Agent a, Agent b)
 	{
 	    return Math.atan2(b.getLocation().getPosy()-a.getLocation().getPosy(),b.getLocation().getPosx()-a.getLocation().getPosx());
 	}
-	public void updatePosition(Agent a, Agent b)
+	public static void updatePosition(Agent a, Agent b)
 	{ 
 	    double F = force(a,b);
 	    double theta = angle(a,b);

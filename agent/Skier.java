@@ -2,6 +2,7 @@ package agent;
 
 import java.util.Random;
 
+import slope.Slope;
 import slope.SlopeCell;
 
 public class Skier extends Agent {
@@ -12,7 +13,8 @@ public class Skier extends Agent {
 		this.setDir(randomEnum(Direction.class));
 		this.setSpeed(rand.nextInt(10));
 		this.setSkill(5);
-		this.setLocation(5, 5);
+		this.setLocation(rand.nextInt(Slope.getWidth()),0);
+		this.getPath().add(this.getLocation());
 		// cell = new SlopeCell(5,5);
 	}
 
