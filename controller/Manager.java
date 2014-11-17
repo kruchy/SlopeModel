@@ -24,7 +24,7 @@ public class Manager {
 	 addToElevator(moved);
 	 moveElevator();
 	 try {
-		Thread.sleep(1000);
+		Thread.sleep(100);
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -47,12 +47,17 @@ public ArrayList<Agent> moveSkiers(){
 	 ArrayList<Agent> outOfBounds = new ArrayList<>();
 	 for (Agent i : agents)
 	 {
-		i.move();
 		int x = i.getLocation().getPosx();
 		int y = i.getLocation().getPosy();
 		Direction dir = i.getDir();
-		if ( x >= Slope.getWidth() || x < 0 ) i.setDir(Direction.FWD);
-		if ( y >= Slope.getHeight() ) i.setLocation(Slope.getWidth(),Slope.getHeight());outOfBounds.add(i);
+		if ( x+1 >= Slope.getWidth() || x <= 0 ) i.setDir(Direction.FWD);
+		if ( y+1 >= Slope.getHeight() ) i.setLocation(Slope.getWidth(),Slope.getHeight());outOfBounds.add(i);
+		i.time  += (double)i.getSpeed()/10.0 + i.time; 
+		if(i.time > 1.0 )
+		{
+			i.move();
+			i.time -= 1.0;
+		}
 		
 	 }
 	return outOfBounds;
