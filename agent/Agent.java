@@ -10,6 +10,7 @@ public class Agent {
 	 private Direction dir;
 	 private int speed;
 	 private int skill;
+	 public double time = 0.0;
 	 private ArrayList<SlopeCell> path;
 	 private SlopeCell location;
 	 
