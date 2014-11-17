@@ -4,11 +4,15 @@ import java.util.Random;
 
 import slope.SlopeCell;
 
-public class Skiier extends Agent {
+public class Skier extends Agent {
 	SlopeCell cell;
-	public Skiier(){
-		
+	public Skier(){
+		this.setSpeed(10);
+		this.setSkill(5);	
+		this.setLocation(5,5);
+		//cell = new SlopeCell(5,5);
 	}
+	
 	public SlopeCell createSkiier(SlopeCell[][] slope){
 		Random r = new Random();
 		int random = r.nextInt(slope.length);

@@ -4,16 +4,24 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Slope {
-	static private SlopeCell[][] slope;
+	static public SlopeCell[][] slope;
 	private int[][] heightmap;
-	private int width, height, maxHeight;
+	private static int width;
+	private static int height;
+	private int maxHeight;
+	private int minHeight;
 	public Slope(int width, int height, int maxHeight, int minHeight){
-		this.height = height;
-		this.width = width;
+		this.setHeight(height);
+		this.setWidth(width);
 		this.maxHeight = maxHeight;
 		this.minHeight = minHeight;
 		heightmap = new int[height][width];
 		slope = new SlopeCell[height][width];
+		for(int i = 0; i < height; i++)
+			for(int j = 0; j < width; j++)
+			{
+				slope[i][j] = new SlopeCell(i,j);
+			}
 	}
 	public static SlopeCell[][] getSlopeTable(){
 		return slope;
@@ -39,5 +47,17 @@ public class Slope {
 			System.out.println(Arrays.toString(t));
 			//System.out.println();
 		}
+	}
+	public static int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	public static int getWidth() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
 	}
 }
