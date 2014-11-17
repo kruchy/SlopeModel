@@ -6,21 +6,37 @@ import slope.SlopeCell;
 
 public class Agent {
 
-	 public static enum Direction {N,NE,E,SE,S,SW,W,NW};
+	 public static enum Direction {L,FWD,R} // {N,NE,E,SE,S,SW,W,NW};
+	 private Direction dir;
 	 private int speed;
 	 private int skill;
 	 private ArrayList<SlopeCell> path;
 	 private SlopeCell location;
 	 
-	 public boolean move(Direction dir){
-		return false;};
+	 public Agent()
+	 {
+		 path = new ArrayList<>();
+		 location = new SlopeCell();
+	 }
+	 
+	 public boolean move(){
+		 
+		if (getDir() == Direction.R ) updateLocation(-1,1);
+		if (getDir() == Direction.L  ) updateLocation(1,1);
+		else updateLocation(0, 1);
+		return true;
+		};
 	 public boolean turn(Direction dir){
 		return false;}
 	public SlopeCell getLocation() {
 		return location;
 	}
-	public void setLocation(SlopeCell location) {
-		this.location = location;
+	public void updateLocation(int x, int y)
+	{
+		this.location.updateCell(x, y);
+	}
+	public void setLocation(int x, int y) {
+		this.location = new SlopeCell(x,y);
 	}
 	public int getSpeed() {
 		return speed;
@@ -39,6 +55,12 @@ public class Agent {
 	}
 	public void setPath(ArrayList<SlopeCell> path) {
 		this.path = path;
+	}
+	public Direction getDir() {
+		return dir;
+	}
+	public void setDir(Direction dir) {
+		this.dir = dir;
 	};
 	 
 	 

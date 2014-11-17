@@ -9,7 +9,8 @@ public class Skier extends Agent {
 	public Skier(){
 		this.setSpeed(10);
 		this.setSkill(5);	
-		this.setLocation(new SlopeCell(5,5));
+		this.setLocation(5,5);
+		//cell = new SlopeCell(5,5);
 	}
 	
 	public SlopeCell createSkiier(SlopeCell[][] slope){
