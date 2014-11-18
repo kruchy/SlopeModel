@@ -19,7 +19,7 @@ public class Slope {
 		
 		this.maxHeight = maxHeight;
 		this.minHeight = minHeight;
-		heightmap = new int[height][width];
+		setHeightmap(new int[height][width]);
 		slope = new SlopeCell[height][width];
 		route = new ArrayList<>();
 		for(int i = 0; i < height; i++)
@@ -44,11 +44,11 @@ public class Slope {
 		int random;
 		int max = maxHeight;
 		System.out.println(max);
-		for(int i = 0; i < heightmap.length; i++){
-			for(int j = 0; j < heightmap[i].length; j++){
+		for(int i = 0; i < getHeightmap().length; i++){
+			for(int j = 0; j < getHeightmap()[i].length; j++){
 			
 					 random = r.nextInt(max - (max - 2) + 1) + (max - 2);
-				heightmap[i][j] = random;
+				getHeightmap()[i][j] = random;
 				
 			}
 			max--;
@@ -56,7 +56,7 @@ public class Slope {
 
 	}
 	public void printHeightmap(){
-		for(int[] t : heightmap){
+		for(int[] t : getHeightmap()){
 			System.out.println(Arrays.toString(t));
 			//System.out.println();
 		}
@@ -72,5 +72,11 @@ public class Slope {
 	}
 	public void setWidth(int width) {
 		this.width = width;
+	}
+	public static int[][] getHeightmap() {
+		return heightmap;
+	}
+	public static void setHeightmap(int[][] heightmap) {
+		Slope.heightmap = heightmap;
 	}
 }

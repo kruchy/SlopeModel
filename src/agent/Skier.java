@@ -18,6 +18,15 @@ public class Skier extends Agent {
 		// cell = new SlopeCell(5,5);
 	}
 
+	public void findCell()
+	{
+		int x = getLocation().getPosx();
+		int y = getLocation().getPosy();
+		int[][] mapa = Slope.getHeightmap();
+		if(mapa[x-1][y+1] < mapa[x][y]) setDir(Direction.R);
+		if(mapa[x][y+1] < mapa[x][y]) setDir(Direction.FWD);
+		else setDir(Direction.L);
+	}
 	public static <T extends Enum<?>> T randomEnum(Class<T> clazz) {
 		Random rand = new Random();
 		int x = rand.nextInt(clazz.getEnumConstants().length);

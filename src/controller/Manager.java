@@ -10,7 +10,7 @@ import slope.Elevator;
 import slope.Slope;
 
 public class Manager {
- ArrayList <Agent> agents;
+ ArrayList <Skier> agents;
  Elevator elevator;
  
  public Manager()
@@ -21,7 +21,7 @@ public class Manager {
  
  public boolean updateModel()
  {
-	 ArrayList<Agent> moved = moveSkiers();
+	 ArrayList<Skier> moved = moveSkiers();
 	 for (int i = 0; i < agents.size(); i++)
 		 for (int j = i; j < agents.size(); j++)
 				 Algorithm.updatePosition(agents.get(i),agents.get(j));
@@ -53,17 +53,18 @@ public void moveElevator() {
 	
 }
 
-public void addToElevator(ArrayList<Agent> moved) {
+public void addToElevator(ArrayList<Skier> moved) {
 	// TODO Auto-generated method stub
 	
 }
 
-public ArrayList<Agent> moveSkiers(){
-	 ArrayList<Agent> outOfBounds = new ArrayList<>();
-	 for (Agent i : agents)
+public ArrayList<Skier> moveSkiers(){
+	 ArrayList<Skier> outOfBounds = new ArrayList<>();
+	 for (Skier i :  agents)
 	 {
 		int x = i.getLocation().getPosx();
 		int y = i.getLocation().getPosy();
+		if(y+1<Slope.getHeight() && x+1<Slope.getWidth()&& x-1 > 0)i.findCell();
 		Direction dir = i.getDir();
 		if ( x+1 >= Slope.getWidth() || x <= 0 ) i.setDir(Direction.FWD);
 		if ( y+1 >= Slope.getHeight() ) i.setLocation(Slope.getWidth(),Slope.getHeight());outOfBounds.add(i);
