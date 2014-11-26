@@ -32,7 +32,7 @@ public class Slope {
 		for (int i = 0; i < width -1; i++)
 			for ( int j = 0 ; j < height - 1; j++)
 			{
-				route.add(getSlopeTable()[i+1][j+1]);
+				route.add(getSlopeTable()[i+ rand.nextInt(1)][j+rand.nextInt(1)]);
 			}
 		
 	}
@@ -43,7 +43,6 @@ public class Slope {
 		Random r = new Random();
 		int random;
 		int max = maxHeight;
-		System.out.println(max);
 		for(int i = 0; i < getHeightmap().length; i++){
 			for(int j = 0; j < getHeightmap()[i].length; j++){
 			

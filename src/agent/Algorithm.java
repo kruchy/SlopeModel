@@ -47,7 +47,8 @@ public class Algorithm {
 
 	    if (b.getLocation().getPosx() - b.getPath().get(0).getPosx() != 0 &&  b.getLocation().getPosy() - b.getPath().get(0).getPosy() != 0 ) alfax = 0.5 ; alfay =0.5;
 	    if (b.getLocation().getPosx() - b.getPath().get(0).getPosx() != 0 &&  b.getLocation().getPosy() - b.getPath().get(0).getPosy() == 0 ) alfax = 1;alfay = 0;
-	    if (b.getLocation().getPosx() - b.getPath().get(0).getPosx() == 0 &&  b.getLocation().getPosy() - b.getPath().get(0).getPosy() != 0 ) alfax = 0;alfay = 1;
+	    if (b.getLocation().getPosx() - b.getPath().get(0).getPosx() == 0 &&  
+	    		b.getLocation().getPosy() - b.getPath().get(0).getPosy() != 0 ) alfax = 0;alfay = 1;
 
 	    b.getLocation().setCell(
 	    		b.getLocation().getPosx() + dt * (alfax*b.getSpeed() + accela*Math.cos(theta)*dt/2),
@@ -69,5 +70,9 @@ public class Algorithm {
 	     b.getVY() + (accelb*sin(theta) + accelbp*sin(thetap))*dt/2
 	    );*/
 	}
+	
+
+	
+	
 }
 
