@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 
-import agent.Agent;
 import agent.Agent.Direction;
 import agent.Algorithm;
 import agent.Skier;
@@ -55,7 +54,7 @@ public class Manager {
 
 	private boolean foundCollisions() {
 		// TODO Finding collisions
-		for (Agent iter : agents) {
+		for (Skier iter : agents) {
 			int x = iter.getLocation().getPosx();
 			int y = iter.getLocation().getPosy();
 		}
