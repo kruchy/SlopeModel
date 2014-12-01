@@ -19,11 +19,11 @@ public class Manager {
 
 	SlopeFrame slopeFrame;
 	SkiPanel skiPanel;
+
 	public Manager() {
 		agents = new ArrayList<>();
 		elevator = new Elevator();
 		agentMap = new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2];
-
 		skiPanel = new SkiPanel(agentMap);
 		slopeFrame = new SlopeFrame(50, 50, 400, 600,skiPanel);
 	}
@@ -55,7 +55,7 @@ public class Manager {
 
 	private boolean foundCollisions() {
 		// TODO Finding collisions
-		for (Skier iter : agents) {
+		for (Agent iter : agents) {
 			int x = iter.getLocation().getPosx();
 			int y = iter.getLocation().getPosy();
 		}
@@ -76,16 +76,15 @@ public class Manager {
 		
 	}
 
+//	public void updateTable()
+//	{
+//		slopeFrame.drawTable(agentMap);
+//	}
 	
 	public boolean[][] getAgentMap() {
 		return agentMap;
 	}
 
-	public void updateTable()
-	{
-		slopeFrame.drawTable(agentMap);
-	}
-	
 	public ArrayList<Skier> moveSkiers() {
 		ArrayList<Skier> outOfBounds = new ArrayList<>();
 		for (Skier i : agents) {
@@ -135,6 +134,5 @@ public class Manager {
 		agentMap[a.getLocation().getPosx() + 1][a.getLocation().getPosy() + 1] = true;
 
 	}
-
 
 }
