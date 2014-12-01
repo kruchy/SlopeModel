@@ -9,11 +9,10 @@ public class Skiier extends Agent {
 	public Skiier(){
 		
 	}
-	public SlopeCell createSkiier(SlopeCell[][] slope){
+	public void createSkiier(SlopeCell[][] slope){
 		Random r = new Random();
 		int random = r.nextInt(slope.length);
 		cell.setCell(0,random);
-		return slope[0][random];
 	}
 	
 
