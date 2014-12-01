@@ -10,7 +10,7 @@ import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import view.SkiPanel;
 import javax.swing.*;
 
 import controller.Manager;
@@ -40,19 +40,29 @@ public class SlopeFrame extends JFrame {
 	{
 		setTitle("SlopeFrame");
 		panel = sp;
+		}
+
+	public SlopeFrame(int x,int y,int width ,int height )
+	{
+		setTitle("SlopeFrame");
 		initialize(x, y, width, height);
 	}
 
 	private void initialize(int x, int y, int width, int height ) {
 		frame = new JFrame("SlopeFrame");
 		buttons = new JPanel();
+
+
 		addWindowListener(new CloseWindow());
 		setSize(800, 600);
 		setLocation(x, y);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		frame.getContentPane().setLayout(new GridBagLayout());
+
 		add(buttons, BorderLayout.NORTH);
+		getContentPane().add(buttons);
+
 		start = new JButton("Start");
 		exit = new JButton("Exit");
 		loadHeight = new JButton("Load HeightMap");
@@ -96,48 +106,55 @@ public class SlopeFrame extends JFrame {
 				
 			}
 		});
+
 		buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+
 		buttons.add(start);
 		buttons.add(exit);
 		buttons.add(loadMap);
 		buttons.add(loadHeight);
 		buttons.add(mapDir);
 		buttons.add(heightDir);
-		
+
 		panel.setSize(600 , 100); 
 		add(panel, BorderLayout.CENTER);
 		panel.setBackground(new Color(255,255,255));
-	//	pack();
+	
 	
 		setVisible(true);
 	
+	
+
+		panel = (SkiPanel) new JPanel();
+		panel.setSize(600 , 100); 
+		getContentPane().add(panel, BorderLayout.SOUTH);
+		panel.setBackground(new Color(255,255,255));
 	}
 	
 	
-//	public void drawTable(boolean[][] table)
-//	{
-//		Graphics g = getGraphics();
-//		//repaint();
-//
-//		for (int i = 0 ; i < table.length; i++)
-//		{
-//			for (int j = 0; j < table[0].length; j++)
-//			{	
-//				if(table[i][j])
-//				{
-//					g.drawRect(i*30,j*30,30, 30);
-//					g.drawString("s", i*10, j*10);
-//				}
-//			}
-//		}
-//		
-//		this.revalidate();
-//		this.repaint();
-//		
-//	}
-//	@Override public void paint(Graphics g)
-//	{
-//		super.paint(g);
-//	
-//	}
+	public void drawTable(boolean[][] table)
+	{
+		Graphics g = getGraphics();
+	//	repaint();
+		
+		for (int i = 0 ; i < table.length; i++)
+		{
+			for (int j = 0; j < table[0].length; j++)
+			{	
+				if(table[i][j])
+				{
+					//g.drawRect(i*30,j*30,30, 30);
+					g.drawString("s", i*10, j*10);
+				}
+			}
+		}
+		
+	}
+	@Override public void paint(Graphics g)
+	{
+		super.paint(g);
+	}
+	
 }
+

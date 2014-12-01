@@ -13,7 +13,7 @@ public class Main {
 		Skier a = new Skier();
 		Skier b = new Skier();
 		Manager manager = new Manager();
-	//	 new SlopeFrame(50,50 ,600, 400);
+		new SlopeFrame(50,50 ,600, 400);
 		/*EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -27,7 +27,9 @@ public class Main {
 		{
 			manager.updateModel();
 			manager.updateAgentMap();
+
 		//	manager.updateTable();
+
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
