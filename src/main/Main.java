@@ -22,12 +22,13 @@ public class Main {
 		});*/
 		manager.addSkier(a);
 		manager.addSkier(b);
+		manager.addSkier(new Skier());
 		slope.printHeightmap();
 		while(true)
 		{
 			manager.updateModel();
 			manager.updateAgentMap();
-		//	manager.updateTable();
+			//manager.updateTable();
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {

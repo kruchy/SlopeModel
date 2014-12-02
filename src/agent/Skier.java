@@ -11,8 +11,8 @@ public class Skier extends Agent {
 	public Skier() {
 		Random rand = new Random();
 		this.setDir(randomEnum(Direction.class));
-		this.setSpeed(rand.nextInt(10));
-		this.setSkill(5);
+		this.setSkill(rand.nextInt(10));
+		this.setSpeed(rand.nextInt(getSkill()+1));
 		this.setLocation(rand.nextInt(Slope.getWidth()),0);
 		this.getPath().add(this.getLocation());
 		// cell = new SlopeCell(5,5);
