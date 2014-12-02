@@ -18,14 +18,33 @@ public class Skier extends Agent {
 		// cell = new SlopeCell(5,5);
 	}
 
+	public Direction randomizeWithWages(double pLeft, double pUp, double pRight) {
+        double totallyRandomValue = new Random().nextDouble();
+        if (totallyRandomValue < pLeft) {
+            return Direction.L;
+        } else if (totallyRandomValue >= pLeft && totallyRandomValue < (pLeft + pUp)) {
+            return Direction.R;
+        } else {
+            return Direction.FWD;
+        }
+    }
+    
+    
 	public void findCell()
 	{
 		int x = getLocation().getPosx();
 		int y = getLocation().getPosy();
 		int[][] mapa = Slope.getHeightmap();
-		if(mapa[x-1][y+1] < mapa[x][y]) setDir(Direction.R);
-		if(mapa[x][y+1] < mapa[x][y]) setDir(Direction.FWD);
-		else setDir(Direction.L);
+		Random rand = new Random();
+		double[] probability = new double[3];
+		for (int i = -1 ;  i < 2;i++)
+		{
+			probability[i+1] = rand.nextDouble()*mapa[x+i][y+1] + (rand.nextDouble()*0.2 - 0.1);
+		}
+		
+		setDir(randomizeWithWages(probability[0], probability[1], probability[2]));
+		
+		
 	}
 	public static <T extends Enum<?>> T randomEnum(Class<T> clazz) {
 		Random rand = new Random();
