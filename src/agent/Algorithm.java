@@ -70,8 +70,7 @@ public class Algorithm {
 	     b.getVY() + (accelb*sin(theta) + accelbp*sin(thetap))*dt/2
 	    );*/
 	}
-
-
+	
 
 	
 	
