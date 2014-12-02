@@ -47,14 +47,14 @@ public class Slope {
 			for(int j = 0; j < getHeightmap()[i].length; j++){
 			
 					 random = r.nextInt(max - (max - 2) + 1) + (max - 2);
-				getHeightmap()[i][j] = random;
+				getHeightmap()[i][j] = r.nextInt(100);  //random;
 				
 			}
 			max--;
 		}
 
 	}
-	public void printHeightmap(){
+	public static void printHeightmap(){
 		for(int[] t : getHeightmap()){
 			System.out.println(Arrays.toString(t));
 			//System.out.println();

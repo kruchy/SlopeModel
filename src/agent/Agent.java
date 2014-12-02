@@ -7,7 +7,9 @@ import slope.SlopeCell;
 public class Agent {
 
 	 public static enum Direction {L,FWD,R} // {N,NE,E,SE,S,SW,W,NW};
+	 public static enum State {ON_LIFT,ON_TRACK,SAFE_ZONE};
 	 private Direction dir;
+	 private State state;
 	 private int speed;
 	 private int skill;
 	 public double time = 0.0;
@@ -18,6 +20,7 @@ public class Agent {
 	 {
 		 path = new ArrayList<>();
 		 location = new SlopeCell();
+		 setState(State.ON_TRACK);
 	 }
 	 
 	 public boolean move(){
@@ -62,5 +65,13 @@ public class Agent {
 	}
 	public void setDir(Direction dir) {
 		this.dir = dir;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	};
 }

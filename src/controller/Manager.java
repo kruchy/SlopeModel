@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import agent.Agent;
 import agent.Agent.Direction;
+import agent.Agent.State;
 import agent.Algorithm;
 import agent.Skier;
 import slope.Elevator;
@@ -24,8 +25,6 @@ public class Manager {
 		agents = new ArrayList<>();
 		elevator = new Elevator();
 		agentMap = new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2];
-		skiPanel = new SkiPanel(agentMap);
-		slopeFrame = new SlopeFrame(50, 50, 400, 600,skiPanel);
 	}
 
 	public boolean updateModel() {
@@ -36,6 +35,7 @@ public class Manager {
 				;*/
 		foundCollisions();
 		addToElevator(moved);
+		moved.removeAll(moved);
 		moveElevator();
 		
 		return true;
@@ -48,7 +48,11 @@ public class Manager {
 				agentMap[i][j] = false;
 			}
 		for (Skier iter : agents) {
-			agentMap[iter.getLocation().getPosx()][iter.getLocation().getPosy()] = true;
+			int x = iter.getLocation().getPosx();
+			int y = iter.getLocation().getPosy();
+			if (x <= Slope.getWidth() && y <= Slope.getHeight())
+			agentMap[x][y] = true;
+			
 		}
 
 	}
@@ -62,14 +66,17 @@ public class Manager {
 		return false;
 	}
 
-	public void moveElevator() {
-		// TODO Auto-generated method stub
+	public  synchronized  void moveElevator() {
+		elevator.lift();
 
 	}
 
-	public void addToElevator(ArrayList<Skier> moved) {
-		// TODO Auto-generated method stub
-
+	public  void addToElevator(ArrayList<Skier> moved) {
+		for (Skier skier:moved )
+		{
+			skier.setState(State.ON_LIFT);
+			elevator.addSkier(skier);
+		}
 	}
 
 	public void pushToRoute() {
@@ -84,6 +91,11 @@ public class Manager {
 	public boolean[][] getAgentMap() {
 		return agentMap;
 	}
+	
+	public void simulate()
+	{
+		
+	}
 
 	public ArrayList<Skier> moveSkiers() {
 		ArrayList<Skier> outOfBounds = new ArrayList<>();
@@ -93,14 +105,20 @@ public class Manager {
 			if (y + 1 < Slope.getHeight() && x + 1 < Slope.getWidth()
 					&& x - 1 > 0)
 				i.findCell();
-			Direction dir = i.getDir();
-			if (x + 1 >= Slope.getWidth() || x <= 0)
-				i.setDir(Direction.FWD);
-			if (y + 1 >= Slope.getHeight())
-				i.setLocation(Slope.getWidth(), Slope.getHeight());
-			outOfBounds.add(i);
+			if (x + 1 >= Slope.getWidth())
+			{
+				i.setDir(Direction.R);
+			}
+			if (x <= 0){
+				i.setDir(Direction.L);
+			}
+				if (y + 1 >= Slope.getHeight())
+				{
+					i.setLocation(Slope.getWidth()-3, Slope.getHeight()-4);
+					outOfBounds.add(i);
+				}
 			i.time += (double) i.getSpeed() / 10.0 + i.time;
-			if (i.time > 1.0) {
+			if (i.time > 1.0 && i.getState() == State.ON_TRACK) {
 				i.move();
 				i.time -= 1.0;
 			}

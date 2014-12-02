@@ -71,7 +71,9 @@ public class SlopeFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				setEnabled(false);
+				frame.dispose();
 			}
 		});
 		loadHeight.addActionListener(new ActionListener() {

@@ -1,13 +1,20 @@
 package agent;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.nio.file.Files;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 import slope.Slope;
 import slope.SlopeCell;
 
 public class Skier extends Agent {
 	SlopeCell cell;
-
+	BufferedImage image;
+	
 	public Skier() {
 		Random rand = new Random();
 		this.setDir(randomEnum(Direction.class));
@@ -15,6 +22,7 @@ public class Skier extends Agent {
 		this.setSkill(5);
 		this.setLocation(rand.nextInt(Slope.getWidth()),0);
 		this.getPath().add(this.getLocation());
+		
 		// cell = new SlopeCell(5,5);
 	}
 
