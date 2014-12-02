@@ -27,7 +27,7 @@ public class Main {
 		{
 			manager.updateModel();
 			manager.updateAgentMap();
-			manager.updateTable();
+		//	manager.updateTable();
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {

@@ -21,9 +21,9 @@ public class Agent {
 	 }
 	 
 	 public boolean move(){
-		 
+
 		if (getDir() == Direction.R ) updateLocation(-1,1);
-		if (getDir() == Direction.L  ) updateLocation(1,1);
+		if (getDir() == Direction.L ) updateLocation(1,1);
 		else updateLocation(0, 1);
 		return true;
 		};
@@ -63,9 +63,4 @@ public class Agent {
 	public void setDir(Direction dir) {
 		this.dir = dir;
 	};
-	 
-	 
-	 
-	 
-
 }

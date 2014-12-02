@@ -8,19 +8,24 @@ import agent.Algorithm;
 import agent.Skier;
 import slope.Elevator;
 import slope.Slope;
+import view.SkiPanel;
 import view.SlopeFrame;
 
 public class Manager {
 	ArrayList<Skier> agents;
 	Elevator elevator;
-	public boolean[][] agentMap;
+	boolean[][] agentMap;
+
+
 	SlopeFrame slopeFrame;
+	SkiPanel skiPanel;
 
 	public Manager() {
 		agents = new ArrayList<>();
 		elevator = new Elevator();
 		agentMap = new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2];
-		slopeFrame = new SlopeFrame(50, 50, 400, 600);
+		skiPanel = new SkiPanel(agentMap);
+		slopeFrame = new SlopeFrame(50, 50, 400, 600,skiPanel);
 	}
 
 	public boolean updateModel() {
@@ -71,11 +76,15 @@ public class Manager {
 		
 	}
 
-	public void updateTable()
-	{
-		slopeFrame.drawTable(agentMap);
-	}
+//	public void updateTable()
+//	{
+//		slopeFrame.drawTable(agentMap);
+//	}
 	
+	public boolean[][] getAgentMap() {
+		return agentMap;
+	}
+
 	public ArrayList<Skier> moveSkiers() {
 		ArrayList<Skier> outOfBounds = new ArrayList<>();
 		for (Skier i : agents) {
