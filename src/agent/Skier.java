@@ -37,9 +37,16 @@ public class Skier extends Agent {
 		int[][] mapa = Slope.getHeightmap();
 		Random rand = new Random();
 		double[] probability = new double[3];
+		double sum = 0;
 		for (int i = -1 ;  i < 2;i++)
 		{
 			probability[i+1] = rand.nextDouble()*mapa[x+i][y+1] + (rand.nextDouble()*0.2 - 0.1);
+			sum += probability[i+1];
+		}
+		
+		for (int i = 0; i < 3; i++) 
+		{
+			probability[i] = probability[i]/sum;
 		}
 		
 		setDir(randomizeWithWages(probability[0], probability[1], probability[2]));
