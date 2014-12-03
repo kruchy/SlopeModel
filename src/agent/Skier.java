@@ -33,6 +33,8 @@ public class Skier extends Agent {
 		int y = getLocation().getPosy();
 		double angle = Math.atan2(y - a.getPosy(),x - a.getPosy() );
 		return angle;
+	}
+	
 	public Direction randomizeWithWages(double pLeft, double pUp, double pRight) {
         double totallyRandomValue = new Random().nextDouble();
         if (totallyRandomValue < pLeft) {
@@ -42,7 +44,7 @@ public class Skier extends Agent {
         } else {
             return Direction.FWD;
         }
-	}
+	
     }
     
     
