@@ -22,6 +22,12 @@ public class SkiPanel extends JPanel {
 	boolean[][] agent;
 	public SkiPanel(boolean[][] agent){
 		this.agent = agent;
+		
+	}
+	
+	
+	public void drawing()
+	{
 		try
 		{
 			String path = new File("").getAbsolutePath();
@@ -30,7 +36,9 @@ public class SkiPanel extends JPanel {
 		{
 			o.printStackTrace();
 		}
+		repaint();
 	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
@@ -58,8 +66,7 @@ public class SkiPanel extends JPanel {
 			}
 		}
 		
-	    //revalidate();
-		repaint();
+	    //revalida
 		
 	}
 

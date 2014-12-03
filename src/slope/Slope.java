@@ -29,12 +29,12 @@ public class Slope {
 			}
 		fillRandomHighmap();
 		Random rand = new Random();
-		for (int i = 0; i < width -1; i++)
+	/*	for (int i = 0; i < width -1; i++)
 			for ( int j = 0 ; j < height - 1; j++)
 			{
 				route.add(getSlopeTable()[i+ rand.nextInt(1)][j+rand.nextInt(1)]);
 			}
-		
+		*/
 	}
 	public static SlopeCell[][] getSlopeTable(){
 		return slope;

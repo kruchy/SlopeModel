@@ -11,6 +11,7 @@ import agent.Skier;
 public class Main {
 	public static void main(String[] args) {
 
+	
 		new Slope(50,50,400,600);
 
 		Manager manager = new Manager();
@@ -31,6 +32,7 @@ public class Main {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			skiPanel.drawing();
 
 		}
 	}
