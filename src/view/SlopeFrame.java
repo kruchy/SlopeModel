@@ -24,7 +24,7 @@ public class SlopeFrame extends JFrame {
 	private JFrame frame;
 	private JButton start ;
 	private JButton exit;
-	private JButton loadHeight;
+	private JButton addSkier;
 	private JButton loadMap;
 	private JTextField mapDir;
 	private JTextField heightDir;
@@ -55,7 +55,7 @@ public class SlopeFrame extends JFrame {
 		add(buttons, BorderLayout.NORTH);
 		start = new JButton("Start");
 		exit = new JButton("Exit");
-		loadHeight = new JButton("Load HeightMap");
+		addSkier = new JButton("Add Skier");
 		loadMap = new JButton("Load Map");
 		mapDir = new  JTextField("...");
 		heightDir = new JTextField("...");
@@ -71,14 +71,16 @@ public class SlopeFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				setEnabled(false);
+				frame.dispose();
 			}
 		});
-		loadHeight.addActionListener(new ActionListener() {
+		addSkier.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 		});
@@ -100,7 +102,7 @@ public class SlopeFrame extends JFrame {
 		buttons.add(start);
 		buttons.add(exit);
 		buttons.add(loadMap);
-		buttons.add(loadHeight);
+		buttons.add(addSkier);
 		buttons.add(mapDir);
 		buttons.add(heightDir);
 		
