@@ -11,15 +11,13 @@ import agent.Skier;
 public class Main {
 	public static void main(String[] args) {
 
-	
-		new Slope(50,50,400,600);
+		new Slope(50, 50, 100, 100);
 
 		Manager manager = new Manager();
 
 		SkiPanel skiPanel = new SkiPanel(manager.getAgentMap());
-		SlopeFrame slopeFrame = new SlopeFrame(1, 1, 400, 600,skiPanel);
-		for (int i = 1; i <= 7; i++)
-		{
+		SlopeFrame slopeFrame = new SlopeFrame(1, 1, 400, 600, skiPanel);
+		for (int i = 1; i <= 7; i++) {
 			manager.addSkier(new Skier());
 		}
 		Slope.printHeightmap();
@@ -33,7 +31,7 @@ public class Main {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//skiPanel.drawing();
+			// skiPanel.drawing();
 
 		}
 	}

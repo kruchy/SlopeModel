@@ -10,11 +10,15 @@ import agent.Skier;
 public class Elevator {
 	private int maxSkiers = 20;
 	public ArrayList<Skier> skierQueue;
+	private Skier out;
+
+	public Elevator() {
+		skierQueue = new ArrayList<>();
+		out = new Skier();
+	}
 
 	public boolean lift() {
 		if (!skierQueue.isEmpty()) {
-			// System.out.println(skierQueue.size());
-			Skier out = new Skier();
 			for (Skier skier : skierQueue) {
 				int x = skier.getLocation().getPosx();
 				int y = skier.getLocation().getPosy();
@@ -28,13 +32,10 @@ public class Elevator {
 				;
 			}
 			skierQueue.remove(out);
+			out = null;
 
 		}
 		return false;
-	}
-
-	public Elevator() {
-		skierQueue = new ArrayList<>();
 	}
 
 	public boolean addSkier(Skier skier) {

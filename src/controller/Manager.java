@@ -58,7 +58,6 @@ public class Manager {
 				agentMap[x][y] = true;
 
 		}
-		System.out.println();
 
 	}
 

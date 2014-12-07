@@ -22,124 +22,54 @@ import java.awt.TextArea;
 public class SlopeFrame extends JFrame {
 
 	private JFrame frame;
-	private JButton start ;
-	private JButton exit;
-	private JButton addSkier;
-	private JButton loadMap;
-	private JTextField mapDir;
-	private JTextField heightDir;
-	private JPanel buttons;
-	private Dimension size = new Dimension(600,400);
+	private ButtonPanel buttons;
+	private SkiPanel panel;
+	private Dimension size = new Dimension(600, 400);
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private SkiPanel panel;
 
-	public SlopeFrame(int x,int y,int width ,int height,SkiPanel sp)
-	{
+	public SlopeFrame(int x, int y, int width, int height, SkiPanel sp) {
 		setTitle("SlopeFrame");
 		panel = sp;
 		initialize(x, y, width, height);
 	}
 
-	private void initialize(int x, int y, int width, int height ) {
+	private void initialize(int x, int y, int width, int height) {
 		frame = new JFrame("SlopeFrame");
-		buttons = new JPanel();
+		buttons = new ButtonPanel();
 		addWindowListener(new CloseWindow());
-		setSize(800, 600);
+		setSize(350, 600);
 		setLocation(x, y);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		frame.getContentPane().setLayout(new GridBagLayout());
-		add(buttons, BorderLayout.NORTH);
-		start = new JButton("Start");
-		exit = new JButton("Exit");
-		addSkier = new JButton("Add Skier");
-		loadMap = new JButton("Load Map");
-		mapDir = new  JTextField("...");
-		heightDir = new JTextField("...");
-		start.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+		add(buttons);
 		
-		exit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				setEnabled(false);
-				frame.dispose();
-			}
-		});
-		addSkier.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
-		loadMap.addActionListener(new ActionListener() {
-			
+	
+		/*loadMap.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser file = new JFileChooser("Wybierz plik mapy");
-				int r=file.showOpenDialog(frame);
-				if(r==file.APPROVE_OPTION)
-				{
-					
+				int r = file.showOpenDialog(frame);
+				if (r == file.APPROVE_OPTION) {
+
 				}
-				
-				
+
 			}
 		});
-		buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
-		buttons.add(start);
-		buttons.add(exit);
-		buttons.add(loadMap);
-		buttons.add(addSkier);
-		buttons.add(mapDir);
-		buttons.add(heightDir);
+*/		
 		
-		panel.setSize(600 , 100); 
+
+		panel.setSize(600, 100);
 		add(panel, BorderLayout.CENTER);
-		panel.setBackground(new Color(255,255,255));
-	//	pack();
-	
+		panel.setBackground(new Color(255, 255, 255));
+		
 		setVisible(true);
-	
+
 	}
-	
-	
-//	public void drawTable(boolean[][] table)
-//	{
-//		Graphics g = getGraphics();
-//		//repaint();
-//
-//		for (int i = 0 ; i < table.length; i++)
-//		{
-//			for (int j = 0; j < table[0].length; j++)
-//			{	
-//				if(table[i][j])
-//				{
-//					g.drawRect(i*30,j*30,30, 30);
-//					g.drawString("s", i*10, j*10);
-//				}
-//			}
-//		}
-//		
-//		this.revalidate();
-//		this.repaint();
-//		
-//	}
-//	@Override public void paint(Graphics g)
-//	{
-//		super.paint(g);
-//	
-//	}
+
 }
