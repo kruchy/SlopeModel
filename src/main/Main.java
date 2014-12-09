@@ -2,6 +2,8 @@ package main;
 
 import java.awt.*;
 
+import javax.swing.SwingUtilities;
+
 import controller.Manager;
 import slope.Slope;
 import view.SkiPanel;
@@ -14,26 +16,26 @@ public class Main {
 		new Slope(50, 50, 100, 100);
 
 		Manager manager = new Manager();
-
-		SkiPanel skiPanel = new SkiPanel(manager.getAgentMap());
-		SlopeFrame slopeFrame = new SlopeFrame(1, 1, 400, 600, skiPanel);
 		for (int i = 1; i <= 7; i++) {
 			manager.addSkier(new Skier());
 		}
+		SlopeFrame slope = new SlopeFrame();
+		SwingUtilities.invokeLater(slope);
 		Slope.printHeightmap();
 		while (true) {
+			
 			manager.updateModel();
 			manager.updateAgentMap();
-
+			slope.drawing(manager.getAgentMap());
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// skiPanel.drawing();
 
 		}
+		
 	}
 
 	public final static void clearConsole() {

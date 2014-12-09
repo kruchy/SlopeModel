@@ -19,57 +19,45 @@ import java.awt.Panel;
 import java.awt.BorderLayout;
 import java.awt.TextArea;
 
-public class SlopeFrame extends JFrame {
+public class SlopeFrame extends JFrame implements Runnable {
 
-	private JFrame frame;
-	private ButtonPanel buttons;
-	private SkiPanel panel;
+	private SimulationSplitPane panel;
 	private Dimension size = new Dimension(600, 400);
-	
+	private SimulationSplitPane splitPane;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SlopeFrame(int x, int y, int width, int height, SkiPanel sp) {
-		setTitle("SlopeFrame");
-		panel = sp;
-		initialize(x, y, width, height);
+	public SlopeFrame() {
+		super("SlopeFrame");
+		splitPane = new SimulationSplitPane();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	private void initialize(int x, int y, int width, int height) {
-		frame = new JFrame("SlopeFrame");
-		buttons = new ButtonPanel();
+	private void init() {
+		JFrame.setDefaultLookAndFeelDecorated(true);
 		addWindowListener(new CloseWindow());
-		setSize(350, 600);
-		setLocation(x, y);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(400,600);
+		setLocation(50,50);
 		setVisible(true);
-		frame.getContentPane().setLayout(new GridBagLayout());
-		add(buttons);
-		
+		add(splitPane);
+		setVisible(true);
+
+	}
 	
-		/*loadMap.addActionListener(new ActionListener() {
+	public void drawing(boolean[][] agent)
+	{
+		splitPane.drawing(agent);
+	}
+	
+	@Override
+	public void run() {
+		init();
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser file = new JFileChooser("Wybierz plik mapy");
-				int r = file.showOpenDialog(frame);
-				if (r == file.APPROVE_OPTION) {
-
-				}
-
-			}
-		});
-*/		
+        
+        this.setVisible(true);
 		
-
-		panel.setSize(600, 100);
-		add(panel, BorderLayout.CENTER);
-		panel.setBackground(new Color(255, 255, 255));
-		
-		setVisible(true);
-
 	}
 
 }

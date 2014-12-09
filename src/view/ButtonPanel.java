@@ -4,14 +4,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
 
 public class ButtonPanel extends javax.swing.JPanel {
 
-	private JFrame frame;
 	private JButton start;
 	private JButton exit;
 	private JButton addSkier;
@@ -27,7 +30,11 @@ public class ButtonPanel extends javax.swing.JPanel {
 
 	public ButtonPanel()
 	{
-		super();
+		super(new BorderLayout());
+		init();
+	}
+
+	private void init() {
 		start = new JButton("Start");
 		exit = new JButton("Exit");
 		addSkier = new JButton("Add Skier");
@@ -41,6 +48,9 @@ public class ButtonPanel extends javax.swing.JPanel {
 		add(addSkier);
 		add(mapDir);
 		add(heightDir);
+		this.setBorder(new TitledBorder("Opcje symulacji"));
+		setVisible(true);
+
 	}
 	
 }
