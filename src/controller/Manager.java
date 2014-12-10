@@ -12,15 +12,17 @@ import slope.Slope;
 import view.SkiPanel;
 import view.SlopeFrame;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 public class Manager {
-	ArrayList<Skier> agents;
+	public ArrayList<Skier> agents;
 	Elevator elevator;
 	boolean[][] agentMap;
 
 	SlopeFrame slopeFrame;
 	SkiPanel skiPanel;
 
-	public Manager(SlopeFrame slopeFrame) {
+	public Manager() {
 		agents = new ArrayList<>();
 		elevator = new Elevator();
 		agentMap = new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2];
@@ -28,7 +30,11 @@ public class Manager {
 		 * skiPanel = new SkiPanel(agentMap); slopeFrame = new SlopeFrame(50,
 		 * 50, 400, 600,skiPanel);
 		 */
-		this.slopeFrame = slopeFrame;
+		createSlopeFrame();
+	}
+
+	private void createSlopeFrame() {
+		slopeFrame = new SlopeFrame(this);
 	}
 
 	public boolean updateModel() {
@@ -53,6 +59,7 @@ public class Manager {
 				agentMap[i][j] = false;
 			}
 		for (Skier iter : agents) {
+			System.out.println(iter.getLocation().getPosx());
 			int x = iter.getLocation().getPosx();
 			int y = iter.getLocation().getPosy();
 			if (x <= Slope.getWidth() && y <= Slope.getHeight())
@@ -104,27 +111,28 @@ public class Manager {
 	public ArrayList<Skier> moveSkiers() {
 		ArrayList<Skier> outOfBounds = new ArrayList<>();
 		for (Skier i : agents) {
-			int x = i.getLocation().getPosx();
-			int y = i.getLocation().getPosy();
-			if (y + 1 < Slope.getHeight() && x + 1 < Slope.getWidth()
-					&& x - 1 > 0)
-				i.findCell();
-			if (x + 1 >= Slope.getWidth()) {
-				i.setDir(Direction.R);
+			if(i.getState() == State.ON_TRACK){
+				int x = i.getLocation().getPosx();
+				int y = i.getLocation().getPosy();
+				if (y + 1 < Slope.getHeight() && x + 1 < Slope.getWidth()
+						&& x - 1 > 0)
+					i.findCell();
+				if (x + 1 >= Slope.getWidth()) {
+					i.setDir(Direction.R);
+				}
+				if (x <= 0) {
+					i.setDir(Direction.L);
+				}
+				if (y + 1 >= Slope.getHeight()) {
+					i.setLocation(Slope.getWidth() - 3, Slope.getHeight() - 4);
+					outOfBounds.add(i);
+				}
+				i.time += (double) i.getSpeed() / 10.0 + i.time;
+				if (i.time > 1.0 ) {
+					i.move();
+					i.time -= 1.0;
+				}
 			}
-			if (x <= 0) {
-				i.setDir(Direction.L);
-			}
-			if (y + 1 >= Slope.getHeight()) {
-				i.setLocation(Slope.getWidth() - 3, Slope.getHeight() - 4);
-				outOfBounds.add(i);
-			}
-			i.time += (double) i.getSpeed() / 10.0 + i.time;
-			if (i.time > 1.0 && i.getState() == State.ON_TRACK) {
-				i.move();
-				i.time -= 1.0;
-			}
-
 		}
 		return outOfBounds;
 	}
@@ -155,4 +163,15 @@ public class Manager {
 
 	}
 
+	public class AddSkierListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			addSkier(new Skier());
+		}
+		
+	}
+	
 }
+

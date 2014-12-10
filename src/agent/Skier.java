@@ -25,6 +25,7 @@ public class Skier extends Agent {
 		this.setSpeed(rand.nextInt(getSkill()) + 1);
 		this.setLocation(rand.nextInt(Slope.getWidth()), 0);
 		this.getPath().add(this.getLocation());
+		this.setState(State.ON_TRACK);
 		numberOfSkiers++;
 	}
 
@@ -36,18 +37,11 @@ public class Skier extends Agent {
 	}
 
 	public Direction randomizeWithWages(double[] probability) {
-		/*
-		 * double totallyRandomValue = new Random().nextDouble(); if
-		 * (totallyRandomValue < pLeft) { return Direction.L; } else if
-		 * (totallyRandomValue >= pLeft && totallyRandomValue < (pLeft + pUp)) {
-		 * return Direction.R; } else { return Direction.FWD; }
-		 */
 		Direction[] dirs = { Direction.R, Direction.FWD, Direction.L };
 		double sum = 0;
 		double totallyRandomValue = new Random().nextDouble();
 		for (int i = 0; i < probability.length; i++) {
-			if (totallyRandomValue < probability[i] + sum)
-			{
+			if (totallyRandomValue < probability[i] + sum) {
 				double x = (double) i / (double) dirs.length;
 				return return2(dirs[(int) Math.floor(x)],
 						dirs[(int) Math.ceil(x)]);
@@ -93,7 +87,7 @@ public class Skier extends Agent {
 			}
 			probability[0] = 0;
 			probability[4] = 0;
-			
+
 		}
 
 		for (int i = 0; i < probability.length; i++) {

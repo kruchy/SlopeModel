@@ -15,15 +15,14 @@ public class Main {
 
 		new Slope(50, 50, 100, 100);
 
-		SlopeFrame slope = new SlopeFrame();
-		Manager manager = new Manager(slope);
+		Manager manager = new Manager();
+		SlopeFrame slope = new SlopeFrame(manager);
 		for (int i = 1; i <= 7; i++) {
 			manager.addSkier(new Skier());
 		}
 		SwingUtilities.invokeLater(slope);
 		Slope.printHeightmap();
 		while (true) {
-			
 			manager.updateModel();
 			manager.updateAgentMap();
 			manager.drawSlope();
