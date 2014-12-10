@@ -15,18 +15,18 @@ public class Main {
 
 		new Slope(50, 50, 100, 100);
 
-		Manager manager = new Manager();
+		SlopeFrame slope = new SlopeFrame();
+		Manager manager = new Manager(slope);
 		for (int i = 1; i <= 7; i++) {
 			manager.addSkier(new Skier());
 		}
-		SlopeFrame slope = new SlopeFrame();
 		SwingUtilities.invokeLater(slope);
 		Slope.printHeightmap();
 		while (true) {
 			
 			manager.updateModel();
 			manager.updateAgentMap();
-			slope.drawing(manager.getAgentMap());
+			manager.drawSlope();
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {

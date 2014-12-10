@@ -20,7 +20,7 @@ public class Manager {
 	SlopeFrame slopeFrame;
 	SkiPanel skiPanel;
 
-	public Manager() {
+	public Manager(SlopeFrame slopeFrame) {
 		agents = new ArrayList<>();
 		elevator = new Elevator();
 		agentMap = new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2];
@@ -28,6 +28,7 @@ public class Manager {
 		 * skiPanel = new SkiPanel(agentMap); slopeFrame = new SlopeFrame(50,
 		 * 50, 400, 600,skiPanel);
 		 */
+		this.slopeFrame = slopeFrame;
 	}
 
 	public boolean updateModel() {
@@ -58,15 +59,20 @@ public class Manager {
 				agentMap[x][y] = true;
 
 		}
-
+	}
+		
+	public void drawSlope()
+	{
+		slopeFrame.drawing(agentMap);
 	}
 
+	
+
 	private boolean foundCollisions() {
-		// TODO Finding collisions
-		for (Agent iter : agents) {
+		/*for (Agent iter : agents) {
 			int x = iter.getLocation().getPosx();
 			int y = iter.getLocation().getPosy();
-		}
+		}*/
 		return false;
 	}
 
@@ -86,10 +92,6 @@ public class Manager {
 
 	}
 
-	// public void updateTable()
-	// {
-	// slopeFrame.drawTable(agentMap);
-	// }
 
 	public boolean[][] getAgentMap() {
 		return agentMap;

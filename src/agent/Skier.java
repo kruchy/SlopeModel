@@ -35,17 +35,31 @@ public class Skier extends Agent {
 		return angle;
 	}
 
-	public Direction randomizeWithWages(double pLeft, double pUp, double pRight) {
+	public Direction randomizeWithWages(double[] probability) {
+		/*
+		 * double totallyRandomValue = new Random().nextDouble(); if
+		 * (totallyRandomValue < pLeft) { return Direction.L; } else if
+		 * (totallyRandomValue >= pLeft && totallyRandomValue < (pLeft + pUp)) {
+		 * return Direction.R; } else { return Direction.FWD; }
+		 */
+		Direction[] dirs = { Direction.R, Direction.FWD, Direction.L };
+		double sum = 0;
 		double totallyRandomValue = new Random().nextDouble();
-		if (totallyRandomValue < pLeft) {
-			return Direction.L;
-		} else if (totallyRandomValue >= pLeft
-				&& totallyRandomValue < (pLeft + pUp)) {
-			return Direction.R;
-		} else {
-			return Direction.FWD;
+		for (int i = 0; i < probability.length; i++) {
+			if (totallyRandomValue < probability[i] + sum)
+				return return2(dirs[(int) Math.floor(i / dirs.length)],
+						dirs[(int) Math.ceil(i / dirs.length)]);
+			sum += probability[i];
 		}
+		return Direction.FWD;
+	}
 
+	public Direction return2(Direction first, Direction sec) {
+		Random rand = new Random();
+		if (rand.nextDouble() < 0.5)
+			return first;
+		else
+			return sec;
 	}
 
 	public void findCell() {
@@ -53,19 +67,35 @@ public class Skier extends Agent {
 		int y = getLocation().getPosy();
 		int[][] mapa = Slope.getHeightmap();
 		Random rand = new Random();
-		double[] probability = new double[3];
-		double sum = 0;
-		for (int i = -1; i < 2; i++) {
-			probability[i + 1] = rand.nextDouble() * mapa[x + i][y + 1]
-					+ (rand.nextDouble() * 0.2 - 0.1);
-			sum += probability[i + 1];
+		double[] probability = new double[5];
+		double sum;
+		if (y + 2 < Slope.getHeight()) {
+			sum = 0;
+			for (int i = -2; i < 3; i++) {
+				if (x + i > 0 && x + i < Slope.getWidth())
+					probability[i + 2] = rand.nextDouble() * mapa[x + i][y + 2]
+							+ (rand.nextDouble() * 0.2 - 0.1);
+				else
+					probability[i + 2] = 0;
+				sum += probability[i + 2];
+			}
 		}
 
-		for (int i = 0; i < 3; i++) {
+		else {
+			sum = 0;
+			for (int i = -1; i < 2; i++) {
+				probability[i + 2] = rand.nextDouble() * mapa[x + i][y + 1]
+						+ (rand.nextDouble() * 0.2 - 0.1);
+				sum += probability[i + 1];
+			}
+			probability[0] = 0;
+			probability[4] = 0;
+		}
+
+		for (int i = 0; i < probability.length; i++) {
 			probability[i] = probability[i] / sum;
 		}
-		setDir(randomizeWithWages(probability[0], probability[1],
-				probability[2]));
+		setDir(randomizeWithWages(probability));
 
 	}
 
