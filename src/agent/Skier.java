@@ -47,8 +47,11 @@ public class Skier extends Agent {
 		double totallyRandomValue = new Random().nextDouble();
 		for (int i = 0; i < probability.length; i++) {
 			if (totallyRandomValue < probability[i] + sum)
-				return return2(dirs[(int) Math.floor(i / dirs.length)],
-						dirs[(int) Math.ceil(i / dirs.length)]);
+			{
+				double x = (double) i / (double) dirs.length;
+				return return2(dirs[(int) Math.floor(x)],
+						dirs[(int) Math.ceil(x)]);
+			}
 			sum += probability[i];
 		}
 		return Direction.FWD;
@@ -90,13 +93,13 @@ public class Skier extends Agent {
 			}
 			probability[0] = 0;
 			probability[4] = 0;
+			
 		}
 
 		for (int i = 0; i < probability.length; i++) {
 			probability[i] = probability[i] / sum;
 		}
 		setDir(randomizeWithWages(probability));
-
 	}
 
 	public static <T extends Enum<?>> T randomEnum(Class<T> clazz) {
