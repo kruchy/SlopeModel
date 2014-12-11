@@ -8,10 +8,12 @@ import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import controller.Manager;
 
 public class ButtonPanel extends javax.swing.JPanel {
 
@@ -21,20 +23,18 @@ public class ButtonPanel extends javax.swing.JPanel {
 	private JButton loadMap;
 	private JTextField mapDir;
 	private JTextField heightDir;
-	private JPanel buttons;
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ButtonPanel()
+	public ButtonPanel(Manager manager)
 	{
 		super(new BorderLayout());
-		init();
+		init(manager);
 	}
 
-	private void init() {
+	private void init(Manager manager) {
 		start = new JButton("Start");
 		exit = new JButton("Exit");
 		addSkier = new JButton("Add Skier");
@@ -46,11 +46,11 @@ public class ButtonPanel extends javax.swing.JPanel {
 		add(exit);
 		add(loadMap);
 		add(addSkier);
+		addSkier.addActionListener(manager.new AddSkierListener());
 		add(mapDir);
 		add(heightDir);
 		this.setBorder(new TitledBorder("Opcje symulacji"));
 		setVisible(true);
-
 	}
 	
 }

@@ -29,9 +29,9 @@ public class SlopeFrame extends JFrame implements Runnable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SlopeFrame() {
+	public SlopeFrame(Manager manager) {
 		super("SlopeFrame");
-		splitPane = new SimulationSplitPane();
+		splitPane = new SimulationSplitPane(manager);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
