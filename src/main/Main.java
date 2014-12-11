@@ -20,7 +20,7 @@ public class Main {
 		for (int i = 1; i <= 7; i++) {
 			manager.addSkier(new Skier());
 		}
-		SwingUtilities.invokeLater(slope);
+		SwingUtilities.invokeLater(manager.getSlopeFrame());
 		Slope.printHeightmap();
 		while (true) {
 			manager.updateModel();

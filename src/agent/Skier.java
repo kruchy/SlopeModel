@@ -43,8 +43,9 @@ public class Skier extends Agent {
 		for (int i = 0; i < probability.length; i++) {
 			if (totallyRandomValue < probability[i] + sum) {
 				double x = (double) i / (double) dirs.length;
-				return return2(dirs[(int) Math.floor(x)],
+				if(i % 2 == 0) return return2(dirs[(int) Math.floor(x)],
 						dirs[(int) Math.ceil(x)]);
+				else return dirs[(int) Math.round(x)];
 			}
 			sum += probability[i];
 		}

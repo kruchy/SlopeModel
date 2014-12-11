@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import agent.Agent;
 import agent.Agent.Direction;
@@ -19,8 +20,8 @@ public class Manager {
 	Elevator elevator;
 	boolean[][] agentMap;
 
-	SlopeFrame slopeFrame;
-	SkiPanel skiPanel;
+	private SlopeFrame slopeFrame;
+	private SkiPanel skiPanel;
 
 	public Manager() {
 		agents = new ArrayList<>();
@@ -34,7 +35,7 @@ public class Manager {
 	}
 
 	private void createSlopeFrame() {
-		slopeFrame = new SlopeFrame(this);
+		setSlopeFrame(new SlopeFrame(this));
 	}
 
 	public boolean updateModel() {
@@ -59,7 +60,6 @@ public class Manager {
 				agentMap[i][j] = false;
 			}
 		for (Skier iter : agents) {
-			System.out.println(iter.getLocation().getPosx());
 			int x = iter.getLocation().getPosx();
 			int y = iter.getLocation().getPosy();
 			if (x <= Slope.getWidth() && y <= Slope.getHeight())
@@ -70,7 +70,7 @@ public class Manager {
 		
 	public void drawSlope()
 	{
-		slopeFrame.drawing(agentMap);
+		getSlopeFrame().drawing(agentMap);
 	}
 
 	
@@ -163,6 +163,29 @@ public class Manager {
 
 	}
 
+	public void delSkier() 
+	{
+		Arrays.stream(agentMap).forEach(s-> return false)));
+		agents.clear();
+		elevator.delSkier();
+	}
+	
+	public SkiPanel getSkiPanel() {
+		return skiPanel;
+	}
+
+	public void setSkiPanel(SkiPanel skiPanel) {
+		this.skiPanel = skiPanel;
+	}
+
+	public SlopeFrame getSlopeFrame() {
+		return slopeFrame;
+	}
+
+	public void setSlopeFrame(SlopeFrame slopeFrame) {
+		this.slopeFrame = slopeFrame;
+	}
+
 	public class AddSkierListener implements ActionListener
 	{
 
@@ -172,6 +195,15 @@ public class Manager {
 		}
 		
 	}
+	public class DelSkierListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+		{
+			if(agents.size() > 0 ) delSkier();
+		}
+	}
+	
 	
 }
 
