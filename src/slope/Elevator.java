@@ -53,7 +53,7 @@ public class Elevator implements Runnable{
 	}
 
 	public boolean delSkier() {
-		return skierQueue.remove(skier);
+		return skierQueue.clear();
 
 	}
 
