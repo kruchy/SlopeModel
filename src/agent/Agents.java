@@ -13,9 +13,13 @@ public class Agents {
 
 	
 	public Agents(){
+		init();
+
+	}
+
+	private void init() {
 		agents = new ArrayList<>();
 		setAgentMap(new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2]);
-
 	}
 
 	public void updateAgentMap() {
@@ -51,7 +55,7 @@ public class Agents {
 		
 
 	}
-	public ArrayList<Skier> moveSkiers() {
+	public synchronized ArrayList<Skier> moveSkiers() {
 		ArrayList<Skier> outOfBounds = new ArrayList<>();
 		for (Skier i : agents) {
 			if(i.getState() == State.ON_TRACK){
@@ -79,11 +83,16 @@ public class Agents {
 		}
 		return outOfBounds;
 	}
-	public void addSkier(Skier a) {
-		agents.add(a);
-		agentMap[a.getLocation().getPosx() + 1][a.getLocation().getPosy() + 1] = true;
 
+	public void addSkier(Skier skier) {
+		agents.add(skier);
+		
 	}
+
+	public void removeAll() {
+		init();
+	}
+	
 	
 }
 

@@ -29,10 +29,10 @@ public class SlopeFrame extends JFrame implements Runnable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SlopeFrame(Manager manager) {
+	public SlopeFrame() {
 		super("SlopeFrame");
-		splitPane = new SimulationSplitPane(manager);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSplitPane(new SimulationSplitPane());
 	}
 
 	private void init() {
@@ -41,14 +41,14 @@ public class SlopeFrame extends JFrame implements Runnable {
 		setSize(400,600);
 		setLocation(50,50);
 		setVisible(true);
-		add(splitPane);
+		add(getSplitPane());
 		setVisible(true);
 
 	}
 	
 	public void drawing(boolean[][] agent)
 	{
-		splitPane.drawing(agent);
+		getSplitPane().drawing(agent);
 	}
 	
 	@Override
@@ -58,6 +58,14 @@ public class SlopeFrame extends JFrame implements Runnable {
         
         this.setVisible(true);
 		
+	}
+
+	public SimulationSplitPane getSplitPane() {
+		return splitPane;
+	}
+
+	public void setSplitPane(SimulationSplitPane splitPane) {
+		this.splitPane = splitPane;
 	}
 
 }

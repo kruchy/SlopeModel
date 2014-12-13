@@ -19,25 +19,22 @@ import java.awt.event.ActionListener;
 public class Manager {
 	Elevator elevator;
 	Agents agents;
+	private boolean running ;
 
-	SlopeFrame slopeFrame;
-	SkiPanel skiPanel;
+	private SlopeFrame slopeFrame;
+	private SkiPanel skiPanel;
 
-	public Manager() {
+	public Manager(SlopeFrame slope,Agents agents) {
 		elevator = new Elevator();
-		agents = new Agents();
+		running= false;
+		this.setSlopeFrame(slope);
+		this.agents = agents;
+		getSlopeFrame().getSplitPane().getButtons().getAddSkier().addActionListener(new AddSkierListener());
+		getSlopeFrame().getSplitPane().getButtons().getStart().addActionListener(new StartListener());
+		getSlopeFrame().getSplitPane().getButtons().getReset().addActionListener(new ResetListener());
+		getSlopeFrame().getSplitPane().getButtons().getExit().addActionListener(new ExitListener());
 	}
 
-	
-	public boolean[][] getAgentMap()
-	{
-		return agents.getAgentMap();
-	}
-	
-	public void initSlope(SlopeFrame slp)
-	{
-		this.slopeFrame = slp;
-	}
 
 	public boolean updateModel() {
 		ArrayList<Skier> moved = agents.moveSkiers();
@@ -53,7 +50,7 @@ public class Manager {
 		
 	public void drawSlope()
 	{
-		slopeFrame.drawing(agents.getAgentMap());
+		getSlopeFrame().drawing(agents.getAgentMap());
 
 	}
 
@@ -69,17 +66,6 @@ public class Manager {
 		}
 	}
 
-	public void pushToRoute() {
-
-	}
-
-
-
-	public void simulate() {
-
-	}
-
-	
 
 	public boolean onSkierCollision() {
 		return false;
@@ -106,12 +92,76 @@ public class Manager {
 		agents.addSkier(new Skier());
 	}
 
+	public SlopeFrame getSlopeFrame() {
+		return slopeFrame;
+	}
+
+
+	public void setSlopeFrame(SlopeFrame slopeFrame) {
+		this.slopeFrame = slopeFrame;
+	}
+
+	public SkiPanel getSkiPanel() {
+		return skiPanel;
+	}
+
+
+	public void setSkiPanel(SkiPanel skiPanel) {
+		this.skiPanel = skiPanel;
+	}
+
+	private void reset()
+	{
+		setRunning(false);
+		elevator.removeAll();
+		agents.removeAll();
+		slopeFrame.repaint();
+	}
+	
+	public boolean isRunning() {
+		return running;
+	}
+
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
 	public class AddSkierListener implements ActionListener
 	{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			addSkier(new Skier());
+		}
+		
+	}
+	public class ResetListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			reset();
+			
+		}
+		
+	}
+	
+	public class StartListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			reset();
+			setRunning(true);
+		}
+		
+	}
+	public class ExitListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			reset();
+			slopeFrame.dispose();
+			
 		}
 		
 	}

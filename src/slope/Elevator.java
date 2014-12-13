@@ -17,13 +17,13 @@ public class Elevator {
 		out = new Skier();
 	}
 
-	public boolean lift() {
+	public synchronized boolean lift() {
 		if (!skierQueue.isEmpty()) {
 			for (Skier skier : skierQueue) {
 				int x = skier.getLocation().getPosx();
 				int y = skier.getLocation().getPosy();
 				if (y > 0)
-					skier.setLocation(x, y - 1);
+					skier.setLocation(Slope.getWidth()-3, y - 1);
 				if (y == 0 && skier.getState() == State.ON_LIFT) {
 					skier.setLocation(new Random().nextInt(Slope.getWidth()), 0);
 					skier.setState(State.ON_TRACK);
@@ -43,7 +43,13 @@ public class Elevator {
 	}
 
 	public boolean delSkier(Skier skier) {
-		return skierQueue.remove(skier);
+		return skierQueue.remove(skierQueue.size()) != null;
+		
 
+	}
+
+	public synchronized void removeAll() {
+	skierQueue.clear();
+		
 	}
 }
