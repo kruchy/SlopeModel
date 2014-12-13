@@ -150,7 +150,7 @@ public class Manager {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			reset();
+			
 			setRunning(true);
 		}
 		
