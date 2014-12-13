@@ -8,6 +8,8 @@ import controller.Manager;
 import slope.Slope;
 import view.SkiPanel;
 import view.SlopeFrame;
+import agent.Agent;
+import agent.Agents;
 import agent.Skier;
 
 public class Main {
@@ -17,6 +19,8 @@ public class Main {
 
 		Manager manager = new Manager();
 		SlopeFrame slope = new SlopeFrame(manager);
+		
+		manager.initSlope(slope);
 		for (int i = 1; i <= 7; i++) {
 			manager.addSkier(new Skier());
 		}
@@ -24,7 +28,6 @@ public class Main {
 		Slope.printHeightmap();
 		while (true) {
 			manager.updateModel();
-			manager.updateAgentMap();
 			manager.drawSlope();
 			try {
 				Thread.sleep(100);
