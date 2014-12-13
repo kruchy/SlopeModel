@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import agent.Agent;
 import agent.Agent.Direction;
+import agent.Agent.State;
 import agent.Algorithm;
 import agent.Skier;
 import slope.Elevator;
@@ -11,33 +12,48 @@ import slope.Slope;
 import view.SkiPanel;
 import view.SlopeFrame;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 public class Manager {
-	ArrayList<Skier> agents;
+	public ArrayList<Skier> agents;
 	Elevator elevator;
 	boolean[][] agentMap;
-
 
 	SlopeFrame slopeFrame;
 	SkiPanel skiPanel;
 
-	public Manager() {
+	public Manager(SlopeFrame slopeFrame) {
+		
 		agents = new ArrayList<>();
-		elevator = new Elevator();
 		agentMap = new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2];
-		skiPanel = new SkiPanel(agentMap);
-		slopeFrame = new SlopeFrame(50, 50, 400, 600,skiPanel);
+		/*
+		 * skiPanel = new SkiPanel(agentMap); slopeFrame = new SlopeFrame(50,
+		 * 50, 400, 600,skiPanel);
+		 */
+		this.slopeFrame = slopeFrame;
+		for (int i = 1; i <= 15; i++) {
+			addSkier(new Skier());
+		}
+		elevator = new Elevator();
+//		createSlopeFrame();
 	}
+//
+//	private void createSlopeFrame() {
+//		slopeFrame = new SlopeFrame(this);
+//	}
 
-	public boolean updateModel() {
+	public boolean updateModel() throws InterruptedException {
 		ArrayList<Skier> moved = moveSkiers();
-		/*for (int i = 0; i < agents.size(); i++)
-			for (int j = i; j < agents.size(); j++)
-				Algorithm.updatePosition(agents.get(i),agents.get(j));
-				;*/
+		/*
+		 * for (int i = 0; i < agents.size(); i++) for (int j = i; j <
+		 * agents.size(); j++)
+		 * Algorithm.updatePosition(agents.get(i),agents.get(j)); ;
+		 */
 		foundCollisions();
 		addToElevator(moved);
+		moved.removeAll(moved);
 		moveElevator();
-		
+
 		return true;
 
 	}
@@ -48,63 +64,80 @@ public class Manager {
 				agentMap[i][j] = false;
 			}
 		for (Skier iter : agents) {
-			agentMap[iter.getLocation().getPosx()][iter.getLocation().getPosy()] = true;
-		}
-
-	}
-
-	private boolean foundCollisions() {
-		// TODO Finding collisions
-		for (Agent iter : agents) {
+		//	System.out.println(iter.getLocation().getPosx());
 			int x = iter.getLocation().getPosx();
 			int y = iter.getLocation().getPosy();
+			if (x <= Slope.getWidth() && y <= Slope.getHeight())
+				agentMap[x][y] = true;
+
 		}
+	}
+		
+	public void drawSlope()
+	{
+		slopeFrame.drawing(agentMap);
+	}
+
+	
+
+	private boolean foundCollisions() {
+		/*for (Agent iter : agents) {
+			int x = iter.getLocation().getPosx();
+			int y = iter.getLocation().getPosy();
+		}*/
 		return false;
 	}
 
-	public void moveElevator() {
-		// TODO Auto-generated method stub
+	public synchronized void moveElevator() throws InterruptedException {
+		elevator.lift();
 
 	}
 
 	public void addToElevator(ArrayList<Skier> moved) {
-		// TODO Auto-generated method stub
-
+		for (Skier skier : moved) {
+			skier.setState(State.SAFE_ZONE);
+			elevator.addSkier(skier);
+		}
 	}
 
 	public void pushToRoute() {
-		
+
 	}
 
-//	public void updateTable()
-//	{
-//		slopeFrame.drawTable(agentMap);
-//	}
-	
+
 	public boolean[][] getAgentMap() {
 		return agentMap;
+	}
+
+	public void simulate() {
+
 	}
 
 	public ArrayList<Skier> moveSkiers() {
 		ArrayList<Skier> outOfBounds = new ArrayList<>();
 		for (Skier i : agents) {
-			int x = i.getLocation().getPosx();
-			int y = i.getLocation().getPosy();
-			if (y + 1 < Slope.getHeight() && x + 1 < Slope.getWidth()
-					&& x - 1 > 0)
-				i.findCell();
-			Direction dir = i.getDir();
-			if (x + 1 >= Slope.getWidth() || x <= 0)
-				i.setDir(Direction.FWD);
-			if (y + 1 >= Slope.getHeight())
-				i.setLocation(Slope.getWidth(), Slope.getHeight());
-			outOfBounds.add(i);
-			i.time += (double) i.getSpeed() / 10.0 + i.time;
-			if (i.time > 1.0) {
-				i.move();
-				i.time -= 1.0;
+			if(i.getState() == State.ON_TRACK){
+				int x = i.getLocation().getPosx();
+				int y = i.getLocation().getPosy();
+				if (y + 1 < Slope.getHeight() && x + 1 < Slope.getWidth()
+						&& x - 1 > 0)
+					i.findCell();
+				if (x + 1 >= Slope.getWidth()) {
+					i.setDir(Direction.R);
+				}
+				if (x <= 0) {
+					i.setDir(Direction.L);
+				}
+				if (y + 1 >= Slope.getHeight()) {
+					i.setLocation(Slope.getWidth() - 3, Slope.getHeight() - 4);
+					outOfBounds.add(i);
+				}
+				i.time += (double) i.getSpeed() / 10.0 + i.time;
+				if (i.time > 1.0 ) {
+					i.move();
+					i.time -= 1.0;
+				}
 			}
-
 		}
 		return outOfBounds;
 	}
@@ -135,4 +168,15 @@ public class Manager {
 
 	}
 
+	public class AddSkierListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			addSkier(new Skier());
+		}
+		
+	}
+	
 }
+
