@@ -15,6 +15,7 @@ import slope.SlopeCell;
 
 public class Skier extends Agent {
 	public static int numberOfSkiers = 0;
+	private int ID;
 	SlopeCell cell;
 	BufferedImage image;
 
@@ -27,6 +28,7 @@ public class Skier extends Agent {
 		this.getPath().add(this.getLocation());
 		this.setState(State.ON_TRACK);
 		numberOfSkiers++;
+		System.out.println(numberOfSkiers);
 	}
 
 	public double findAngle(SlopeCell a) {
@@ -108,6 +110,14 @@ public class Skier extends Agent {
 		int random = r.nextInt(slope.length);
 		cell.setCell(0, random);
 		return slope[0][random];
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
 	}
 
 }

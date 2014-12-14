@@ -23,6 +23,7 @@ public class ButtonPanel extends javax.swing.JPanel {
 	private JButton addSkier;
 	private JButton reset;
 	private JSlider skiers;
+	private JButton actualize;
 	/**
 	 * 
 	 */
@@ -40,6 +41,7 @@ public class ButtonPanel extends javax.swing.JPanel {
 		setAddSkier(new JButton("Add Skier"));
 		setReset(new JButton("Reset"));
 		setSkiers(new JSlider(JSlider.HORIZONTAL, 1, 16, 5));
+		setActualize(new JButton("Actualize"));
 		getSkiers().setSnapToTicks(true);
 		getSkiers().setMajorTickSpacing(5);
 		getSkiers().setMinorTickSpacing(1);
@@ -47,12 +49,14 @@ public class ButtonPanel extends javax.swing.JPanel {
 		getSkiers().setPaintLabels(true);
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JPanel temp = new JPanel(new GridLayout(0,1));
+		JPanel temp = new JPanel();
 		temp.add(getStart());
+		temp.add(getReset());
 		temp.add(getExit());
 		temp.add(getAddSkier());
-		add(getSkiers());
+		temp.add(getActualize());
 		add(temp);
+		add(getSkiers());
 		
 		this.setBorder(new TitledBorder("Opcje symulacji"));
 		setVisible(true);
@@ -96,6 +100,14 @@ public class ButtonPanel extends javax.swing.JPanel {
 
 	public void setSkiers(JSlider skiers) {
 		this.skiers = skiers;
+	}
+
+	public JButton getActualize() {
+		return actualize;
+	}
+
+	public void setActualize(JButton actualize) {
+		this.actualize = actualize;
 	}
 	
 }

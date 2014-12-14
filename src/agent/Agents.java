@@ -20,6 +20,7 @@ public class Agents {
 	private void init() {
 		agents = new ArrayList<>();
 		setAgentMap(new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2]);
+		
 	}
 
 	public void updateAgentMap() {

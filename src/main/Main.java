@@ -23,10 +23,10 @@ public class Main {
 		Agents agents = new Agents();
 		Manager manager = new Manager(slope, agents);
 
-		for (int i = 1; i <= 7; i++) {
+	/*	for (int i = 1; i <= 7; i++) {
 			manager.addSkier(new Skier());
 		}
-		Slope.printHeightmap();
+	*/	Slope.printHeightmap();
 		thread.start();
 		while (true) {
 			while (manager.isRunning()) {

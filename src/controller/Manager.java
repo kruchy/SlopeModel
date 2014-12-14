@@ -11,30 +11,41 @@ import agent.Algorithm;
 import agent.Skier;
 import slope.Elevator;
 import slope.Slope;
+import view.ButtonPanel;
 import view.SkiPanel;
 import view.SlopeFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 public class Manager {
 	Elevator elevator;
 	Agents agents;
-	private boolean running ;
+	private boolean running;
 
 	private SlopeFrame slopeFrame;
 	private SkiPanel skiPanel;
 
-	public Manager(SlopeFrame slope,Agents agents) {
+	public Manager(SlopeFrame slope, Agents agents) {
 		elevator = new Elevator();
-		running= false;
+		running = false;
 		this.setSlopeFrame(slope);
 		this.agents = agents;
-		getSlopeFrame().getSplitPane().getButtons().getAddSkier().addActionListener(new AddSkierListener());
-		getSlopeFrame().getSplitPane().getButtons().getStart().addActionListener(new StartListener());
-		getSlopeFrame().getSplitPane().getButtons().getReset().addActionListener(new ResetListener());
-		getSlopeFrame().getSplitPane().getButtons().getExit().addActionListener(new ExitListener());
+		_getButton().getAddSkier()
+				.addActionListener(new AddSkierListener());
+		_getButton().getStart()
+				.addActionListener(new StartListener());
+		_getButton().getReset()
+				.addActionListener(new ResetListener());
+		_getButton().getExit()
+				.addActionListener(new ExitListener());
+		_getButton().getActualize().addActionListener(new ActualizeListener());
+		
 	}
 
+	private ButtonPanel _getButton() {
+		return getSlopeFrame().getSplitPane().getButtons();
+	}
 
 	public boolean updateModel() {
 		ArrayList<Skier> moved = agents.moveSkiers();
@@ -46,10 +57,7 @@ public class Manager {
 
 	}
 
-	
-		
-	public void drawSlope()
-	{
+	public void drawSlope() {
 		getSlopeFrame().drawing(agents.getAgentMap());
 
 	}
@@ -65,7 +73,6 @@ public class Manager {
 			elevator.addSkier(skier);
 		}
 	}
-
 
 	public boolean onSkierCollision() {
 		return false;
@@ -87,15 +94,13 @@ public class Manager {
 		return false;
 	}
 
-	public void addSkier(Skier skier)
-	{
+	public void addSkier(Skier skier) {
 		agents.addSkier(new Skier());
 	}
 
 	public SlopeFrame getSlopeFrame() {
 		return slopeFrame;
 	}
-
 
 	public void setSlopeFrame(SlopeFrame slopeFrame) {
 		this.slopeFrame = slopeFrame;
@@ -105,66 +110,84 @@ public class Manager {
 		return skiPanel;
 	}
 
-
 	public void setSkiPanel(SkiPanel skiPanel) {
 		this.skiPanel = skiPanel;
 	}
 
-	private void reset()
-	{
+	private void reset() {
 		setRunning(false);
 		elevator.removeAll();
 		agents.removeAll();
 		slopeFrame.repaint();
 	}
+
+	
+	public void getDataAndActualize() {
+		int val = _getButton().getSkiers()
+				.getValue();
+		if (agents.agents.isEmpty())
+			for (int i = 0; i < val; i++) {
+				addSkier(new Skier());
+			}
+	}
+
 	
 	public boolean isRunning() {
 		return running;
 	}
 
-
 	public void setRunning(boolean running) {
 		this.running = running;
 	}
 
-	public class AddSkierListener implements ActionListener
-	{
+	public class AddSkierListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			addSkier(new Skier());
 		}
-		
+
 	}
-	public class ResetListener implements ActionListener{
+
+	public class ResetListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
 			reset();
-			
 		}
-		
+
 	}
-	
-	public class StartListener implements ActionListener{
+
+	public class StartListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+
+			getDataAndActualize();
 			setRunning(true);
 		}
-		
+
 	}
-	public class ExitListener implements ActionListener{
+
+	public class ExitListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			reset();
 			slopeFrame.dispose();
-			
+
+		}
+
+	}
+	public class ActualizeListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			getDataAndActualize();
 		}
 		
 	}
-	
-}
 
+}
