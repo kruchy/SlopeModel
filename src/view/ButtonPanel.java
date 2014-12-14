@@ -1,20 +1,10 @@
 package view;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
-
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-
-import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
-
-import controller.Manager;
 
 public class ButtonPanel extends javax.swing.JPanel {
 
@@ -49,6 +39,7 @@ public class ButtonPanel extends javax.swing.JPanel {
 		setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel temp = new JPanel();
+		temp.setLayout(new GridLayout(0, 1, 0, 0));
 		temp.add(getStart());
 		temp.add(getReset());
 		temp.add(getExit());

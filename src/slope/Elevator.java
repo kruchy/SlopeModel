@@ -1,30 +1,19 @@
 package slope;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
-
-import agent.Agent;
 import agent.Agent.State;
 import agent.Skier;
 
 public class Elevator {
 	private final int maxSkiers = 3;
 	public BlockingQueue<Skier> skierQueue;
-	private Skier out;
 	private BlockingQueue<Skier> waitingQueue;
-	private boolean flag = true;
-
 	public Elevator() {
 		skierQueue = new ArrayBlockingQueue<Skier>(Skier.numberOfSkiers);
-		waitingQueue = new ArrayBlockingQueue<Skier>(maxSkiers);
-		out = new Skier();
+		setWaitingQueue(new ArrayBlockingQueue<Skier>(maxSkiers));
+		new Skier();
 	
 
 	}
@@ -34,21 +23,18 @@ public class Elevator {
 		
 		addToWaitingQueue(skierQueue);
 	
-		for (Skier skier : waitingQueue) {
+		for (Skier skier : getWaitingQueue()) {
 		  System.out.println(skier.getState());
-			int x = skier.getLocation().getPosx();
 			int y = skier.getLocation().getPosy();
 		
 			if (y > 0 && skier.getState() == State.ON_LIFT) {
-				skier.setLocation(x, y - 1);
+				skier.setLocation(Slope.getWidth()-3, y - 1);
 			}
 
 			if (y == 0 ) {
 				skier.setLocation(new Random().nextInt(Slope.getWidth()), 0);
 				skier.setState(State.ON_TRACK);
-				out = skier;
-				flag = true;
-				skier = waitingQueue.take();					
+				skier = getWaitingQueue().take();					
 				
 			}
 
@@ -64,30 +50,30 @@ public class Elevator {
 
 	public void addToWaitingQueue(BlockingQueue<Skier> skierQ) throws InterruptedException {
 		System.out.println("SkierQueue : " + skierQueue.size());
-		System.out.println("WaitingQueue : " + waitingQueue.size());
+		System.out.println("WaitingQueue : " + getWaitingQueue().size());
 		Skier s = null;
 
 		for (int i = 0; i < skierQ.size(); i++) {
 			if (skierQ.size() >= maxSkiers)
 				for (int j = 0; j < maxSkiers; j++) {
 					s = skierQ.take();
-					if (waitingQueue.offer(s))
+					if (getWaitingQueue().offer(s))
 						s.setState(State.ON_LIFT);
 					else skierQ.offer(s);
 				}
 			else {
 					s = skierQ.take();
-					if (waitingQueue.offer(s))
+					if (getWaitingQueue().offer(s))
 						s.setState(State.ON_LIFT);
 					else skierQ.offer(s);
 				// skierQueue.remove(i);
 			}
+			
 
 		}
 	}
 
 	public boolean addSkier(Skier skier) {
-
 		return skierQueue.offer(skier);
 	}
 
@@ -100,5 +86,13 @@ public class Elevator {
 	public synchronized void removeAll() {
 	skierQueue.clear();
 		
+	}
+
+	public BlockingQueue<Skier> getWaitingQueue() {
+		return waitingQueue;
+	}
+
+	public void setWaitingQueue(BlockingQueue<Skier> waitingQueue) {
+		this.waitingQueue = waitingQueue;
 	}
 }

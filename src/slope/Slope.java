@@ -10,8 +10,6 @@ public class Slope {
 	private static int width;
 	private static int height;
 	private int maxHeight;
-	private int minHeight;
-
 	static public ArrayList<SlopeCell> route;
 
 	public Slope(int width, int height, int maxHeight, int minHeight) {
@@ -19,7 +17,6 @@ public class Slope {
 		this.setWidth(width);
 
 		this.maxHeight = maxHeight;
-		this.minHeight = minHeight;
 		setHeightmap(new int[height][width]);
 		slope = new SlopeCell[height][width];
 		route = new ArrayList<>();
@@ -29,11 +26,6 @@ public class Slope {
 			}
 		fillRandomHighmap();
 		Random rand = new Random();
-		/*
-		 * for (int i = 0; i < width -1; i++) for ( int j = 0 ; j < height - 1;
-		 * j++) { route.add(getSlopeTable()[i+
-		 * rand.nextInt(1)][j+rand.nextInt(1)]); }
-		 */
 	}
 
 	public static SlopeCell[][] getSlopeTable() {
@@ -68,7 +60,7 @@ public class Slope {
 	}
 
 	public void setHeight(int height) {
-		this.height = height;
+		Slope.height = height;
 	}
 
 	public static int getWidth() {
@@ -76,7 +68,7 @@ public class Slope {
 	}
 
 	public void setWidth(int width) {
-		this.width = width;
+		Slope.width = width;
 	}
 
 	public static int[][] getHeightmap() {

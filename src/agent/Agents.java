@@ -1,9 +1,11 @@
 package agent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import agent.Agent.Direction;
 import agent.Agent.State;
+import slope.Elevator;
 import slope.Slope;
 
 public class Agents {
@@ -11,6 +13,7 @@ public class Agents {
 	public ArrayList<Skier> agents;
 	private boolean[][] agentMap;
 
+	private Elevator elevator;
 	
 	public Agents(){
 		init();
@@ -18,6 +21,7 @@ public class Agents {
 	}
 
 	private void init() {
+		elevator = new Elevator();
 		agents = new ArrayList<>();
 		setAgentMap(new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2]);
 		
@@ -35,6 +39,15 @@ public class Agents {
 				agentMap[x][y] = true;
 				
 		}
+		for (int i = 0 ; i < getElevator().skierQueue.size(); i++)
+		{
+			agentMap[Slope.getWidth()-i-10][Slope.getHeight()] = true;
+		}
+		
+		for(boolean[] table : agentMap)
+		{
+			Arrays.toString(table);
+		}
 	}
 	
 	public boolean[][] getAgentMap() {
@@ -46,16 +59,6 @@ public class Agents {
 		this.agentMap = agentMap;
 	}
 
-	private boolean foundCollisions() {
-		/*for (Agent iter : agents) {
-			int x = iter.getLocation().getPosx();
-			int y = iter.getLocation().getPosy();
-		}*/
-		return false;
-		
-		
-
-	}
 	public synchronized ArrayList<Skier> moveSkiers() {
 		ArrayList<Skier> outOfBounds = new ArrayList<>();
 		for (Skier i : agents) {
@@ -92,6 +95,14 @@ public class Agents {
 
 	public void removeAll() {
 		init();
+	}
+
+	public Elevator getElevator() {
+		return elevator;
+	}
+
+	public void setElevator(Elevator elevator) {
+		this.elevator = elevator;
 	}
 	
 	

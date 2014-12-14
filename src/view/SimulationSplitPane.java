@@ -1,8 +1,9 @@
 package view;
 
-import javax.swing.JSplitPane;
+import java.awt.Color;
+import java.awt.Dimension;
 
-import controller.Manager;
+import javax.swing.JSplitPane;
 
 public class SimulationSplitPane extends javax.swing.JSplitPane{
 
@@ -14,17 +15,20 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 	private static final long serialVersionUID = 1L;
 
 	public SimulationSplitPane() {
-		super(JSplitPane.VERTICAL_SPLIT);
-		this.setResizeWeight(0);
+		super(JSplitPane.HORIZONTAL_SPLIT);
+		this.setResizeWeight(1);
 		init();
 	}
 
 	private void init() {
 		setButtons(new ButtonPanel());
 		simulation = new SkiPanel();
-		simulation.setSize(getWidth() - 50, getHeight() - 100);
-		this.setTopComponent(getButtons());
-		this.setBottomComponent(simulation);
+		simulation.setBackground(new Color(1.0f,1.0f,1.0f));
+		int x = (int) Math.round(0.8*getHeight());
+		int y = (int) Math.round(0.99*getHeight());
+		simulation.setPreferredSize(new Dimension(x,y));
+		this.setRightComponent(getButtons());
+		this.setLeftComponent(simulation);
 		setVisible(true);
 	}
 

@@ -1,16 +1,10 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import agent.Agent;
-import agent.Agent.Direction;
 import agent.Agent.State;
 import agent.Agents;
-import agent.Algorithm;
 import agent.Skier;
 import slope.Elevator;
-import slope.Slope;
 import view.ButtonPanel;
 import view.SkiPanel;
 import view.SlopeFrame;
@@ -19,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Manager {
-	Elevator elevator;
 	Agents agents;
 	private boolean running;
 
@@ -27,9 +20,9 @@ public class Manager {
 	private SkiPanel skiPanel;
 
 	public Manager(SlopeFrame slope, Agents agents) {
-		elevator = new Elevator();
 		running = false;
 		this.agents = agents;
+		this.slopeFrame = slope;
 		_getButton().getAddSkier().addActionListener(new AddSkierListener());
 		_getButton().getStart().addActionListener(new StartListener());
 		_getButton().getReset().addActionListener(new ResetListener());
@@ -47,6 +40,7 @@ public class Manager {
 		addToElevator(moved);
 		moved.removeAll(moved);
 		moveElevator();
+		agents.updateAgentMap();
 
 		return true;
 
@@ -65,46 +59,15 @@ public class Manager {
 	}
 
 	public synchronized void moveElevator() throws InterruptedException {
-		elevator.lift();
+		agents.getElevator().lift();
 
 	}
 
 	public void addToElevator(ArrayList<Skier> moved) {
 		for (Skier skier : moved) {
 			skier.setState(State.SAFE_ZONE);
-			elevator.addSkier(skier);
+			agents.getElevator().addSkier(skier);
 		}
-	}
-
-	public void pushToRoute() {
-
-	}
-
-
-
-	public void simulate() {
-
-	}
-
-
-	public boolean onSkierCollision() {
-		return false;
-	}
-
-	public boolean onSkierAppear() {
-		return false;
-	}
-
-	public boolean onSkierMoved() {
-		return false;
-	}
-
-	public boolean onSimulationStart() {
-		return false;
-	}
-
-	public boolean onSimulationEnd() {
-		return false;
 	}
 
 	public void addSkier(Skier skier) {
@@ -113,7 +76,7 @@ public class Manager {
 
 	private void reset() {
 		setRunning(false);
-		elevator.removeAll();
+		agents.getElevator().removeAll();
 		agents.removeAll();
 		slopeFrame.revalidate();
 	}
@@ -122,6 +85,7 @@ public class Manager {
 		int val = _getButton().getSkiers().getValue();
 		if (agents.agents.isEmpty())
 			for (int i = 0; i < val; i++) {
+				
 				addSkier(new Skier());
 			}
 	}

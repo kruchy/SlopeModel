@@ -1,14 +1,7 @@
 package agent;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.lang.reflect.Array;
-import java.nio.file.Files;
-import java.util.Arrays;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
 
 import slope.Slope;
 import slope.SlopeCell;
