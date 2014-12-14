@@ -65,7 +65,7 @@ public class Agents {
 				if (y + 1 < Slope.getHeight() && x + 1 < Slope.getWidth()
 						&& x - 1 > 0)
 					i.findCell();
-				if (x + 1 >= Slope.getWidth()-3) {
+				if (x + 1 >= Slope.getWidth()-5) {
 					i.setDir(Direction.R);
 				}
 				if (x <= 0) {

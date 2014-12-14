@@ -21,6 +21,11 @@ public class Main {
 		Thread thread = new Thread(slope);
 		Agents agents = new Agents();
 		Manager manager = new Manager(slope, agents);
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			public void run() {
+
+			}
+		});
 
 		thread.start();
 		while (true) {

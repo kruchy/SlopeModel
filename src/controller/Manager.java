@@ -169,8 +169,8 @@ public class Manager {
 		public void actionPerformed(ActionEvent arg0) {
 			reset();
 			slopeFrame.dispose();
-
-		}
+			System.exit(0);
+			}
 
 	}
 

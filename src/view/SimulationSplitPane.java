@@ -30,7 +30,6 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 
 	public void drawing(boolean[][] agent) {
 		simulation.drawing(agent);
-		repaint();
 	}
 
 	public ButtonPanel getButtons() {

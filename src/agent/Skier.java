@@ -24,7 +24,7 @@ public class Skier extends Agent {
 		this.setDir(randomEnum(Direction.class));
 		this.setSkill(rand.nextInt(10) + 1);
 		this.setSpeed(rand.nextInt(getSkill()) + 1);
-		this.setLocation(rand.nextInt(Slope.getWidth()), 0);
+		this.setLocation(rand.nextInt(Slope.getWidth()-5), 0);
 		this.getPath().add(this.getLocation());
 		this.setState(State.ON_TRACK);
 	}
