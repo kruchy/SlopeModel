@@ -29,6 +29,8 @@ public class Skier extends Agent {
 		this.setState(State.ON_TRACK);
 	}
 
+
+
 	public double findAngle(SlopeCell a) {
 		int x = getLocation().getPosx();
 		int y = getLocation().getPosy();

@@ -29,7 +29,6 @@ public class Manager {
 	public Manager(SlopeFrame slope, Agents agents) {
 		elevator = new Elevator();
 		running = false;
-		this.setSlopeFrame(slope);
 		this.agents = agents;
 		_getButton().getAddSkier().addActionListener(new AddSkierListener());
 		_getButton().getStart().addActionListener(new StartListener());
@@ -40,15 +39,15 @@ public class Manager {
 	}
 
 	private ButtonPanel _getButton() {
-		return getSlopeFrame().getSplitPane().getButtons();
-	}
+		return getSlopeFrame().getSplitPane().getButtons();}
 
-	public boolean updateModel() {
+	public boolean updateModel() throws InterruptedException {
 		ArrayList<Skier> moved = agents.moveSkiers();
+		foundCollisions();
 		addToElevator(moved);
 		moved.removeAll(moved);
 		moveElevator();
-		agents.updateAgentMap();
+
 		return true;
 
 	}
@@ -57,18 +56,36 @@ public class Manager {
 		getSlopeFrame().drawing(agents.getAgentMap());
 
 	}
+	private boolean foundCollisions() {
+		/*for (Agent iter : agents) {
+			int x = iter.getLocation().getPosx();
+			int y = iter.getLocation().getPosy();
+		}*/
+		return false;
+	}
 
-	public synchronized void moveElevator() {
+	public synchronized void moveElevator() throws InterruptedException {
 		elevator.lift();
 
 	}
 
 	public void addToElevator(ArrayList<Skier> moved) {
 		for (Skier skier : moved) {
-			skier.setState(State.ON_LIFT);
+			skier.setState(State.SAFE_ZONE);
 			elevator.addSkier(skier);
 		}
 	}
+
+	public void pushToRoute() {
+
+	}
+
+
+
+	public void simulate() {
+
+	}
+
 
 	public boolean onSkierCollision() {
 		return false;

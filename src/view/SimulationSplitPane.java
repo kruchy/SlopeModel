@@ -38,6 +38,7 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 
 	void setButtons(ButtonPanel buttons) {
 		this.buttons = buttons;
+		repaint();
 	}
 
 	

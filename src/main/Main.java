@@ -30,9 +30,9 @@ public class Main {
 		thread.start();
 		while (true) {
 			while (true) {
-				manager.updateModel();
-				manager.drawSlope();
 				try {
+					manager.updateModel();
+					manager.drawSlope();
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

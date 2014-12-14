@@ -29,8 +29,7 @@ public class ButtonPanel extends javax.swing.JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ButtonPanel()
-	{
+	public ButtonPanel() {
 		super();
 		init();
 	}
@@ -48,7 +47,7 @@ public class ButtonPanel extends javax.swing.JPanel {
 		getSkiers().setPaintTicks(true);
 		getSkiers().setPaintLabels(true);
 		setLayout(new GridLayout(0, 1, 0, 0));
-		
+
 		JPanel temp = new JPanel();
 		temp.add(getStart());
 		temp.add(getReset());
@@ -57,7 +56,7 @@ public class ButtonPanel extends javax.swing.JPanel {
 		temp.add(getActualize());
 		add(temp);
 		add(getSkiers());
-		
+
 		this.setBorder(new TitledBorder("Opcje symulacji"));
 		setVisible(true);
 	}
@@ -109,5 +108,5 @@ public class ButtonPanel extends javax.swing.JPanel {
 	public void setActualize(JButton actualize) {
 		this.actualize = actualize;
 	}
-	
+
 }

@@ -1,15 +1,24 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.prefs.BackingStoreException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import slope.Slope;
+import controller.Manager;
 
 public class SkiPanel extends JPanel {
 
@@ -39,7 +48,6 @@ public class SkiPanel extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.setBackground(Color.white);
-
 		try {
 			String path = new File("").getAbsolutePath();
 			image = new ImageIcon("doge.png").getImage();
@@ -67,10 +75,7 @@ public class SkiPanel extends JPanel {
 				}
 			}
 
-			// repaint();
-
-			// revalida
-
 		}
 	}
+
 }
