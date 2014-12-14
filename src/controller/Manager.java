@@ -59,7 +59,7 @@ public class Manager {
 
 	public void drawSlope() {
 		getSlopeFrame().drawing(agents.getAgentMap());
-		System.out.println("draw");
+		System.out.println(" draw");
 
 	}
 
@@ -119,7 +119,7 @@ public class Manager {
 		setRunning(false);
 		elevator.removeAll();
 		agents.removeAll();
-		slopeFrame.repaint();
+		slopeFrame.revalidate();
 	}
 
 	
@@ -187,6 +187,7 @@ public class Manager {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			reset();
 			getDataAndActualize();
 		}
 		

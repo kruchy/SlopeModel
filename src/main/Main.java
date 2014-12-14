@@ -25,7 +25,7 @@ public class Main {
 
 		thread.start();
 		while (true) {
-			while (manager.isRunning()) {
+			while (true) {
 				manager.updateModel();
 				manager.drawSlope();
 				try {

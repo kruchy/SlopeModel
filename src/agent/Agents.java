@@ -65,14 +65,14 @@ public class Agents {
 				if (y + 1 < Slope.getHeight() && x + 1 < Slope.getWidth()
 						&& x - 1 > 0)
 					i.findCell();
-				if (x + 1 >= Slope.getWidth()) {
+				if (x + 1 >= Slope.getWidth()-3) {
 					i.setDir(Direction.R);
 				}
 				if (x <= 0) {
 					i.setDir(Direction.L);
 				}
 				if (y + 1 >= Slope.getHeight()) {
-					i.setLocation(Slope.getWidth() - 3, Slope.getHeight() - 4);
+					i.setLocation(Slope.getWidth() +3, Slope.getHeight() - 4);
 					outOfBounds.add(i);
 				}
 				i.time += (double) i.getSpeed() / 10.0 + i.time;
