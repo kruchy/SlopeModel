@@ -43,7 +43,7 @@ public class SkiPanel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.setBackground(Color.white);
 		try {
-			image = new ImageIcon("doge.png").getImage();
+			image = new ImageIcon("resources/doge.png").getImage();
 		} catch (Exception o) {
 			o.printStackTrace();
 		}
