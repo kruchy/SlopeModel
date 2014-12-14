@@ -7,7 +7,6 @@ import slope.Slope;
 import slope.SlopeCell;
 
 public class Skier extends Agent {
-	public static int numberOfSkiers = 20;
 	private int ID;
 	SlopeCell cell;
 	BufferedImage image;

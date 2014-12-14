@@ -19,7 +19,7 @@ public class SlopeFrame extends JFrame implements Runnable {
 	private void init() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		addWindowListener(new CloseWindow());
-		setSize(550, 700);
+		setSize(800, 700);
 		setLocation(25, 25);
 		setVisible(true);
 		add(getSplitPane());

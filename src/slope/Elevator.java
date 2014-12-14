@@ -7,11 +7,12 @@ import agent.Agent.State;
 import agent.Skier;
 
 public class Elevator {
-	private final int maxSkiers = 3;
+	private final int numberOfSkiers = 20;
+	private final int maxSkiers = 10;
 	public BlockingQueue<Skier> skierQueue;
 	private BlockingQueue<Skier> waitingQueue;
 	public Elevator() {
-		skierQueue = new ArrayBlockingQueue<Skier>(Skier.numberOfSkiers);
+		skierQueue = new ArrayBlockingQueue<Skier>(numberOfSkiers);
 		setWaitingQueue(new ArrayBlockingQueue<Skier>(maxSkiers));
 		new Skier();
 	

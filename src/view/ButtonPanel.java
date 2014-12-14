@@ -41,10 +41,10 @@ public class ButtonPanel extends javax.swing.JPanel {
 		JPanel temp = new JPanel();
 		temp.setLayout(new GridLayout(0, 1, 0, 0));
 		temp.add(getStart());
-		temp.add(getReset());
-		temp.add(getExit());
 		temp.add(getAddSkier());
 		temp.add(getActualize());
+		temp.add(getReset());
+		temp.add(getExit());
 		add(temp);
 		add(getSkiers());
 
