@@ -15,6 +15,10 @@ import slope.SlopeCell;
 
 public class Skier extends Agent {
 	public static int numberOfSkiers = 0;
+<<<<<<< HEAD
+=======
+	private int ID;
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 	SlopeCell cell;
 	BufferedImage image;
 
@@ -27,6 +31,7 @@ public class Skier extends Agent {
 		this.getPath().add(this.getLocation());
 		this.setState(State.ON_TRACK);
 		numberOfSkiers++;
+<<<<<<< HEAD
 	}
 
 	public double findAngle(SlopeCell a) {
@@ -60,6 +65,42 @@ public class Skier extends Agent {
 			return sec;
 	}
 
+=======
+		System.out.println(numberOfSkiers);
+	}
+
+	public double findAngle(SlopeCell a) {
+		int x = getLocation().getPosx();
+		int y = getLocation().getPosy();
+		double angle = Math.atan2(y - a.getPosy(), x - a.getPosy());
+		return angle;
+	}
+
+	public Direction randomizeWithWages(double[] probability) {
+		Direction[] dirs = { Direction.R, Direction.FWD, Direction.L };
+		double sum = 0;
+		double totallyRandomValue = new Random().nextDouble();
+		for (int i = 0; i < probability.length; i++) {
+			if (totallyRandomValue < probability[i] + sum) {
+				double x = (double) i / (double) dirs.length;
+				if(i % 2 == 0) return return2(dirs[(int) Math.floor(x)],
+						dirs[(int) Math.ceil(x)]);
+				else return dirs[(int) Math.round(x)];
+			}
+			sum += probability[i];
+		}
+		return Direction.FWD;
+	}
+
+	public Direction return2(Direction first, Direction sec) {
+		Random rand = new Random();
+		if (rand.nextDouble() < 0.5)
+			return first;
+		else
+			return sec;
+	}
+
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 	public void findCell() {
 		int x = getLocation().getPosx();
 		int y = getLocation().getPosy();
@@ -108,6 +149,14 @@ public class Skier extends Agent {
 		int random = r.nextInt(slope.length);
 		cell.setCell(0, random);
 		return slope[0][random];
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
 	}
 
 }

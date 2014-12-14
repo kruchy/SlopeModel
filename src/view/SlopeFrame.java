@@ -31,8 +31,13 @@ public class SlopeFrame extends JFrame implements Runnable {
 
 	public SlopeFrame() {
 		super("SlopeFrame");
+<<<<<<< HEAD
 		splitPane = new SimulationSplitPane();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+=======
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSplitPane(new SimulationSplitPane());
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 	}
 
 	private void init() {
@@ -41,14 +46,22 @@ public class SlopeFrame extends JFrame implements Runnable {
 		setSize(400,600);
 		setLocation(50,50);
 		setVisible(true);
+<<<<<<< HEAD
 		add(splitPane);
+=======
+		add(getSplitPane());
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 		setVisible(true);
 
 	}
 	
 	public void drawing(boolean[][] agent)
 	{
+<<<<<<< HEAD
 		splitPane.drawing(agent);
+=======
+		getSplitPane().drawing(agent);
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 	}
 	
 	@Override
@@ -60,4 +73,15 @@ public class SlopeFrame extends JFrame implements Runnable {
 		
 	}
 
+<<<<<<< HEAD
+=======
+	public SimulationSplitPane getSplitPane() {
+		return splitPane;
+	}
+
+	public void setSplitPane(SimulationSplitPane splitPane) {
+		this.splitPane = splitPane;
+	}
+
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 }

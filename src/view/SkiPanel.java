@@ -61,7 +61,12 @@ public class SkiPanel extends JPanel {
 				g2d.setColor(Color.blue);
 
 				if (agent[i][j]) {
+<<<<<<< HEAD
 					//g2d.drawString("*", i * 5, j * 10);
+=======
+					System.out.println("sdf");
+					g2d.drawString("*", i * 5, j * 10);
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 					g2d.drawImage(image, i * 5, j * 10,null);
 				}
 			}

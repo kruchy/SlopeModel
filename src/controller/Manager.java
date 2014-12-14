@@ -1,19 +1,26 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import agent.Agent;
 import agent.Agent.Direction;
 import agent.Agent.State;
+<<<<<<< HEAD
+=======
+import agent.Agents;
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 import agent.Algorithm;
 import agent.Skier;
 import slope.Elevator;
 import slope.Slope;
+import view.ButtonPanel;
 import view.SkiPanel;
 import view.SlopeFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 public class Manager {
 	public ArrayList<Skier> agents;
 	Elevator elevator;
@@ -36,12 +43,43 @@ public class Manager {
 		}
 		elevator = new Elevator();
 //		createSlopeFrame();
+=======
+
+public class Manager {
+	Elevator elevator;
+	Agents agents;
+	private boolean running;
+
+	private SlopeFrame slopeFrame;
+	private SkiPanel skiPanel;
+
+	public Manager(SlopeFrame slope, Agents agents) {
+		elevator = new Elevator();
+		running = false;
+		this.setSlopeFrame(slope);
+		this.agents = agents;
+		_getButton().getAddSkier()
+				.addActionListener(new AddSkierListener());
+		_getButton().getStart()
+				.addActionListener(new StartListener());
+		_getButton().getReset()
+				.addActionListener(new ResetListener());
+		_getButton().getExit()
+				.addActionListener(new ExitListener());
+		_getButton().getActualize().addActionListener(new ActualizeListener());
+		
+	}
+
+	private ButtonPanel _getButton() {
+		return getSlopeFrame().getSplitPane().getButtons();
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 	}
 //
 //	private void createSlopeFrame() {
 //		slopeFrame = new SlopeFrame(this);
 //	}
 
+<<<<<<< HEAD
 	public boolean updateModel() throws InterruptedException {
 		ArrayList<Skier> moved = moveSkiers();
 		/*
@@ -54,10 +92,19 @@ public class Manager {
 		moved.removeAll(moved);
 		moveElevator();
 
+=======
+	public boolean updateModel() {
+		ArrayList<Skier> moved = agents.moveSkiers();
+		addToElevator(moved);
+		moved.removeAll(moved);
+		moveElevator();
+		agents.updateAgentMap();
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 		return true;
 
 	}
 
+<<<<<<< HEAD
 	public void updateAgentMap() {
 		for (int i = 0; i < agentMap.length; i++)
 			for (int j = 0; j < agentMap[0].length; j++) {
@@ -69,6 +116,10 @@ public class Manager {
 			int y = iter.getLocation().getPosy();
 			if (x <= Slope.getWidth() && y <= Slope.getHeight())
 				agentMap[x][y] = true;
+=======
+	public void drawSlope() {
+		getSlopeFrame().drawing(agents.getAgentMap());
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 
 		}
 	}
@@ -78,6 +129,7 @@ public class Manager {
 		slopeFrame.drawing(agentMap);
 	}
 
+<<<<<<< HEAD
 	
 
 	private boolean foundCollisions() {
@@ -89,12 +141,16 @@ public class Manager {
 	}
 
 	public synchronized void moveElevator() throws InterruptedException {
+=======
+	public synchronized void moveElevator() {
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 		elevator.lift();
 
 	}
 
 	public void addToElevator(ArrayList<Skier> moved) {
 		for (Skier skier : moved) {
+<<<<<<< HEAD
 			skier.setState(State.SAFE_ZONE);
 			elevator.addSkier(skier);
 		}
@@ -138,8 +194,11 @@ public class Manager {
 					i.time -= 1.0;
 				}
 			}
+=======
+			skier.setState(State.ON_LIFT);
+			elevator.addSkier(skier);
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
 		}
-		return outOfBounds;
 	}
 
 	public boolean onSkierCollision() {
@@ -162,12 +221,103 @@ public class Manager {
 		return false;
 	}
 
-	public void addSkier(Skier a) {
-		agents.add(a);
-		agentMap[a.getLocation().getPosx() + 1][a.getLocation().getPosy() + 1] = true;
+	public void addSkier(Skier skier) {
+		agents.addSkier(new Skier());
+	}
+
+	public SlopeFrame getSlopeFrame() {
+		return slopeFrame;
+	}
+
+	public void setSlopeFrame(SlopeFrame slopeFrame) {
+		this.slopeFrame = slopeFrame;
+	}
+
+	public SkiPanel getSkiPanel() {
+		return skiPanel;
+	}
+
+	public void setSkiPanel(SkiPanel skiPanel) {
+		this.skiPanel = skiPanel;
+	}
+
+	private void reset() {
+		setRunning(false);
+		elevator.removeAll();
+		agents.removeAll();
+		slopeFrame.repaint();
+	}
+
+	
+	public void getDataAndActualize() {
+		int val = _getButton().getSkiers()
+				.getValue();
+		if (agents.agents.isEmpty())
+			for (int i = 0; i < val; i++) {
+				addSkier(new Skier());
+			}
+	}
+
+	
+	public boolean isRunning() {
+		return running;
+	}
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
+	public class AddSkierListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			addSkier(new Skier());
+		}
 
 	}
 
+	public class ResetListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			reset();
+		}
+
+	}
+
+	public class StartListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+			getDataAndActualize();
+			setRunning(true);
+		}
+
+	}
+
+	public class ExitListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			reset();
+			slopeFrame.dispose();
+
+		}
+
+	}
+	public class ActualizeListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			getDataAndActualize();
+		}
+		
+	}
+
+<<<<<<< HEAD
 	public class AddSkierListener implements ActionListener
 	{
 
@@ -180,3 +330,6 @@ public class Manager {
 	
 }
 
+=======
+}
+>>>>>>> cd5a7da44903c0a3f4b1828b8406de938c46a02b
