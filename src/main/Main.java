@@ -8,33 +8,35 @@ import controller.Manager;
 import slope.Slope;
 import view.SkiPanel;
 import view.SlopeFrame;
+import agent.Agent;
+import agent.Agents;
 import agent.Skier;
 
 public class Main {
+
 	public static void main(String[] args) {
 
 		new Slope(50, 50, 100, 100);
+		SlopeFrame slope = new SlopeFrame();
+		Thread thread = new Thread(slope);
+		Agents agents = new Agents();
+		Manager manager = new Manager(slope, agents);
 
-		Manager manager = new Manager();
-		SlopeFrame slope = new SlopeFrame(manager);
-		for (int i = 1; i <= 7; i++) {
-			manager.addSkier(new Skier());
-		}
-		SwingUtilities.invokeLater(manager.getSlopeFrame());
-		Slope.printHeightmap();
+		thread.start();
 		while (true) {
-			manager.updateModel();
-			manager.updateAgentMap();
-			manager.drawSlope();
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			while (true) {
+				manager.updateModel();
+				manager.drawSlope();
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		}
-		
+
 	}
 
 	public final static void clearConsole() {

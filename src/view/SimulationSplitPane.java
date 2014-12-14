@@ -6,24 +6,24 @@ import controller.Manager;
 
 public class SimulationSplitPane extends javax.swing.JSplitPane{
 
-	ButtonPanel buttons;
+	private ButtonPanel buttons;
 	SkiPanel simulation;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SimulationSplitPane(Manager manager) {
+	public SimulationSplitPane() {
 		super(JSplitPane.VERTICAL_SPLIT);
 		this.setResizeWeight(0);
-		init(manager);
+		init();
 	}
 
-	private void init(Manager manager) {
-		buttons = new ButtonPanel(manager);
+	private void init() {
+		setButtons(new ButtonPanel());
 		simulation = new SkiPanel();
 		simulation.setSize(getWidth() - 50, getHeight() - 100);
-		this.setTopComponent(buttons);
+		this.setTopComponent(getButtons());
 		this.setBottomComponent(simulation);
 		setVisible(true);
 	}
@@ -31,6 +31,14 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 	public void drawing(boolean[][] agent) {
 		simulation.drawing(agent);
 		repaint();
+	}
+
+	public ButtonPanel getButtons() {
+		return buttons;
+	}
+
+	void setButtons(ButtonPanel buttons) {
+		this.buttons = buttons;
 	}
 
 	

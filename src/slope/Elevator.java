@@ -7,7 +7,7 @@ import agent.Agent;
 import agent.Agent.State;
 import agent.Skier;
 
-public class Elevator implements Runnable{
+public class Elevator {
 	private int maxSkiers = 20;
 	public ArrayList<Skier> skierQueue;
 	private Skier out;
@@ -26,9 +26,8 @@ public class Elevator implements Runnable{
 		setRunning(true);
 	}
 
-	public boolean lift() {
-		while(isRunning())
-		if (!skierQueue.isEmpty() && isRunning()) {
+	public synchronized boolean lift() {
+		if (!skierQueue.isEmpty()) {
 			for (Skier skier : skierQueue) {
 				int x = skier.getLocation().getPosx();
 				int y = skier.getLocation().getPosy();
@@ -52,20 +51,15 @@ public class Elevator implements Runnable{
 		return skierQueue.add(skier);
 	}
 
-	public boolean delSkier() {
-		return skierQueue.clear();
-
-	}
-
-	public boolean removeAll()
-	{
-		skierQueue.clear();
-		setRunning(true);
-		return skierQueue.isEmpty();
-	}
 	
-	@Override
-	public void run() {
+	public boolean delSkier(Skier skier) {
+		return skierQueue.remove(skierQueue.size()) != null;
+		
+
+	}
+
+	public synchronized void removeAll() {
+	skierQueue.clear();
 		
 	}
 }
