@@ -59,6 +59,7 @@ public class Manager {
 
 	public void drawSlope() {
 		getSlopeFrame().drawing(agents.getAgentMap());
+		System.out.println("draw");
 
 	}
 
@@ -130,6 +131,7 @@ public class Manager {
 				addSkier(new Skier());
 			}
 	}
+	
 
 	
 	public boolean isRunning() {
