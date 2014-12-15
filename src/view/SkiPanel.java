@@ -17,6 +17,8 @@ public class SkiPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public Image image;
 	boolean[][] agent;
+	int width;
+	int height;
 
 	public SkiPanel() {
 		super();
@@ -49,7 +51,7 @@ public class SkiPanel extends JPanel {
 		}
 		g2d.drawLine(0, 0, 0, Slope.getHeight() * 15);
 		g2d.drawLine(0, 0, Slope.getWidth() * 15, 0);
-		g2d.drawRect((Slope.getWidth() - 3) * 10, 0, 15, Slope.getHeight() * 10);
+		g2d.drawRect((Slope.getWidth() - 3) * 800 / width, 0, 15, Slope.getHeight() * 700 / height);
 		for (int k = 0; k < Slope.getHeight(); k++)
 			for (int l = 0; l < Slope.getWidth(); l++) {
 				
@@ -66,6 +68,12 @@ public class SkiPanel extends JPanel {
 			}
 		}
 
+	}
+
+	public void setSizeToDraw(int width, int height) {
+		this.width = width;
+		this.height = height;
+		
 	}
 
 }

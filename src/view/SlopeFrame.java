@@ -1,5 +1,11 @@
 package view;
 
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
+
 import javax.swing.*;
 
 public class SlopeFrame extends JFrame implements Runnable {
@@ -13,6 +19,7 @@ public class SlopeFrame extends JFrame implements Runnable {
 	public SlopeFrame() {
 		super("SlopeFrame");
 		splitPane = new SimulationSplitPane();
+		addComponentListener(new WindowSizeListener());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -20,6 +27,7 @@ public class SlopeFrame extends JFrame implements Runnable {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		addWindowListener(new CloseWindow());
 		setSize(800, 700);
+		splitPane.simulation.setSizeToDraw(getWidth(), getHeight());
 		setLocation(25, 25);
 		setVisible(true);
 		add(getSplitPane());
@@ -47,4 +55,22 @@ public class SlopeFrame extends JFrame implements Runnable {
 		this.splitPane = splitPane;
 	}
 
+	public class WindowSizeListener implements ComponentListener {
+		@Override
+		public void componentHidden(ComponentEvent arg0) {
+		}
+
+		@Override
+		public void componentMoved(ComponentEvent arg0) {
+		}
+
+		@Override
+		public void componentResized(ComponentEvent arg0) {
+			splitPane.simulation.setSizeToDraw(getWidth(), getHeight());
+		}
+
+		@Override
+		public void componentShown(ComponentEvent arg0) {
+		}
+	}
 }
