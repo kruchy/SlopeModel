@@ -25,7 +25,7 @@ public class SkiPanel extends JPanel {
 		super();
 		agent = new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2];
 		setVisible(true);
-		
+
 	}
 
 	public void drawing(boolean[][] agent) {
@@ -51,17 +51,17 @@ public class SkiPanel extends JPanel {
 		g2d.drawRect((Slope.getWidth() - 3) * 10, 0, 15, Slope.getHeight() * 10);
 		for (int k = 0; k < Slope.getHeight(); k++)
 			for (int l = 0; l < Slope.getWidth(); l++) {
-				
+
 				g2d.setColor(new Color(0, 0, 0, 1));
 				g2d.drawRect(k * 10, l * 15, 30, 30);
 			}
-		
+
 		for (int i = 0; i < agent.length; i++) {
 			for (int j = 0; j < agent[0].length; j++) {
 				g2d.setColor(Color.blue);
 				if (agent[i][j]) {
-					g2d.drawString("*", i*10, j*10);
-					g2d.drawImage(image, i*10, j*10, null);
+					g2d.drawString("*", i * 10, j * 10);
+					g2d.drawImage(image, i * 10, j * 10, null);
 				}
 			}
 		}

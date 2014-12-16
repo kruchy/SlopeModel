@@ -11,37 +11,37 @@ public class Elevator {
 	private final int maxSkiers = 10;
 	public BlockingQueue<Skier> skierQueue;
 	private BlockingQueue<Skier> waitingQueue;
+
 	public Elevator() {
 		skierQueue = new ArrayBlockingQueue<Skier>(numberOfSkiers);
 		setWaitingQueue(new ArrayBlockingQueue<Skier>(maxSkiers));
 		new Skier();
-	
 
 	}
 
 	public synchronized boolean lift() throws InterruptedException {
 		// if (!skierQueue.isEmpty()) {
-		
+
 		addToWaitingQueue(skierQueue);
-	
+
 		for (Skier skier : getWaitingQueue()) {
-		  System.out.println(skier.getState());
+			System.out.println(skier.getState());
 			int y = skier.getLocation().getPosy();
-		
+
 			if (y > 0 && skier.getState() == State.ON_LIFT) {
-				skier.setLocation(Slope.getWidth()-3, y - 1);
+				skier.setLocation(Slope.getWidth() - 3, y - 1);
 			}
 
-			if (y == 0 ) {
+			if (y == 0) {
 				skier.setLocation(new Random().nextInt(Slope.getWidth()), 0);
 				skier.setState(State.ON_TRACK);
-				skier = getWaitingQueue().take();					
-				
+				skier = getWaitingQueue().take();
+
 			}
 
 			;
 		}
-		//skierQueue.remove(out);
+		// skierQueue.remove(out);
 
 		// out = null;
 
@@ -49,7 +49,8 @@ public class Elevator {
 		return false;
 	}
 
-	public void addToWaitingQueue(BlockingQueue<Skier> skierQ) throws InterruptedException {
+	public void addToWaitingQueue(BlockingQueue<Skier> skierQ)
+			throws InterruptedException {
 		System.out.println("SkierQueue : " + skierQueue.size());
 		System.out.println("WaitingQueue : " + getWaitingQueue().size());
 		Skier s = null;
@@ -60,16 +61,17 @@ public class Elevator {
 					s = skierQ.take();
 					if (getWaitingQueue().offer(s))
 						s.setState(State.ON_LIFT);
-					else skierQ.offer(s);
+					else
+						skierQ.offer(s);
 				}
 			else {
-					s = skierQ.take();
-					if (getWaitingQueue().offer(s))
-						s.setState(State.ON_LIFT);
-					else skierQ.offer(s);
+				s = skierQ.take();
+				if (getWaitingQueue().offer(s))
+					s.setState(State.ON_LIFT);
+				else
+					skierQ.offer(s);
 				// skierQueue.remove(i);
 			}
-			
 
 		}
 	}
@@ -83,10 +85,9 @@ public class Elevator {
 
 	}
 
-
 	public synchronized void removeAll() {
-	skierQueue.clear();
-		
+		skierQueue.clear();
+
 	}
 
 	public BlockingQueue<Skier> getWaitingQueue() {

@@ -17,11 +17,11 @@ public class Slope {
 		this.setWidth(width);
 
 		this.maxHeight = maxHeight;
-		setHeightmap(new int[height][width]);
-		slope = new SlopeCell[height][width];
+		setHeightmap(new int[width][height]);
+		slope = new SlopeCell[width][height];
 		route = new ArrayList<>();
-		for (int i = 0; i < height; i++)
-			for (int j = 0; j < width; j++) {
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < height; j++) {
 				slope[i][j] = new SlopeCell(i, j);
 			}
 		fillRandomHighmap();
@@ -40,7 +40,7 @@ public class Slope {
 			for (int j = 0; j < getHeightmap()[i].length; j++) {
 
 				random = r.nextInt(max - (max - 2) + 1) + (max - 2);
-				getHeightmap()[i][j] =   r.nextInt(100); // random;
+				getHeightmap()[i][j] = r.nextInt(100); // random;
 
 			}
 			max--;

@@ -32,7 +32,8 @@ public class Manager {
 	}
 
 	private ButtonPanel _getButton() {
-		return getSlopeFrame().getSplitPane().getButtons();}
+		return getSlopeFrame().getSplitPane().getButtons();
+	}
 
 	public boolean updateModel() throws InterruptedException {
 		ArrayList<Skier> moved = agents.moveSkiers();
@@ -50,11 +51,12 @@ public class Manager {
 		getSlopeFrame().drawing(agents.getAgentMap());
 
 	}
+
 	private boolean foundCollisions() {
-		/*for (Agent iter : agents) {
-			int x = iter.getLocation().getPosx();
-			int y = iter.getLocation().getPosy();
-		}*/
+		/*
+		 * for (Agent iter : agents) { int x = iter.getLocation().getPosx(); int
+		 * y = iter.getLocation().getPosy(); }
+		 */
 		return false;
 	}
 
@@ -85,7 +87,7 @@ public class Manager {
 		int val = _getButton().getSkiers().getValue();
 		if (agents.agents.isEmpty())
 			for (int i = 0; i < val; i++) {
-				
+
 				addSkier(new Skier());
 			}
 	}
@@ -151,7 +153,7 @@ public class Manager {
 			reset();
 			slopeFrame.dispose();
 			System.exit(0);
-			}
+		}
 
 	}
 
