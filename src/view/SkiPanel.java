@@ -13,6 +13,11 @@ import javax.swing.JPanel;
 import main.Main;
 import slope.Slope;
 
+/**
+ * Place to draw data received from model.
+ * @author Kruchy
+ *
+ */
 public class SkiPanel extends JPanel {
 
 	/**
@@ -25,14 +30,21 @@ public class SkiPanel extends JPanel {
 	int height;
 	int width;
 
+	/**
+	 * Default constructor.
+	 */
 	public SkiPanel() {
 		super();
 		agent = new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2];
 		setVisible(true);
 	}
 
+	/**
+	 * Function to draw given map of agents on the panel.
+	 * @param agent Rectangle table of agents on the slope
+	 */
 	public void drawing(boolean[][] agent) {
-		URL url = Main.class.getResource("/doge.png");
+		URL url = Main.class.getResource("/resources/doge.png");
 		image = new ImageIcon(url).getImage();
 		/*
 		 * String path = new File("").getAbsolutePath(); image = new
@@ -44,6 +56,9 @@ public class SkiPanel extends JPanel {
 		repaint();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -65,14 +80,15 @@ public class SkiPanel extends JPanel {
 			for (int j = 0; j < agent[0].length; j++) {
 				g2d.setColor(Color.blue);
 				if (agent[i][j]) {
-					g2d.drawString("*", i*getWidth()/56, j*getHeight()/66);
-		//			g2d.drawImage(image, i*10, j*10, null);
+					//g2d.drawString("*", i*getWidth()/56, j*getHeight()/66);
+					g2d.drawImage(image, i*getWidth()/56, j*getHeight()/66, null);
 				}
 			}
 		}
 
 	}
 
+	
 	public Dimension getDim() {
 		return dim;
 	}
@@ -80,7 +96,6 @@ public class SkiPanel extends JPanel {
 	public void setDimensions(int x, int y)
 	{
 		if(dim == null) {System.out.println("SET" + x );setDim(new Dimension(x,y));}
-		System.out.println(getDim().getHeight());
 	}
 	
 	public void setDim(Dimension dim) {

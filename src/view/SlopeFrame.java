@@ -1,13 +1,12 @@
 package view;
 
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowStateListener;
+import javax.swing.JFrame;
 
-import javax.swing.*;
-
+/**
+ * Main GUI frame, implements Runnable to give the ability to run as new thread to optimalize.
+ * @author Kruchy
+ *
+ */
 public class SlopeFrame extends JFrame implements Runnable {
 
 	private SimulationSplitPane splitPane;
@@ -16,12 +15,18 @@ public class SlopeFrame extends JFrame implements Runnable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Default constructor.
+	 */
 	public SlopeFrame() {
 		super("SlopeFrame");
 		splitPane = new SimulationSplitPane();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
+	/**
+	 * Initialization.
+	 */
 	private void init() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		//addWindowListener(new CloseWindow());
@@ -34,6 +39,10 @@ public class SlopeFrame extends JFrame implements Runnable {
 
 	}
 
+	/**
+	 * Drawing function of given agent map.
+	 * @param agent
+	 */
 	public void drawing(boolean[][] agent) {
 		getSplitPane().drawing(agent);
 	}
@@ -45,7 +54,7 @@ public class SlopeFrame extends JFrame implements Runnable {
 		this.setVisible(true);
 
 	}
-
+	
 	public SimulationSplitPane getSplitPane() {
 		return splitPane;
 	}

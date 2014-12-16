@@ -6,11 +6,20 @@ import java.util.Random;
 import slope.Slope;
 import slope.SlopeCell;
 
+/**
+ * Skier representation of Agent class. Moves on the slope depending on skills and speed.
+ * @author Kruchy
+ *
+ */
 public class Skier extends Agent {
 	private int ID;
 	SlopeCell cell;
 	BufferedImage image;
 
+	
+	/**
+	 * Default constructor, creates Skier at random location at the start of the slope.
+	 */
 	public Skier() {
 		Random rand = new Random();
 		this.setDir(randomEnum(Direction.class));
@@ -22,7 +31,11 @@ public class Skier extends Agent {
 	}
 
 
-
+	/**
+	 * Currently not used function.
+	 * @param a
+	 * @return
+	 */
 	public double findAngle(SlopeCell a) {
 		int x = getLocation().getPosx();
 		int y = getLocation().getPosy();
@@ -30,6 +43,11 @@ public class Skier extends Agent {
 		return angle;
 	}
 
+	/**
+	 * Choses one direction with given probability.
+	 * @param probability
+	 * @return
+	 */
 	public Direction randomizeWithWages(double[] probability) {
 		Direction[] dirs = { Direction.R, Direction.FWD, Direction.L };
 		double sum = 0;
@@ -46,6 +64,9 @@ public class Skier extends Agent {
 		return Direction.FWD;
 	}
 
+	/**
+	 * Random from 2 directions
+	 */
 	public Direction return2(Direction first, Direction sec) {
 		Random rand = new Random();
 		if (rand.nextDouble() < 0.5)
@@ -54,6 +75,9 @@ public class Skier extends Agent {
 			return sec;
 	}
 
+	/**
+	 * Finds the best cell to move to with small randomization
+	 */
 	public void findCell() {
 		int x = getLocation().getPosx();
 		int y = getLocation().getPosy();
@@ -91,12 +115,20 @@ public class Skier extends Agent {
 		setDir(randomizeWithWages(probability));
 	}
 
+	/**
+	 * Helper function to return random from enum
+	 */
 	public static <T extends Enum<?>> T randomEnum(Class<T> clazz) {
 		Random rand = new Random();
 		int x = rand.nextInt(clazz.getEnumConstants().length);
 		return clazz.getEnumConstants()[x];
 	}
 
+	/**
+	 * Random creation of skiers
+	 * @param slope
+	 * @return
+	 */
 	public SlopeCell createSkier(SlopeCell[][] slope) {
 		Random r = new Random();
 		int random = r.nextInt(slope.length);
@@ -104,10 +136,17 @@ public class Skier extends Agent {
 		return slope[0][random];
 	}
 
+	/**
+	 * Getter for ID
+	 */
 	public int getID() {
 		return ID;
 	}
 
+	/**
+	 * Setter for ID
+	 * @param iD
+	 */
 	public void setID(int iD) {
 		ID = iD;
 	}

@@ -1,27 +1,35 @@
 package controller;
 
-import java.util.ArrayList;
-
-import agent.Agent.State;
-import agent.Agents;
-import agent.Skier;
-import slope.Elevator;
-import slope.Slope;
-import view.ButtonPanel;
-import view.SkiPanel;
-import view.SlopeFrame;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.ArrayList;
 
+import slope.Slope;
+import view.ButtonPanel;
+import view.SlopeFrame;
+import agent.Agent.State;
+import agent.Agents;
+import agent.Skier;
+
+
+/**
+ * Controller class in MVC, manages data flow.
+ * @author Kruchy
+ *
+ */
 public class Manager {
 	Agents agents;
 	private boolean running;
 
 	private SlopeFrame slopeFrame;
 
+	/**
+	 * Sets current model and viev in controller.
+	 * @param slope
+	 * @param agents
+	 */
 	public Manager(SlopeFrame slope, Agents agents) {
 		running = false;
 		this.agents = agents;
@@ -35,9 +43,18 @@ public class Manager {
 
 	}
 
+	/**
+	 * Helper function to manage code.
+	 * @return
+	 */
 	private ButtonPanel _getButton() {
 		return getSlopeFrame().getSplitPane().getButtons();}
 
+	/**
+	 * Updates everything in model class.
+	 * @return
+	 * @throws InterruptedException
+	 */
 	public boolean updateModel() throws InterruptedException {
 		ArrayList<Skier> moved = agents.moveSkiers();
 		foundCollisions();
@@ -50,10 +67,14 @@ public class Manager {
 
 	}
 
+	/**
+	 * Updates view from current model.
+	 */
 	public void drawSlope() {
 		getSlopeFrame().drawing(agents.getAgentMap());
 
 	}
+	
 	private boolean foundCollisions() {
 		/*for (Agent iter : agents) {
 			int x = iter.getLocation().getPosx();
@@ -62,11 +83,19 @@ public class Manager {
 		return false;
 	}
 
+	/**
+	 * Lifts given agents upward the slope.
+	 * @throws InterruptedException
+	 */
 	public synchronized void moveElevator() throws InterruptedException {
 		agents.getElevator().lift();
 
 	}
 
+	/**
+	 * Adds to elevator those agents, who have reached the end of the slope.
+	 * @param moved
+	 */
 	public void addToElevator(ArrayList<Skier> moved) {
 		for (Skier skier : moved) {
 			skier.setState(State.SAFE_ZONE);
@@ -74,10 +103,17 @@ public class Manager {
 		}
 	}
 
+	/**
+	 * Adds skier to agents queue in model
+	 * @param skier
+	 */
 	public void addSkier(Skier skier) {
 		agents.addSkier(new Skier());
 	}
 
+	/**
+	 * Resets everything and sets to default.
+	 */
 	private void reset() {
 		setRunning(false);
 		agents.getElevator().removeAll();
@@ -85,6 +121,9 @@ public class Manager {
 		slopeFrame.revalidate();
 	}
 
+	/**
+	 * Gets data from view and passes it to model
+	 */
 	public void getDataAndActualize() {
 		int val = _getButton().getSkiers().getValue();
 		int height = _getButton().getSlopeHeight().getValue();
@@ -98,23 +137,43 @@ public class Manager {
 			}
 	}
 
+	/**
+	 * Getter function for running.
+	 * @return
+	 */
 	public boolean isRunning() {
 		return running;
 	}
 
+	/**
+	 * Setter function for running.
+	 * @param running
+	 */
 	public void setRunning(boolean running) {
 		this.running = running;
 	}
 
 
+	/**
+	 * Getter function for view.
+	 */
 	public SlopeFrame getSlopeFrame() {
 		return slopeFrame;
 	}
 
+	/**
+	 * Setter function for view.
+	 * @param slopeFrame
+	 */
 	public void setSlopeFrame(SlopeFrame slopeFrame) {
 		this.slopeFrame = slopeFrame;
 	}
 
+	/**
+	 * Custom listener class for adding button in view
+	 * @author Kruchy
+	 *
+	 */
 	public class AddSkierListener implements ActionListener {
 
 		@Override
@@ -124,6 +183,11 @@ public class Manager {
 
 	}
 
+	/**
+	 * Custom listener class for reset button in view.
+	 * @author Kruchy
+	 *
+	 */
 	public class ResetListener implements ActionListener {
 
 		@Override
@@ -134,6 +198,11 @@ public class Manager {
 
 	}
 
+	/**
+	 * Custom listener class for start button in view.
+	 * @author Kruchy
+	 *
+	 */
 	public class StartListener implements ActionListener {
 
 		@Override
@@ -145,6 +214,11 @@ public class Manager {
 
 	}
 
+	/**
+	 * Custom listener class for exit button in view.
+	 * @author Kruchy
+	 *
+	 */
 	public class ExitListener implements ActionListener {
 
 		@Override
@@ -156,6 +230,11 @@ public class Manager {
 
 	}
 
+	/**
+	 * Custom listener class for actualize button in view.
+	 * @author Kruchy
+	 *
+	 */
 	public class ActualizeListener implements ActionListener {
 
 		@Override
@@ -166,6 +245,11 @@ public class Manager {
 
 	}
 
+	/**
+	 * Custom listener class for litening to change size events in view.
+	 * @author Kruchy
+	 *
+	 */
 	public class WindowSizeListener implements ComponentListener {
 		@Override
 		public void componentHidden(ComponentEvent arg0) {

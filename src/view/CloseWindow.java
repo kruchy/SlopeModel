@@ -3,6 +3,11 @@ package view;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * Custom class for listening to closing events.
+ * @author Kruchy
+ *
+ */
 public class CloseWindow implements WindowListener {
 
 		@Override

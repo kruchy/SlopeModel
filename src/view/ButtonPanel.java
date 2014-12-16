@@ -9,6 +9,9 @@ import java.awt.GridLayout;
 
 import javax.swing.border.TitledBorder;
 
+/**
+ * Button panel on the frame, manages user interaction 
+ */
 public class ButtonPanel extends javax.swing.JPanel {
 
 	private JButton start;
@@ -31,6 +34,9 @@ public class ButtonPanel extends javax.swing.JPanel {
 		init();
 	}
 
+	/**
+	 * Initialization 
+	 */
 	private void init() {
 		setStart(new JButton("Start"));
 		setExit(new JButton("Exit"));

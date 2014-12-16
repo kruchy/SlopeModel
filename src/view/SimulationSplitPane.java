@@ -5,6 +5,11 @@ import java.awt.Dimension;
 
 import javax.swing.JSplitPane;
 
+/**
+ * Split pane class, one component is button panel, other one is drawing panel
+ * @author Kruchy
+ *
+ */
 public class SimulationSplitPane extends javax.swing.JSplitPane{
 
 	private ButtonPanel buttons;
@@ -14,12 +19,18 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Default constructor.
+	 */
 	public SimulationSplitPane() {
 		super(JSplitPane.HORIZONTAL_SPLIT);
 		this.setResizeWeight(1);
 		init();
 	}
 
+	/**
+	 * Initialization.
+	 */
 	private void init() {
 		setButtons(new ButtonPanel());
 		setSimulation(new SkiPanel());
@@ -29,11 +40,14 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 		getSimulation().setPreferredSize(new Dimension(x,y));
 		this.setRightComponent(getButtons());
 		this.setLeftComponent(getSimulation());
-		getSimulation().setDimensions(getSimulation().getWidth(),getSimulation().getHeight());
 		setVisible(true);
 		
 	}
 
+	/**
+	 * Drawing function of given agent map.
+	 * @param agent
+	 */
 	public void drawing(boolean[][] agent) {
 		getSimulation().drawing(agent);
 	}

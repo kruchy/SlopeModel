@@ -42,7 +42,7 @@ public class Slope {
 			for (int j = 0; j < getHeightmap()[i].length; j++) {
 
 				random = r.nextInt(max - (max - 2) + 1) + (max - 2);
-				getHeightmap()[i][j] =   r.nextInt(100); // random;
+				getHeightmap()[i][j] =    random; //r.nextInt(100);
 
 			}
 			max--;
