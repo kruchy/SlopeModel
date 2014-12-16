@@ -26,7 +26,7 @@ public class SlopeFrame extends JFrame implements Runnable {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		//addWindowListener(new CloseWindow());
 		setSize(800, 700);
-		splitPane.simulation.setSizeToDraw(getHeight(), getWidth());
+		//splitPane.getSimulation().setSizeToDraw(getWidth(), getHeight());
 		setLocation(25, 25);
 		setVisible(true);
 		add(getSplitPane());

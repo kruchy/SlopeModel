@@ -21,13 +21,12 @@ public class Manager {
 	private boolean running;
 
 	private SlopeFrame slopeFrame;
-	private SkiPanel skiPanel;
 
 	public Manager(SlopeFrame slope, Agents agents) {
 		running = false;
 		this.agents = agents;
 		this.slopeFrame = slope;
-		//slope.addComponentListener(new WindowSizeListener());
+		slopeFrame.addComponentListener(new WindowSizeListener());
 		_getButton().getAddSkier().addActionListener(new AddSkierListener());
 		_getButton().getStart().addActionListener(new StartListener());
 		_getButton().getReset().addActionListener(new ResetListener());
@@ -88,6 +87,10 @@ public class Manager {
 
 	public void getDataAndActualize() {
 		int val = _getButton().getSkiers().getValue();
+		int height = _getButton().getSlopeHeight().getValue();
+		int width = _getButton().getSlopeWidth().getValue();
+		new Slope(width,height,100,10);
+		agents = new Agents();
 		if (agents.agents.isEmpty())
 			for (int i = 0; i < val; i++) {
 				
@@ -103,13 +106,6 @@ public class Manager {
 		this.running = running;
 	}
 
-	public SkiPanel getSkiPanel() {
-		return skiPanel;
-	}
-
-	public void setSkiPanel(SkiPanel skiPanel) {
-		this.skiPanel = skiPanel;
-	}
 
 	public SlopeFrame getSlopeFrame() {
 		return slopeFrame;
@@ -170,7 +166,7 @@ public class Manager {
 
 	}
 
-	/*public class WindowSizeListener implements ComponentListener {
+	public class WindowSizeListener implements ComponentListener {
 		@Override
 		public void componentHidden(ComponentEvent arg0) {
 		}
@@ -182,11 +178,12 @@ public class Manager {
 		@Override
 		public void componentResized(ComponentEvent arg0) {
 			reset();
-			new Slope((int)slopeFrame.getWidth()/16,(int)slopeFrame.getHeight()/14 ,100, 10);
+			//new Slope((int)slopeFrame.getWidth()/16,(int)slopeFrame.getHeight()/14 ,100, 10);
+			//slopeFrame.getSplitPane().getSimulation().update();
 		}
 
 		@Override
 		public void componentShown(ComponentEvent arg0) {
 		}
-	}*/
+	}
 }
