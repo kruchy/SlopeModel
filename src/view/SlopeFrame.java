@@ -1,143 +1,50 @@
 package view;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
-import controller.Manager;
+public class SlopeFrame extends JFrame implements Runnable {
 
-import java.awt.Panel;
-import java.awt.BorderLayout;
-import java.awt.TextArea;
-
-public class SlopeFrame extends JFrame {
-
-	private JFrame frame;
-	private JButton start ;
-	private JButton exit;
-	private JButton loadHeight;
-	private JButton loadMap;
-	private JTextField mapDir;
-	private JTextField heightDir;
-	private JPanel buttons;
-	private Dimension size = new Dimension(600,400);
+	private SimulationSplitPane splitPane;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private SkiPanel panel;
 
-	public SlopeFrame(int x,int y,int width ,int height,SkiPanel sp)
-	{
-		setTitle("SlopeFrame");
-		panel = sp;
-		initialize(x, y, width, height);
-	}
-
-	private void initialize(int x, int y, int width, int height ) {
-		frame = new JFrame("SlopeFrame");
-		buttons = new JPanel();
-		addWindowListener(new CloseWindow());
-		setSize(800, 600);
-		setLocation(x, y);
+	public SlopeFrame() {
+		super("SlopeFrame");
+		splitPane = new SimulationSplitPane();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-		frame.getContentPane().setLayout(new GridBagLayout());
-		add(buttons, BorderLayout.NORTH);
-		start = new JButton("Start");
-		exit = new JButton("Exit");
-		loadHeight = new JButton("Load HeightMap");
-		loadMap = new JButton("Load Map");
-		mapDir = new  JTextField("...");
-		heightDir = new JTextField("...");
-		start.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		
-		exit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setEnabled(false);
-			}
-		});
-		loadHeight.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		loadMap.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser file = new JFileChooser("Wybierz plik mapy");
-				int r=file.showOpenDialog(frame);
-				if(r==file.APPROVE_OPTION)
-				{
-					
-				}
-				
-				
-			}
-		});
-		buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
-		buttons.add(start);
-		buttons.add(exit);
-		buttons.add(loadMap);
-		buttons.add(loadHeight);
-		buttons.add(mapDir);
-		buttons.add(heightDir);
-		
-		panel.setSize(600 , 100); 
-		add(panel, BorderLayout.CENTER);
-		panel.setBackground(new Color(255,255,255));
-	//	pack();
-	
-		setVisible(true);
-	
 	}
-	
-	
-//	public void drawTable(boolean[][] table)
-//	{
-//		Graphics g = getGraphics();
-//		//repaint();
-//
-//		for (int i = 0 ; i < table.length; i++)
-//		{
-//			for (int j = 0; j < table[0].length; j++)
-//			{	
-//				if(table[i][j])
-//				{
-//					g.drawRect(i*30,j*30,30, 30);
-//					g.drawString("s", i*10, j*10);
-//				}
-//			}
-//		}
-//		
-//		this.revalidate();
-//		this.repaint();
-//		
-//	}
-//	@Override public void paint(Graphics g)
-//	{
-//		super.paint(g);
-//	
-//	}
+
+	private void init() {
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		addWindowListener(new CloseWindow());
+		setSize(800, 700);
+		setLocation(25, 25);
+		setVisible(true);
+		add(getSplitPane());
+		setVisible(true);
+
+	}
+
+	public void drawing(boolean[][] agent) {
+		getSplitPane().drawing(agent);
+	}
+
+	@Override
+	public void run() {
+		init();
+
+		this.setVisible(true);
+
+	}
+
+	public SimulationSplitPane getSplitPane() {
+		return splitPane;
+	}
+
+	public void setSplitPane(SimulationSplitPane splitPane) {
+		this.splitPane = splitPane;
+	}
+
 }
