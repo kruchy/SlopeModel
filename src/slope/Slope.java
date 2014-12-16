@@ -3,43 +3,49 @@ package slope;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-
+/**
+ * Class represents ski slope
+ * @author Pawel
+ *
+ */
 public class Slope {
+	/**
+	 * One cell on ski slope
+	 */
 	static public SlopeCell[][] slope;
+	/**
+	 * Map filling values of ski slope's height
+	 */
 	static private int[][] heightmap;
 	private static int width;
 	private static int height;
 	private int maxHeight;
-	private int minHeight;
 
-	static public ArrayList<SlopeCell> route;
 
 	public Slope(int width, int height, int maxHeight, int minHeight) {
 		this.setHeight(height);
 		this.setWidth(width);
 
 		this.maxHeight = maxHeight;
-		this.minHeight = minHeight;
 		setHeightmap(new int[height][width]);
 		slope = new SlopeCell[height][width];
-		route = new ArrayList<>();
 		for (int i = 0; i < height; i++)
 			for (int j = 0; j < width; j++) {
 				slope[i][j] = new SlopeCell(i, j);
 			}
 		fillRandomHighmap();
 		Random rand = new Random();
-		/*
-		 * for (int i = 0; i < width -1; i++) for ( int j = 0 ; j < height - 1;
-		 * j++) { route.add(getSlopeTable()[i+
-		 * rand.nextInt(1)][j+rand.nextInt(1)]); }
-		 */
 	}
-
+	/**
+	 * Getting slope table
+	 * @return
+	 */
 	public static SlopeCell[][] getSlopeTable() {
 		return slope;
 	}
-
+	/**
+	 * Filling heightmap on random values
+	 */
 	public void fillRandomHighmap() {
 		Random r = new Random();
 		int random;
@@ -55,7 +61,9 @@ public class Slope {
 		}
 
 	}
-
+	/**
+	 * Printing heightmap on console
+	 */
 	public static void printHeightmap() {
 		for (int[] t : getHeightmap()) {
 			System.out.println(Arrays.toString(t));
@@ -68,7 +76,7 @@ public class Slope {
 	}
 
 	public void setHeight(int height) {
-		this.height = height;
+		Slope.height = height;
 	}
 
 	public static int getWidth() {
@@ -76,7 +84,7 @@ public class Slope {
 	}
 
 	public void setWidth(int width) {
-		this.width = width;
+		Slope.width = width;
 	}
 
 	public static int[][] getHeightmap() {

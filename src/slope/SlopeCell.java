@@ -2,6 +2,11 @@ package slope;
 
 import agent.Skier;
 
+/**
+ * Class represents one cell on ski slope
+ * @author Pawel
+ *
+ */
 public class SlopeCell {
 	private int posx, posy;
 	Skier skiier;
@@ -49,6 +54,11 @@ public class SlopeCell {
 	{
 		this.posy--;
 	}
+	/**
+	 * Updating cell on new values
+	 * @param x
+	 * @param y
+	 */
 	public void updateCell(int x, int y)
 	{
 		this.posx += x;
