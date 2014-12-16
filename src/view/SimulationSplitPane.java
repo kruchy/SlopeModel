@@ -29,7 +29,6 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 		getSimulation().setPreferredSize(new Dimension(x,y));
 		this.setRightComponent(getButtons());
 		this.setLeftComponent(getSimulation());
-		getSimulation().setDimensions(getSimulation().getWidth(),getSimulation().getHeight());
 		setVisible(true);
 		
 	}
