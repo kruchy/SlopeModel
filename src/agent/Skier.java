@@ -7,32 +7,35 @@ import slope.Slope;
 import slope.SlopeCell;
 
 /**
- * Skier representation of Agent class. Moves on the slope depending on skills and speed.
+ * Skier representation of Agent class. Moves on the slope depending on skills
+ * and speed.
+ * 
  * @author Kruchy
- *
+ * 
  */
 public class Skier extends Agent {
 	private int ID;
 	SlopeCell cell;
+	public static int numberOfSkiers = 20;
 	BufferedImage image;
 
-	
 	/**
-	 * Default constructor, creates Skier at random location at the start of the slope.
+	 * Default constructor, creates Skier at random location at the start of the
+	 * slope.
 	 */
 	public Skier() {
 		Random rand = new Random();
 		this.setDir(randomEnum(Direction.class));
 		this.setSkill(rand.nextInt(10) + 1);
 		this.setSpeed(rand.nextInt(getSkill()) + 1);
-		this.setLocation(rand.nextInt(Slope.getWidth()-5), 0);
+		this.setLocation(rand.nextInt(Slope.getWidth() - 5), 0);
 		this.getPath().add(this.getLocation());
 		this.setState(State.ON_TRACK);
 	}
 
-
 	/**
 	 * Currently not used function.
+	 * 
 	 * @param a
 	 * @return
 	 */
@@ -45,6 +48,7 @@ public class Skier extends Agent {
 
 	/**
 	 * Choses one direction with given probability.
+	 * 
 	 * @param probability
 	 * @return
 	 */
@@ -55,9 +59,11 @@ public class Skier extends Agent {
 		for (int i = 0; i < probability.length; i++) {
 			if (totallyRandomValue < probability[i] + sum) {
 				double x = (double) i / (double) dirs.length;
-				if(i % 2 == 0) return return2(dirs[(int) Math.floor(x)],
-						dirs[(int) Math.ceil(x)]);
-				else return dirs[(int) Math.round(x)];
+				if (i % 2 == 0)
+					return return2(dirs[(int) Math.floor(x)],
+							dirs[(int) Math.ceil(x)]);
+				else
+					return dirs[(int) Math.round(x)];
 			}
 			sum += probability[i];
 		}
@@ -126,6 +132,7 @@ public class Skier extends Agent {
 
 	/**
 	 * Random creation of skiers
+	 * 
 	 * @param slope
 	 * @return
 	 */
@@ -145,6 +152,7 @@ public class Skier extends Agent {
 
 	/**
 	 * Setter for ID
+	 * 
 	 * @param iD
 	 */
 	public void setID(int iD) {

@@ -13,11 +13,11 @@ import agent.Agent.State;
 import agent.Agents;
 import agent.Skier;
 
-
 /**
  * Controller class in MVC, manages data flow.
+ * 
  * @author Kruchy
- *
+ * 
  */
 public class Manager {
 	Agents agents;
@@ -27,6 +27,7 @@ public class Manager {
 
 	/**
 	 * Sets current model and viev in controller.
+	 * 
 	 * @param slope
 	 * @param agents
 	 */
@@ -45,13 +46,16 @@ public class Manager {
 
 	/**
 	 * Helper function to manage code.
+	 * 
 	 * @return
 	 */
 	private ButtonPanel _getButton() {
-		return getSlopeFrame().getSplitPane().getButtons();}
+		return getSlopeFrame().getSplitPane().getButtons();
+	}
 
 	/**
 	 * Updates everything in model class.
+	 * 
 	 * @return
 	 * @throws InterruptedException
 	 */
@@ -74,17 +78,18 @@ public class Manager {
 		getSlopeFrame().drawing(agents.getAgentMap());
 
 	}
-	
+
 	private boolean foundCollisions() {
-		/*for (Agent iter : agents) {
-			int x = iter.getLocation().getPosx();
-			int y = iter.getLocation().getPosy();
-		}*/
+		/*
+		 * for (Agent iter : agents) { int x = iter.getLocation().getPosx(); int
+		 * y = iter.getLocation().getPosy(); }
+		 */
 		return false;
 	}
 
 	/**
 	 * Lifts given agents upward the slope.
+	 * 
 	 * @throws InterruptedException
 	 */
 	public synchronized void moveElevator() throws InterruptedException {
@@ -94,6 +99,7 @@ public class Manager {
 
 	/**
 	 * Adds to elevator those agents, who have reached the end of the slope.
+	 * 
 	 * @param moved
 	 */
 	public void addToElevator(ArrayList<Skier> moved) {
@@ -105,6 +111,7 @@ public class Manager {
 
 	/**
 	 * Adds skier to agents queue in model
+	 * 
 	 * @param skier
 	 */
 	public void addSkier(Skier skier) {
@@ -128,17 +135,18 @@ public class Manager {
 		int val = _getButton().getSkiers().getValue();
 		int height = _getButton().getSlopeHeight().getValue();
 		int width = _getButton().getSlopeWidth().getValue();
-		new Slope(width,height,100,10);
+		new Slope(width, height, 100, 10);
 		agents = new Agents();
 		if (agents.agents.isEmpty())
 			for (int i = 0; i < val; i++) {
-				
+
 				addSkier(new Skier());
 			}
 	}
 
 	/**
 	 * Getter function for running.
+	 * 
 	 * @return
 	 */
 	public boolean isRunning() {
@@ -147,12 +155,12 @@ public class Manager {
 
 	/**
 	 * Setter function for running.
+	 * 
 	 * @param running
 	 */
 	public void setRunning(boolean running) {
 		this.running = running;
 	}
-
 
 	/**
 	 * Getter function for view.
@@ -163,6 +171,7 @@ public class Manager {
 
 	/**
 	 * Setter function for view.
+	 * 
 	 * @param slopeFrame
 	 */
 	public void setSlopeFrame(SlopeFrame slopeFrame) {
@@ -171,8 +180,9 @@ public class Manager {
 
 	/**
 	 * Custom listener class for adding button in view
+	 * 
 	 * @author Kruchy
-	 *
+	 * 
 	 */
 	public class AddSkierListener implements ActionListener {
 
@@ -185,8 +195,9 @@ public class Manager {
 
 	/**
 	 * Custom listener class for reset button in view.
+	 * 
 	 * @author Kruchy
-	 *
+	 * 
 	 */
 	public class ResetListener implements ActionListener {
 
@@ -200,8 +211,9 @@ public class Manager {
 
 	/**
 	 * Custom listener class for start button in view.
+	 * 
 	 * @author Kruchy
-	 *
+	 * 
 	 */
 	public class StartListener implements ActionListener {
 
@@ -216,8 +228,9 @@ public class Manager {
 
 	/**
 	 * Custom listener class for exit button in view.
+	 * 
 	 * @author Kruchy
-	 *
+	 * 
 	 */
 	public class ExitListener implements ActionListener {
 
@@ -226,14 +239,15 @@ public class Manager {
 			reset();
 			slopeFrame.dispose();
 			System.exit(0);
-			}
+		}
 
 	}
 
 	/**
 	 * Custom listener class for actualize button in view.
+	 * 
 	 * @author Kruchy
-	 *
+	 * 
 	 */
 	public class ActualizeListener implements ActionListener {
 
@@ -247,8 +261,9 @@ public class Manager {
 
 	/**
 	 * Custom listener class for litening to change size events in view.
+	 * 
 	 * @author Kruchy
-	 *
+	 * 
 	 */
 	public class WindowSizeListener implements ComponentListener {
 		@Override
@@ -262,8 +277,10 @@ public class Manager {
 		@Override
 		public void componentResized(ComponentEvent arg0) {
 			reset();
-			//new Slope((int)slopeFrame.getWidth()/16,(int)slopeFrame.getHeight()/14 ,100, 10);
-			//slopeFrame.getSplitPane().getSimulation().update();
+			// new
+			// Slope((int)slopeFrame.getWidth()/16,(int)slopeFrame.getHeight()/14
+			// ,100, 10);
+			// slopeFrame.getSplitPane().getSimulation().update();
 		}
 
 		@Override

@@ -4,8 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Class represents ski slope
+ * 
+ * @author Pawel
+ * 
+ */
 public class Slope {
+	/**
+	 * One cell on ski slope
+	 */
 	static public SlopeCell[][] slope;
+	/**
+	 * Map filling values of ski slope's height
+	 */
 	static private int[][] heightmap;
 	private static int width;
 	private static int height;
@@ -30,10 +42,18 @@ public class Slope {
 		Random rand = new Random();
 	}
 
+	/**
+	 * Getting slope table
+	 * 
+	 * @return
+	 */
 	public static SlopeCell[][] getSlopeTable() {
 		return slope;
 	}
 
+	/**
+	 * Filling heightmap on random values
+	 */
 	public void fillRandomHighmap() {
 		Random r = new Random();
 		int random;
@@ -50,6 +70,9 @@ public class Slope {
 
 	}
 
+	/**
+	 * Printing heightmap on console
+	 */
 	public static void printHeightmap() {
 		for (int[] t : getHeightmap()) {
 			System.out.println(Arrays.toString(t));

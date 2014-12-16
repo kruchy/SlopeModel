@@ -20,8 +20,8 @@ public class SlopeFrame extends JFrame implements Runnable {
 	 */
 	public SlopeFrame() {
 		super("SlopeFrame");
-		splitPane = new SimulationSplitPane();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSplitPane(new SimulationSplitPane());
 	}
 
 	/**
@@ -62,6 +62,5 @@ public class SlopeFrame extends JFrame implements Runnable {
 	public void setSplitPane(SimulationSplitPane splitPane) {
 		this.splitPane = splitPane;
 	}
-
 
 }

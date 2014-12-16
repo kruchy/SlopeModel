@@ -22,14 +22,14 @@ public class Main {
 
 		thread.start();
 		while (true) {
-				try {
-					manager.updateModel();
-					manager.drawSlope();
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			try {
+				manager.updateModel();
+				manager.drawSlope();
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
 
