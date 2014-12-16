@@ -11,17 +11,19 @@ public class Slope {
 	private static int height;
 	private int maxHeight;
 	static public ArrayList<SlopeCell> route;
+	public static int number = 0;
 
 	public Slope(int width, int height, int maxHeight, int minHeight) {
 		this.setHeight(height);
 		this.setWidth(width);
-
+		number++;
+		System.out.println(number);
 		this.maxHeight = maxHeight;
-		setHeightmap(new int[height][width]);
-		slope = new SlopeCell[height][width];
+		setHeightmap(new int[width][height]);
+		slope = new SlopeCell[width][height];
 		route = new ArrayList<>();
-		for (int i = 0; i < height; i++)
-			for (int j = 0; j < width; j++) {
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < height; j++) {
 				slope[i][j] = new SlopeCell(i, j);
 			}
 		fillRandomHighmap();

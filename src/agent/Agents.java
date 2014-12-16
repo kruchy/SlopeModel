@@ -23,7 +23,7 @@ public class Agents {
 	private void init() {
 		elevator = new Elevator();
 		agents = new ArrayList<>();
-		setAgentMap(new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2]);
+		setAgentMap(new boolean[Slope.getWidth() + 2][Slope.getHeight() + 2]);
 		
 	}
 
