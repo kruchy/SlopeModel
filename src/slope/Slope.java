@@ -11,11 +11,13 @@ public class Slope {
 	private static int height;
 	private int maxHeight;
 	static public ArrayList<SlopeCell> route;
+	public static int number = 0;
 
 	public Slope(int width, int height, int maxHeight, int minHeight) {
 		this.setHeight(height);
 		this.setWidth(width);
-
+		number++;
+		System.out.println(number);
 		this.maxHeight = maxHeight;
 		setHeightmap(new int[width][height]);
 		slope = new SlopeCell[width][height];

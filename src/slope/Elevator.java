@@ -25,7 +25,7 @@ public class Elevator {
 		addToWaitingQueue(skierQueue);
 
 		for (Skier skier : getWaitingQueue()) {
-			System.out.println(skier.getState());
+		  //System.out.println(skier.getState());
 			int y = skier.getLocation().getPosy();
 
 			if (y > 0 && skier.getState() == State.ON_LIFT) {
@@ -49,11 +49,10 @@ public class Elevator {
 		return false;
 	}
 
-	public void addToWaitingQueue(BlockingQueue<Skier> skierQ)
-			throws InterruptedException {
-		System.out.println("SkierQueue : " + skierQueue.size());
+	public void addToWaitingQueue(BlockingQueue<Skier> skierQ) throws InterruptedException {
+	/*	System.out.println("SkierQueue : " + skierQueue.size());
 		System.out.println("WaitingQueue : " + getWaitingQueue().size());
-		Skier s = null;
+	*/	Skier s = null;
 
 		for (int i = 0; i < skierQ.size(); i++) {
 			if (skierQ.size() >= maxSkiers)

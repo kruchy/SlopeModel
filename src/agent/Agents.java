@@ -24,7 +24,6 @@ public class Agents {
 		elevator = new Elevator();
 		agents = new ArrayList<>();
 		setAgentMap(new boolean[Slope.getWidth() + 2][Slope.getHeight() + 2]);
-
 	}
 
 	public void updateAgentMap() {

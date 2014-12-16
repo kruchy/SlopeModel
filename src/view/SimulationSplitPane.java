@@ -8,7 +8,7 @@ import javax.swing.JSplitPane;
 public class SimulationSplitPane extends javax.swing.JSplitPane{
 
 	private ButtonPanel buttons;
-	SkiPanel simulation;
+	private SkiPanel simulation;
 	/**
 	 * 
 	 */
@@ -22,18 +22,20 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 
 	private void init() {
 		setButtons(new ButtonPanel());
-		simulation = new SkiPanel();
-		simulation.setBackground(new Color(1.0f,1.0f,1.0f));
+		setSimulation(new SkiPanel());
+		getSimulation().setBackground(new Color(1.0f,1.0f,1.0f));
 		int x = (int) Math.round(0.8*getHeight());
 		int y = (int) Math.round(0.99*getHeight());
-		simulation.setPreferredSize(new Dimension(x,y));
+		getSimulation().setPreferredSize(new Dimension(x,y));
 		this.setRightComponent(getButtons());
-		this.setLeftComponent(simulation);
+		this.setLeftComponent(getSimulation());
+		getSimulation().setDimensions(getSimulation().getWidth(),getSimulation().getHeight());
 		setVisible(true);
+		
 	}
 
 	public void drawing(boolean[][] agent) {
-		simulation.drawing(agent);
+		getSimulation().drawing(agent);
 	}
 
 	public ButtonPanel getButtons() {
@@ -43,6 +45,14 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 	void setButtons(ButtonPanel buttons) {
 		this.buttons = buttons;
 		repaint();
+	}
+
+	public SkiPanel getSimulation() {
+		return simulation;
+	}
+
+	public void setSimulation(SkiPanel simulation) {
+		this.simulation = simulation;
 	}
 
 	
