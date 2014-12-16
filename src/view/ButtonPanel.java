@@ -83,7 +83,7 @@ public class ButtonPanel extends javax.swing.JPanel {
 		add(getLabelWidth());
 		add(getSlopeWidth());
 
-		this.setBorder(new TitledBorder("Opcje symulacji"));
+		this.setBorder(new TitledBorder("Options"));
 		setVisible(true);
 	}
 
