@@ -1,14 +1,7 @@
 package agent;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.lang.reflect.Array;
-import java.nio.file.Files;
-import java.util.Arrays;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
 
 import slope.Slope;
 import slope.SlopeCell;
@@ -24,7 +17,7 @@ public class Skier extends Agent {
 		this.setDir(randomEnum(Direction.class));
 		this.setSkill(rand.nextInt(10) + 1);
 		this.setSpeed(rand.nextInt(getSkill()) + 1);
-		this.setLocation(rand.nextInt(Slope.getWidth()), 0);
+		this.setLocation(rand.nextInt(Slope.getWidth() - 5), 0);
 		this.getPath().add(this.getLocation());
 		this.setState(State.ON_TRACK);
 	}

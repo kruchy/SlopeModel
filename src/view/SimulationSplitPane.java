@@ -1,36 +1,40 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JSplitPane;
 
-import controller.Manager;
-
-public class SimulationSplitPane extends javax.swing.JSplitPane{
+public class SimulationSplitPane extends javax.swing.JSplitPane {
 
 	private ButtonPanel buttons;
-	SkiPanel simulation;
+	private SkiPanel simulation;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	public SimulationSplitPane() {
-		super(JSplitPane.VERTICAL_SPLIT);
-		this.setResizeWeight(0);
+		super(JSplitPane.HORIZONTAL_SPLIT);
+		this.setResizeWeight(1);
 		init();
 	}
 
 	private void init() {
 		setButtons(new ButtonPanel());
-		simulation = new SkiPanel();
-		simulation.setSize(getWidth() - 50, getHeight() - 100);
-		this.setTopComponent(getButtons());
-		this.setBottomComponent(simulation);
+		setSimulation(new SkiPanel());
+		getSimulation().setBackground(new Color(1.0f, 1.0f, 1.0f));
+		int x = (int) Math.round(0.8 * getHeight());
+		int y = (int) Math.round(0.99 * getHeight());
+		getSimulation().setPreferredSize(new Dimension(x, y));
+		this.setRightComponent(getButtons());
+		this.setLeftComponent(getSimulation());
 		setVisible(true);
+
 	}
 
 	public void drawing(boolean[][] agent) {
-		simulation.drawing(agent);
-		repaint();
+		getSimulation().drawing(agent);
 	}
 
 	public ButtonPanel getButtons() {
@@ -39,10 +43,15 @@ public class SimulationSplitPane extends javax.swing.JSplitPane{
 
 	void setButtons(ButtonPanel buttons) {
 		this.buttons = buttons;
+		repaint();
 	}
 
-	
-	
-	
+	public SkiPanel getSimulation() {
+		return simulation;
+	}
+
+	public void setSimulation(SkiPanel simulation) {
+		this.simulation = simulation;
+	}
 
 }

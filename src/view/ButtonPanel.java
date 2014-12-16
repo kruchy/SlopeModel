@@ -1,20 +1,12 @@
 package view;
 
+import java.awt.GridLayout;
+
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
-
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-
-import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
-
-import controller.Manager;
 
 public class ButtonPanel extends javax.swing.JPanel {
 
@@ -24,6 +16,10 @@ public class ButtonPanel extends javax.swing.JPanel {
 	private JButton reset;
 	private JSlider skiers;
 	private JButton actualize;
+	private JSlider slopeHeight;
+	private JSlider slopeWidth;
+	private JLabel labelHeight;
+	private JLabel labelWidth;
 	/**
 	 * 
 	 */
@@ -41,6 +37,23 @@ public class ButtonPanel extends javax.swing.JPanel {
 		setReset(new JButton("Reset"));
 		setSkiers(new JSlider(JSlider.HORIZONTAL, 1, 16, 5));
 		setActualize(new JButton("Actualize"));
+		setLabelHeight(new JLabel("Slope heigth"));
+		setLabelWidth(new JLabel("Slope width"));
+
+		setSlopeHeight(new JSlider(JSlider.HORIZONTAL, 20, 100, 50));
+		getSlopeHeight().setSnapToTicks(true);
+		getSlopeHeight().setMajorTickSpacing(10);
+		getSlopeHeight().setMinorTickSpacing(5);
+		getSlopeHeight().setPaintLabels(true);
+		getSlopeHeight().setPaintTicks(true);
+
+		setSlopeWidth(new JSlider(JSlider.HORIZONTAL, 20, 100, 50));
+		getSlopeWidth().setSnapToTicks(true);
+		getSlopeWidth().setMajorTickSpacing(10);
+		getSlopeWidth().setMinorTickSpacing(5);
+		getSlopeWidth().setPaintLabels(true);
+		getSlopeWidth().setPaintTicks(true);
+
 		getSkiers().setSnapToTicks(true);
 		getSkiers().setMajorTickSpacing(5);
 		getSkiers().setMinorTickSpacing(1);
@@ -49,13 +62,18 @@ public class ButtonPanel extends javax.swing.JPanel {
 		setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel temp = new JPanel();
+		temp.setLayout(new GridLayout(0, 1, 0, 0));
 		temp.add(getStart());
-		temp.add(getReset());
-		temp.add(getExit());
 		temp.add(getAddSkier());
 		temp.add(getActualize());
+		temp.add(getReset());
+		temp.add(getExit());
 		add(temp);
 		add(getSkiers());
+		add(getLabelHeight());
+		add(getSlopeHeight());
+		add(getLabelWidth());
+		add(getSlopeWidth());
 
 		this.setBorder(new TitledBorder("Opcje symulacji"));
 		setVisible(true);
@@ -107,6 +125,38 @@ public class ButtonPanel extends javax.swing.JPanel {
 
 	public void setActualize(JButton actualize) {
 		this.actualize = actualize;
+	}
+
+	public JSlider getSlopeHeight() {
+		return slopeHeight;
+	}
+
+	public void setSlopeHeight(JSlider slopeHeight) {
+		this.slopeHeight = slopeHeight;
+	}
+
+	public JSlider getSlopeWidth() {
+		return slopeWidth;
+	}
+
+	public void setSlopeWidth(JSlider slopeWidth) {
+		this.slopeWidth = slopeWidth;
+	}
+
+	public JLabel getLabelHeight() {
+		return labelHeight;
+	}
+
+	public void setLabelHeight(JLabel labelHeight) {
+		this.labelHeight = labelHeight;
+	}
+
+	public JLabel getLabelWidth() {
+		return labelWidth;
+	}
+
+	public void setLabelWidth(JLabel labelWidth) {
+		this.labelWidth = labelWidth;
 	}
 
 }
