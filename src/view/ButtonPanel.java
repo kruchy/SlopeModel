@@ -19,10 +19,14 @@ public class ButtonPanel extends javax.swing.JPanel {
 	private JButton reset;
 	private JSlider skiers;
 	private JButton actualize;
+	private JButton step;
 	private JSlider slopeHeight;
 	private JSlider slopeWidth;
 	private JLabel labelHeight;
 	private JLabel labelWidth;
+	private JButton pause;
+	private JButton cont;
+	private JLabel add;
 	/**
 	 * 
 	 */
@@ -43,9 +47,17 @@ public class ButtonPanel extends javax.swing.JPanel {
 		setReset(new JButton("Reset"));
 		setSkiers(new JSlider(JSlider.HORIZONTAL, 1, 16, 5));
 		setActualize(new JButton("Actualize"));
+		setStep(new JButton("Step"));
+		setPause(new JButton("Pause"));
+		setCont(new JButton("Continue"));
+		
+		
+		setAdd(new JLabel("Number of skiers"));
 		setLabelHeight(new JLabel("Slope heigth"));
 		setLabelWidth(new JLabel("Slope width"));
-
+		
+		
+		
 		setSlopeHeight(new JSlider(JSlider.HORIZONTAL, 20, 100, 50));
 		getSlopeHeight().setSnapToTicks(true);
 		getSlopeHeight().setMajorTickSpacing(10);
@@ -70,11 +82,16 @@ public class ButtonPanel extends javax.swing.JPanel {
 		JPanel temp = new JPanel();
 		temp.setLayout(new GridLayout(0, 1, 0, 0));
 		temp.add(getStart());
+		temp.add(getCont());
+		temp.add(getPause());
+		temp.add(getStep());
 		temp.add(getAddSkier());
 		temp.add(getActualize());
 		temp.add(getReset());
 		temp.add(getExit());
+		
 		add(temp);
+		add(getAdd());
 		add(getSkiers());
 		add(getLabelHeight());
 		add(getSlopeHeight());
@@ -163,6 +180,38 @@ public class ButtonPanel extends javax.swing.JPanel {
 
 	public void setLabelWidth(JLabel labelWidth) {
 		this.labelWidth = labelWidth;
+	}
+
+	public JButton getStep() {
+		return step;
+	}
+
+	public void setStep(JButton step) {
+		this.step = step;
+	}
+
+	public JButton getPause() {
+		return pause;
+	}
+
+	public void setPause(JButton pause) {
+		this.pause = pause;
+	}
+
+	public JButton getCont() {
+		return cont;
+	}
+
+	public void setCont(JButton cont) {
+		this.cont = cont;
+	}
+
+	public JLabel getAdd() {
+		return add;
+	}
+
+	public void setAdd(JLabel add) {
+		this.add = add;
 	}
 
 }

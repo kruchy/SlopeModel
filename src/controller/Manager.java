@@ -22,9 +22,10 @@ import agent.Skier;
 public class Manager {
 	Agents agents;
 	private boolean running;
-
+	private boolean step;
 	private SlopeFrame slopeFrame;
-
+	
+	
 	/**
 	 * Sets current model and viev in controller.
 	 * 
@@ -33,6 +34,7 @@ public class Manager {
 	 */
 	public Manager(SlopeFrame slope, Agents agents) {
 		running = false;
+		step = false;
 		this.agents = agents;
 		this.slopeFrame = slope;
 		slopeFrame.addComponentListener(new WindowSizeListener());
@@ -41,6 +43,9 @@ public class Manager {
 		_getButton().getReset().addActionListener(new ResetListener());
 		_getButton().getExit().addActionListener(new ExitListener());
 		_getButton().getActualize().addActionListener(new ActualizeListener());
+		_getButton().getStep().addActionListener(new StepListener());
+		_getButton().getPause().addActionListener(new PauseListener());
+		_getButton().getCont().addActionListener(new ContinueListener());
 
 	}
 
@@ -178,6 +183,14 @@ public class Manager {
 		this.slopeFrame = slopeFrame;
 	}
 
+	public boolean isStep() {
+		return step;
+	}
+
+	public void setStep(boolean step) {
+		this.step = step;
+	}
+
 	/**
 	 * Custom listener class for adding button in view
 	 * 
@@ -194,6 +207,19 @@ public class Manager {
 	}
 
 	/**
+	 * Custom listener class for step button in view.
+	 */
+	public class StepListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			setRunning(false);
+			setStep(true);
+		}
+		
+	}
+	
+	/**
 	 * Custom listener class for reset button in view.
 	 * 
 	 * @author Kruchy
@@ -205,6 +231,7 @@ public class Manager {
 		public void actionPerformed(ActionEvent arg0) {
 
 			reset();
+			slopeFrame.repaint();
 		}
 
 	}
@@ -258,9 +285,32 @@ public class Manager {
 		}
 
 	}
+	
+	/**
+	 * Custom listener class to implement pause. 
+	 */
+	public class PauseListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			setRunning(false);
+		}
+		
+	}
 
 	/**
-	 * Custom listener class for litening to change size events in view.
+	 * Custom listener class to implement pause. 
+	 */
+	public class ContinueListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			setRunning(true);
+		}
+		
+	}
+	/**
+	 * Custom listener class for listening to change size events in view.
 	 * 
 	 * @author Kruchy
 	 * 
