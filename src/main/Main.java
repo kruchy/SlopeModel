@@ -20,9 +20,27 @@ public class Main {
 			}
 		});
 
+		manager.setRunning(false);
 		thread.start();
 		while (true) {
+			if(manager.isStep())
+			{
+				try {
+					manager.updateModel();
+					manager.drawSlope();
+					
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				finally
+				{
+					manager.setStep(false);
+				}
+			}
+			while(manager.isRunning())
 			try {
+				
 				manager.updateModel();
 				manager.drawSlope();
 				Thread.sleep(100);
