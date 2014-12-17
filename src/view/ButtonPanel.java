@@ -80,17 +80,24 @@ public class ButtonPanel extends javax.swing.JPanel {
 		setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel temp = new JPanel();
+		JPanel temp2 = new JPanel();
+		JPanel temp3 = new JPanel();
 		temp.setLayout(new GridLayout(0, 1, 0, 0));
+		temp2.setLayout(new GridLayout(0, 1, 0, 0));
+		temp3.setLayout(new GridLayout(1, 0, 0, 0));
+		
 		temp.add(getStart());
 		temp.add(getCont());
 		temp.add(getPause());
-		temp.add(getStep());
-		temp.add(getAddSkier());
-		temp.add(getActualize());
-		temp.add(getReset());
+		temp2.add(getStep());
+		temp2.add(getAddSkier());
+		temp2.add(getActualize());
+		temp2.add(getReset());
 		temp.add(getExit());
 		
-		add(temp);
+		add(temp3);
+		temp3.add(temp);
+		temp3.add(temp2);
 		add(getAdd());
 		add(getSkiers());
 		add(getLabelHeight());
