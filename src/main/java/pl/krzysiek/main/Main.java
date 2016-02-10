@@ -1,9 +1,10 @@
-package main;
+package pl.krzysiek.main;
 
-import controller.Manager;
-import slope.Slope;
-import view.SlopeFrame;
-import agent.Agents;
+
+import pl.krzysiek.agent.Agents;
+import pl.krzysiek.controller.Manager;
+import pl.krzysiek.slope.Slope;
+import pl.krzysiek.view.SlopeFrame;
 
 public class Main {
 
@@ -20,25 +21,25 @@ public class Main {
 			}
 		});
 
-		manager.setRunning(false);
+		manager.setRunning(true);
 		thread.start();
 		while (true) {
-			if(manager.isStep())
-			{
-				try {
-					manager.updateModel();
-					manager.drawSlope();
-					
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				finally
-				{
-					manager.setStep(false);
-				}
-			}
-			while(manager.isRunning())
+//			if(manager.isStep())
+//			{
+//				try {
+//					manager.updateModel();
+//					manager.drawSlope();
+//
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				finally
+//				{
+//					manager.setStep(false);
+//				}
+//			}
+//			while(manager.isRunning())
 			try {
 				
 				manager.updateModel();

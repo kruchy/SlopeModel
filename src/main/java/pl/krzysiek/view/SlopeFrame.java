@@ -1,4 +1,4 @@
-package view;
+package pl.krzysiek.view;
 
 import javax.swing.JFrame;
 

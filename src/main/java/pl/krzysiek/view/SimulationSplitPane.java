@@ -1,4 +1,4 @@
-package view;
+package pl.krzysiek.view;
 
 import java.awt.Color;
 import java.awt.Dimension;

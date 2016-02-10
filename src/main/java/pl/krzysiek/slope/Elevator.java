@@ -1,10 +1,11 @@
-package slope;
+package pl.krzysiek.slope;
+
+import pl.krzysiek.agent.Agent;
+import pl.krzysiek.agent.Skier;
 
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import agent.Agent.State;
-import agent.Skier;
 
 /**
  * Class represents a ski lift
@@ -55,13 +56,13 @@ public class Elevator {
 			// System.out.println(skier.getState());
 			int y = skier.getLocation().getPosy();
 
-			if (y > 0 && skier.getState() == State.ON_LIFT) {
+			if (y > 0 && skier.getState() == Agent.State.ON_LIFT) {
 				skier.setLocation(Slope.getWidth() - 3, y - 1);
 			}
 
 			if (y == 0) {
 				skier.setLocation(new Random().nextInt(Slope.getWidth()), 0);
-				skier.setState(State.ON_TRACK);
+				skier.setState(Agent.State.ON_TRACK);
 				skier = getWaitingQueue().take();
 
 			}
@@ -85,14 +86,14 @@ public class Elevator {
 				for (int j = 0; j < maxSkiers; j++) {
 					s = skierQ.peek();
 					if (getWaitingQueue().offer(s)) {
-						s.setState(State.ON_LIFT);
+						s.setState(Agent.State.ON_LIFT);
 						skierQ.take();
 					}
 				}
 			else {
 				s = skierQ.peek();
 				if (getWaitingQueue().offer(s)) {
-					s.setState(State.ON_LIFT);
+					s.setState(Agent.State.ON_LIFT);
 					skierQ.take();
 				}
 			}

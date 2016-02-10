@@ -1,12 +1,11 @@
-package agent;
+package pl.krzysiek.agent;
+
+import pl.krzysiek.slope.Elevator;
+import pl.krzysiek.slope.Slope;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import agent.Agent.Direction;
-import agent.Agent.State;
-import slope.Elevator;
-import slope.Slope;
 
 public class Agents {
 
@@ -58,17 +57,17 @@ public class Agents {
 	public synchronized ArrayList<Skier> moveSkiers() {
 		ArrayList<Skier> outOfBounds = new ArrayList<>();
 		for (Skier i : agents) {
-			if (i.getState() == State.ON_TRACK) {
+			if (i.getState() == Agent.State.ON_TRACK) {
 				int x = i.getLocation().getPosx();
 				int y = i.getLocation().getPosy();
 				if (y + 1 < Slope.getHeight() && x + 1 < Slope.getWidth()
 						&& x - 1 > 0)
 					i.findCell();
 				if (x + 1 >= Slope.getWidth() - 5) {
-					i.setDir(Direction.R);
+					i.setDir(Agent.Direction.R);
 				}
 				if (x <= 0) {
-					i.setDir(Direction.L);
+					i.setDir(Agent.Direction.L);
 				}
 				if (y + 1 >= Slope.getHeight()) {
 					i.setLocation(Slope.getWidth() + 3, Slope.getHeight() - 4);

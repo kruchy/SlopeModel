@@ -1,4 +1,4 @@
-package slope;
+package pl.krzysiek.slope;
 
 import java.util.ArrayList;
 import java.util.Arrays;

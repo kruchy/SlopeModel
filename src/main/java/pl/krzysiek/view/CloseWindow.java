@@ -1,4 +1,4 @@
-package view;
+package pl.krzysiek.view;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;

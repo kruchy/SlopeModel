@@ -1,17 +1,14 @@
-package view;
+package pl.krzysiek.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import pl.krzysiek.main.Main;
+import pl.krzysiek.slope.Slope;
+
+import java.awt.*;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import main.Main;
-import slope.Slope;
 
 /**
  * Place to draw data received from model.
@@ -44,8 +41,9 @@ public class SkiPanel extends JPanel {
 	 * @param agent Rectangle table of agents on the slope
 	 */
 	public void drawing(boolean[][] agent) {
-		URL url = Main.class.getResource("/doge.png");
-		image = new ImageIcon(url).getImage();
+//		URL url = Main.class.getResource("../resources/doge.png");
+//        System.out.println(url.toString());
+//        image = new ImageIcon(url).getImage();
 		/*
 		 * String path = new File("").getAbsolutePath(); image = new
 		 * ImageIcon(path + File.pathSeparator + "res" + File.pathSeparator +
@@ -82,9 +80,9 @@ public class SkiPanel extends JPanel {
 			for (int j = 0; j < agent[0].length; j++) {
 				g2d.setColor(Color.blue);
 				if (agent[i][j]) {
-					// g2d.drawString("*", i*getWidth()/56, j*getHeight()/66);
-					g2d.drawImage(image, i * getWidth() / 56, j * getHeight()
-							/ 66, null);
+					 g2d.drawString("*", i*getWidth()/56, j*getHeight()/66);
+//					g2d.drawImage(image, i * getWidth() / 56, j * getHeight()
+//							/ 66, null);
 				}
 			}
 		}

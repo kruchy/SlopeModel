@@ -1,4 +1,11 @@
-package controller;
+package pl.krzysiek.controller;
+
+import pl.krzysiek.slope.Slope;
+import pl.krzysiek.view.ButtonPanel;
+import pl.krzysiek.view.SlopeFrame;
+
+import pl.krzysiek.agent.*;
+import sun.management.resources.agent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,12 +13,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
-import slope.Slope;
-import view.ButtonPanel;
-import view.SlopeFrame;
-import agent.Agent.State;
-import agent.Agents;
-import agent.Skier;
+
 
 /**
  * Controller class in MVC, manages data flow.
@@ -109,7 +111,7 @@ public class Manager {
 	 */
 	public void addToElevator(ArrayList<Skier> moved) {
 		for (Skier skier : moved) {
-			skier.setState(State.SAFE_ZONE);
+			skier.setState(Agent.State.SAFE_ZONE);
 			agents.getElevator().addSkier(skier);
 		}
 	}

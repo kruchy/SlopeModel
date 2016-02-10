@@ -1,8 +1,10 @@
-package agent;
+package pl.krzysiek.agent;
 
-import java.util.ArrayList;
+import pl.krzysiek.slope.SlopeCell;
 
-import slope.SlopeCell;
+import
+java.util.ArrayList;
+
 
 /**
  * Parent class of all agents existing on the slope.

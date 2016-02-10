@@ -1,10 +1,11 @@
-package agent;
+package pl.krzysiek.agent;
+
+import pl.krzysiek.slope.Slope;
+import pl.krzysiek.slope.SlopeCell;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-import slope.Slope;
-import slope.SlopeCell;
 
 /**
  * Skier representation of Agent class. Moves on the slope depending on skills
