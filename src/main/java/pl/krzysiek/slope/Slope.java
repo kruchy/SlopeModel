@@ -6,101 +6,84 @@ import java.util.Random;
 
 /**
  * Class represents ski slope
- * 
+ *
  * @author Pawel
- * 
  */
 public class Slope {
-	/**
-	 * One cell on ski slope
-	 */
-	static public SlopeCell[][] slope;
-	/**
-	 * Map filling values of ski slope's height
-	 */
-	static private int[][] heightmap;
-	private static int width;
-	private static int height;
-	private int maxHeight;
-	static public ArrayList<SlopeCell> route;
-	public static int number = 0;
 
-	public Slope(int width, int height, int maxHeight, int minHeight) {
-		this.setHeight(height);
-		this.setWidth(width);
-		number++;
-		System.out.println(number);
-		this.maxHeight = maxHeight;
-		setHeightmap(new int[width][height]);
-		slope = new SlopeCell[width][height];
-		route = new ArrayList<>();
-		for (int i = 0; i < width; i++)
-			for (int j = 0; j < height; j++) {
-				slope[i][j] = new SlopeCell(i, j);
-			}
-		fillRandomHighmap();
-		Random rand = new Random();
-	}
+    static public SlopeCell[][] slope;
 
-	/**
-	 * Getting slope table
-	 * 
-	 * @return
-	 */
-	public static SlopeCell[][] getSlopeTable() {
-		return slope;
-	}
+    static private int[][] heightmap;
+    private static int width;
+    private static int height;
+    private int maxHeight;
+    static public ArrayList<SlopeCell> route;
+    public static int number = 0;
 
-	/**
-	 * Filling heightmap on random values
-	 */
-	public void fillRandomHighmap() {
-		Random r = new Random();
-		int random;
-		int max = maxHeight;
-		for (int i = 0; i < getHeightmap().length; i++) {
-			for (int j = 0; j < getHeightmap()[i].length; j++) {
+    public Slope(int width, int height, int maxHeight, int minHeight) {
+        this.setHeight(height);
+        this.setWidth(width);
+        number++;
+        System.out.println(number);
+        this.maxHeight = maxHeight;
+        setHeightmap(new int[width][height]);
+        slope = new SlopeCell[width][height];
+        route = new ArrayList<>();
+        Random r = new Random();
+        int max = maxHeight;
+        int random;
+        for (int i = 0; i < width; i++)
+            for (int j = 0; j < height; j++) {
+                slope[i][j] = new SlopeCell(i, j);
+                random = r.nextInt(max - (max - 2) + 1) + (max - 2);
+                heightmap[i][j] = random; //r.nextInt(100);
+            }
+        max--;
+        fillRandomHighmap();
+    }
 
-				random = r.nextInt(max - (max - 2) + 1) + (max - 2);
-				getHeightmap()[i][j] =    random; //r.nextInt(100);
+    public static SlopeCell[][] getSlopeTable() {
+        return slope;
+    }
 
-			}
-			max--;
-		}
+    public void fillRandomHighmap() {
+        for (int i = 0; i < getHeightmap().length; i++) {
+            for (int j = 0; j < getHeightmap()[i].length; j++) {
 
-	}
 
-	/**
-	 * Printing heightmap on console
-	 */
-	public static void printHeightmap() {
-		for (int[] t : getHeightmap()) {
-			System.out.println(Arrays.toString(t));
-			// System.out.println();
-		}
-	}
+            }
+        }
 
-	public static int getHeight() {
-		return height;
-	}
+    }
 
-	public void setHeight(int height) {
-		Slope.height = height;
-	}
+    public static void printHeightmap() {
+        for (int[] t : getHeightmap()) {
+            System.out.println(Arrays.toString(t));
+            // System.out.println();
+        }
+    }
 
-	public static int getWidth() {
-		return width;
-	}
+    public static int getHeight() {
+        return height;
+    }
 
-	public void setWidth(int width) {
-		Slope.width = width;
-	}
+    public void setHeight(int height) {
+        Slope.height = height;
+    }
 
-	public static int[][] getHeightmap() {
-		return heightmap;
-	}
+    public static int getWidth() {
+        return width;
+    }
 
-	public static void setHeightmap(int[][] heightmap) {
-		Slope.heightmap = heightmap;
-	}
+    public void setWidth(int width) {
+        Slope.width = width;
+    }
+
+    public static int[][] getHeightmap() {
+        return heightmap;
+    }
+
+    public static void setHeightmap(int[][] heightmap) {
+        Slope.heightmap = heightmap;
+    }
 }

@@ -1,66 +1,54 @@
 package pl.krzysiek.view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * Main GUI frame, implements Runnable to give the ability to run as new thread to optimalize.
- * @author Kruchy
  *
+ * @author Kruchy
  */
 public class SlopeFrame extends JFrame implements Runnable {
 
-	private SimulationSplitPane splitPane;
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private SimulationSplitPane splitPane;
 
-	/**
-	 * Default constructor.
-	 */
-	public SlopeFrame() {
-		super("SlopeFrame");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSplitPane(new SimulationSplitPane());
-	}
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Initialization.
-	 */
-	private void init() {
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		//addWindowListener(new CloseWindow());
-		setSize(800, 700);
-		//splitPane.getSimulation().setSizeToDraw(getWidth(), getHeight());
-		setLocation(25, 25);
-		setVisible(true);
-		add(getSplitPane());
-		setVisible(true);
+    public SlopeFrame() {
+        super("SlopeFrame");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSplitPane(new SimulationSplitPane());
+    }
 
-	}
+    private void init() {
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        //addWindowListener(new CloseWindow());
+        setSize(800, 700);
+        //splitPane.getSimulation().setSizeToDraw(getWidth(), getHeight());
+        setLocation(25, 25);
+        setVisible(true);
+        add(getSplitPane());
+        setVisible(true);
 
-	/**
-	 * Drawing function of given agent map.
-	 * @param agent
-	 */
-	public void drawing(boolean[][] agent) {
-		getSplitPane().drawing(agent);
-	}
+    }
 
-	@Override
-	public void run() {
-		init();
+    public void drawing(boolean[][] agent) {
+        getSplitPane().drawing(agent);
+    }
 
-		this.setVisible(true);
+    @Override
+    public void run() {
+        init();
 
-	}
-	
-	public SimulationSplitPane getSplitPane() {
-		return splitPane;
-	}
+        this.setVisible(true);
 
-	public void setSplitPane(SimulationSplitPane splitPane) {
-		this.splitPane = splitPane;
-	}
+    }
+
+    public SimulationSplitPane getSplitPane() {
+        return splitPane;
+    }
+
+    public void setSplitPane(SimulationSplitPane splitPane) {
+        this.splitPane = splitPane;
+    }
 
 }

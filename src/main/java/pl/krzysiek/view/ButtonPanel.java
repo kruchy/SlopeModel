@@ -1,224 +1,219 @@
 package pl.krzysiek.view;
 
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import java.awt.*;
 
 /**
- * Button panel on the frame, manages user interaction 
+ * Button panel on the frame, manages user interaction
  */
 public class ButtonPanel extends javax.swing.JPanel {
 
-	private JButton start;
-	private JButton exit;
-	private JButton addSkier;
-	private JButton reset;
-	private JSlider skiers;
-	private JButton actualize;
-	private JButton step;
-	private JSlider slopeHeight;
-	private JSlider slopeWidth;
-	private JLabel labelHeight;
-	private JLabel labelWidth;
-	private JButton pause;
-	private JButton cont;
-	private JLabel add;
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private JButton start;
+    private JButton exit;
+    private JButton addSkier;
+    private JButton reset;
+    private JSlider skiers;
+    private JButton actualize;
+    private JButton step;
+    private JSlider slopeHeight;
+    private JSlider slopeWidth;
+    private JLabel labelHeight;
+    private JLabel labelWidth;
+    private JButton pause;
+    private JButton cont;
+    private JLabel add;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public ButtonPanel() {
-		super();
-		init();
-	}
+    public ButtonPanel() {
+        super();
+        init();
+    }
 
-	/**
-	 * Initialization 
-	 */
-	private void init() {
-		setStart(new JButton("Start"));
-		setExit(new JButton("Exit"));
-		setAddSkier(new JButton("Add Skier"));
-		setReset(new JButton("Reset"));
-		setSkiers(new JSlider(JSlider.HORIZONTAL, 1, 16, 5));
-		setActualize(new JButton("Actualize"));
-		setStep(new JButton("Step"));
-		setPause(new JButton("Pause"));
-		setCont(new JButton("Continue"));
-		
-		
-		setAdd(new JLabel("Number of skiers"));
-		setLabelHeight(new JLabel("Slope heigth"));
-		setLabelWidth(new JLabel("Slope width"));
-		
-		
-		
-		setSlopeHeight(new JSlider(JSlider.HORIZONTAL, 20, 100, 50));
-		getSlopeHeight().setSnapToTicks(true);
-		getSlopeHeight().setMajorTickSpacing(10);
-		getSlopeHeight().setMinorTickSpacing(5);
-		getSlopeHeight().setPaintLabels(true);
-		getSlopeHeight().setPaintTicks(true);
+    /**
+     * Initialization
+     */
+    private void init() {
+        setStart(new JButton("Start"));
+        setExit(new JButton("Exit"));
+        setAddSkier(new JButton("Add Skier"));
+        setReset(new JButton("Reset"));
+        setSkiers(new JSlider(JSlider.HORIZONTAL, 1, 16, 5));
+        setActualize(new JButton("Actualize"));
+        setStep(new JButton("Step"));
+        setPause(new JButton("Pause"));
+        setCont(new JButton("Continue"));
 
-		setSlopeWidth(new JSlider(JSlider.HORIZONTAL, 20, 100, 50));
-		getSlopeWidth().setSnapToTicks(true);
-		getSlopeWidth().setMajorTickSpacing(10);
-		getSlopeWidth().setMinorTickSpacing(5);
-		getSlopeWidth().setPaintLabels(true);
-		getSlopeWidth().setPaintTicks(true);
 
-		getSkiers().setSnapToTicks(true);
-		getSkiers().setMajorTickSpacing(5);
-		getSkiers().setMinorTickSpacing(1);
-		getSkiers().setPaintTicks(true);
-		getSkiers().setPaintLabels(true);
-		setLayout(new GridLayout(0, 1, 0, 0));
+        setAdd(new JLabel("Number of skiers"));
+        setLabelHeight(new JLabel("Slope heigth"));
+        setLabelWidth(new JLabel("Slope width"));
 
-		JPanel temp = new JPanel();
-		JPanel temp2 = new JPanel();
-		JPanel temp3 = new JPanel();
-		temp.setLayout(new GridLayout(0, 1, 0, 0));
-		temp2.setLayout(new GridLayout(0, 1, 0, 0));
-		temp3.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		temp.add(getStart());
-		temp.add(getCont());
-		temp.add(getPause());
-		temp2.add(getStep());
-		temp2.add(getAddSkier());
-		temp2.add(getActualize());
-		temp2.add(getReset());
-		temp.add(getExit());
-		
-		add(temp3);
-		temp3.add(temp);
-		temp3.add(temp2);
-		add(getAdd());
-		add(getSkiers());
-		add(getLabelHeight());
-		add(getSlopeHeight());
-		add(getLabelWidth());
-		add(getSlopeWidth());
 
-		this.setBorder(new TitledBorder("Options"));
-		setVisible(true);
-	}
+        setSlopeHeight(new JSlider(JSlider.HORIZONTAL, 20, 100, 50));
+        getSlopeHeight().setSnapToTicks(true);
+        getSlopeHeight().setMajorTickSpacing(10);
+        getSlopeHeight().setMinorTickSpacing(5);
+        getSlopeHeight().setPaintLabels(true);
+        getSlopeHeight().setPaintTicks(true);
 
-	public JButton getStart() {
-		return start;
-	}
+        setSlopeWidth(new JSlider(JSlider.HORIZONTAL, 20, 100, 50));
+        getSlopeWidth().setSnapToTicks(true);
+        getSlopeWidth().setMajorTickSpacing(10);
+        getSlopeWidth().setMinorTickSpacing(5);
+        getSlopeWidth().setPaintLabels(true);
+        getSlopeWidth().setPaintTicks(true);
 
-	public void setStart(JButton start) {
-		this.start = start;
-	}
+        getSkiers().setSnapToTicks(true);
+        getSkiers().setMajorTickSpacing(5);
+        getSkiers().setMinorTickSpacing(1);
+        getSkiers().setPaintTicks(true);
+        getSkiers().setPaintLabels(true);
+        setLayout(new GridLayout(0, 1, 0, 0));
 
-	public JButton getExit() {
-		return exit;
-	}
+        JPanel temp = new JPanel();
+        JPanel temp2 = new JPanel();
+        JPanel temp3 = new JPanel();
+        temp.setLayout(new GridLayout(0, 1, 0, 0));
+        temp2.setLayout(new GridLayout(0, 1, 0, 0));
+        temp3.setLayout(new GridLayout(1, 0, 0, 0));
 
-	public void setExit(JButton exit) {
-		this.exit = exit;
-	}
+        temp.add(getStart());
+        temp.add(getCont());
+        temp.add(getPause());
+        temp2.add(getStep());
+        temp2.add(getAddSkier());
+        temp2.add(getActualize());
+        temp2.add(getReset());
+        temp.add(getExit());
 
-	public JButton getAddSkier() {
-		return addSkier;
-	}
+        add(temp3);
+        temp3.add(temp);
+        temp3.add(temp2);
+        add(getAdd());
+        add(getSkiers());
+        add(getLabelHeight());
+        add(getSlopeHeight());
+        add(getLabelWidth());
+        add(getSlopeWidth());
 
-	public void setAddSkier(JButton addSkier) {
-		this.addSkier = addSkier;
-	}
+        this.setBorder(new TitledBorder("Options"));
+        setVisible(true);
+    }
 
-	public JButton getReset() {
-		return reset;
-	}
+    public JButton getStart() {
+        return start;
+    }
 
-	public void setReset(JButton reset) {
-		this.reset = reset;
-	}
+    public void setStart(JButton start) {
+        this.start = start;
+    }
 
-	public JSlider getSkiers() {
-		return skiers;
-	}
+    public JButton getExit() {
+        return exit;
+    }
 
-	public void setSkiers(JSlider skiers) {
-		this.skiers = skiers;
-	}
+    public void setExit(JButton exit) {
+        this.exit = exit;
+    }
 
-	public JButton getActualize() {
-		return actualize;
-	}
+    public JButton getAddSkier() {
+        return addSkier;
+    }
 
-	public void setActualize(JButton actualize) {
-		this.actualize = actualize;
-	}
+    public void setAddSkier(JButton addSkier) {
+        this.addSkier = addSkier;
+    }
 
-	public JSlider getSlopeHeight() {
-		return slopeHeight;
-	}
+    public JButton getReset() {
+        return reset;
+    }
 
-	public void setSlopeHeight(JSlider slopeHeight) {
-		this.slopeHeight = slopeHeight;
-	}
+    public void setReset(JButton reset) {
+        this.reset = reset;
+    }
 
-	public JSlider getSlopeWidth() {
-		return slopeWidth;
-	}
+    public JSlider getSkiers() {
+        return skiers;
+    }
 
-	public void setSlopeWidth(JSlider slopeWidth) {
-		this.slopeWidth = slopeWidth;
-	}
+    public void setSkiers(JSlider skiers) {
+        this.skiers = skiers;
+    }
 
-	public JLabel getLabelHeight() {
-		return labelHeight;
-	}
+    public JButton getActualize() {
+        return actualize;
+    }
 
-	public void setLabelHeight(JLabel labelHeight) {
-		this.labelHeight = labelHeight;
-	}
+    public void setActualize(JButton actualize) {
+        this.actualize = actualize;
+    }
 
-	public JLabel getLabelWidth() {
-		return labelWidth;
-	}
+    public JSlider getSlopeHeight() {
+        return slopeHeight;
+    }
 
-	public void setLabelWidth(JLabel labelWidth) {
-		this.labelWidth = labelWidth;
-	}
+    public void setSlopeHeight(JSlider slopeHeight) {
+        this.slopeHeight = slopeHeight;
+    }
 
-	public JButton getStep() {
-		return step;
-	}
+    public JSlider getSlopeWidth() {
+        return slopeWidth;
+    }
 
-	public void setStep(JButton step) {
-		this.step = step;
-	}
+    public void setSlopeWidth(JSlider slopeWidth) {
+        this.slopeWidth = slopeWidth;
+    }
 
-	public JButton getPause() {
-		return pause;
-	}
+    public JLabel getLabelHeight() {
+        return labelHeight;
+    }
 
-	public void setPause(JButton pause) {
-		this.pause = pause;
-	}
+    public void setLabelHeight(JLabel labelHeight) {
+        this.labelHeight = labelHeight;
+    }
 
-	public JButton getCont() {
-		return cont;
-	}
+    public JLabel getLabelWidth() {
+        return labelWidth;
+    }
 
-	public void setCont(JButton cont) {
-		this.cont = cont;
-	}
+    public void setLabelWidth(JLabel labelWidth) {
+        this.labelWidth = labelWidth;
+    }
 
-	public JLabel getAdd() {
-		return add;
-	}
+    public JButton getStep() {
+        return step;
+    }
 
-	public void setAdd(JLabel add) {
-		this.add = add;
-	}
+    public void setStep(JButton step) {
+        this.step = step;
+    }
+
+    public JButton getPause() {
+        return pause;
+    }
+
+    public void setPause(JButton pause) {
+        this.pause = pause;
+    }
+
+    public JButton getCont() {
+        return cont;
+    }
+
+    public void setCont(JButton cont) {
+        this.cont = cont;
+    }
+
+    public JLabel getAdd() {
+        return add;
+    }
+
+    public void setAdd(JLabel add) {
+        this.add = add;
+    }
 
 }
