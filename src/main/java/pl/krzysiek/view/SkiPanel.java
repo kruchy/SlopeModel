@@ -4,6 +4,7 @@ import pl.krzysiek.main.Main;
 import pl.krzysiek.slope.Slope;
 
 import java.awt.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -34,6 +35,9 @@ public class SkiPanel extends JPanel {
 		super();
 		agent = new boolean[Slope.getHeight() + 2][Slope.getWidth() + 2];
 		setVisible(true);
+		URL url = this.getClass().getClassLoader().getResource("doge.jpg");
+		System.out.println(url.toString());
+		image = new ImageIcon(url).getImage();
 	}
 
 	/**
@@ -41,15 +45,7 @@ public class SkiPanel extends JPanel {
 	 * @param agent Rectangle table of agents on the slope
 	 */
 	public void drawing(boolean[][] agent) {
-//		URL url = Main.class.getResource("../resources/doge.png");
-//        System.out.println(url.toString());
-//        image = new ImageIcon(url).getImage();
-		/*
-		 * String path = new File("").getAbsolutePath(); image = new
-		 * ImageIcon(path + File.pathSeparator + "res" + File.pathSeparator +
-		 * "img" + File.pathSeparator + "doge.png").getImage();
-		 * System.out.println(image.getHeight(this));
-		 */
+
 		this.agent = agent;
 		repaint();
 	}
@@ -80,9 +76,9 @@ public class SkiPanel extends JPanel {
 			for (int j = 0; j < agent[0].length; j++) {
 				g2d.setColor(Color.blue);
 				if (agent[i][j]) {
-					 g2d.drawString("*", i*getWidth()/56, j*getHeight()/66);
-//					g2d.drawImage(image, i * getWidth() / 56, j * getHeight()
-//							/ 66, null);
+//					 g2d.drawString("*", i*getWidth()/56, j*getHeight()/66);
+					g2d.drawImage(image, i * getWidth() / 56, j * getHeight()
+							/ 66, null);
 				}
 			}
 		}
