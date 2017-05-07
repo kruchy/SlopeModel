@@ -1,7 +1,7 @@
-package pl.krzysiek.slope;
+package edu.agh.slope.slope;
 
 
-import pl.krzysiek.agent.Skier;
+import edu.agh.slope.agent.Skier;
 
 /**
  * Class represents one cell on ski slope

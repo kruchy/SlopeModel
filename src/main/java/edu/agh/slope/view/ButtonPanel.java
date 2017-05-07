@@ -1,4 +1,4 @@
-package pl.krzysiek.view;
+package edu.agh.slope.view;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

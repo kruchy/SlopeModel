@@ -1,11 +1,11 @@
-package pl.krzysiek.controller;
+package edu.agh.slope.controller;
 
-import pl.krzysiek.agent.Agent;
-import pl.krzysiek.agent.Agents;
-import pl.krzysiek.agent.Skier;
-import pl.krzysiek.slope.Slope;
-import pl.krzysiek.view.ButtonPanel;
-import pl.krzysiek.view.SlopeFrame;
+import edu.agh.slope.agent.Agent;
+import edu.agh.slope.slope.Slope;
+import edu.agh.slope.view.ButtonPanel;
+import edu.agh.slope.agent.Agents;
+import edu.agh.slope.agent.Skier;
+import edu.agh.slope.view.SlopeFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

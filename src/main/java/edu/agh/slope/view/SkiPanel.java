@@ -1,6 +1,6 @@
-package pl.krzysiek.view;
+package edu.agh.slope.view;
 
-import pl.krzysiek.slope.Slope;
+import edu.agh.slope.slope.Slope;
 
 import javax.swing.*;
 import java.awt.*;

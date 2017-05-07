@@ -1,7 +1,7 @@
-package pl.krzysiek.agent;
+package edu.agh.slope.agent;
 
-import pl.krzysiek.slope.Elevator;
-import pl.krzysiek.slope.Slope;
+import edu.agh.slope.slope.Elevator;
+import edu.agh.slope.slope.Slope;
 
 import java.util.ArrayList;
 import java.util.Arrays;

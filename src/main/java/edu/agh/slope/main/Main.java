@@ -1,10 +1,10 @@
-package pl.krzysiek.main;
+package edu.agh.slope.main;
 
 
-import pl.krzysiek.agent.Agents;
-import pl.krzysiek.controller.Manager;
-import pl.krzysiek.slope.Slope;
-import pl.krzysiek.view.SlopeFrame;
+import edu.agh.slope.controller.Manager;
+import edu.agh.slope.slope.Slope;
+import edu.agh.slope.view.SlopeFrame;
+import edu.agh.slope.agent.Agents;
 
 public class Main {
 

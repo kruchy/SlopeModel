@@ -1,6 +1,6 @@
-package pl.krzysiek.agent;
+package edu.agh.slope.agent;
 
-import pl.krzysiek.slope.SlopeCell;
+import edu.agh.slope.slope.SlopeCell;
 
 import java.util.ArrayList;
 

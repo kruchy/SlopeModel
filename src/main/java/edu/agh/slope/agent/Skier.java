@@ -1,7 +1,7 @@
-package pl.krzysiek.agent;
+package edu.agh.slope.agent;
 
-import pl.krzysiek.slope.Slope;
-import pl.krzysiek.slope.SlopeCell;
+import edu.agh.slope.slope.Slope;
+import edu.agh.slope.slope.SlopeCell;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;

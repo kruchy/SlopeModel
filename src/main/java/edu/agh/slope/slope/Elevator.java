@@ -1,7 +1,7 @@
-package pl.krzysiek.slope;
+package edu.agh.slope.slope;
 
-import pl.krzysiek.agent.Agent;
-import pl.krzysiek.agent.Skier;
+import edu.agh.slope.agent.Agent;
+import edu.agh.slope.agent.Skier;
 
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
